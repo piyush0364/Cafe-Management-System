@@ -9,7 +9,6 @@
 
 
 
-
         <ul class="filters_menu">
             <li  [ngClass]="{'active': activeItem === 'all'}"  (click)="filteredItems(0,'all')">All</li>
                 <li  *ngFor="let c of csrv.cList" (click)="filteredItems(c.CategoryId,c.Name)" [ngClass]="{'active': activeItem === c.Name}" >{{ c.Name }}</li>
