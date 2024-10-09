@@ -1,0 +1,26 @@
+  .nav-link {
+    font-size: 16px;
+  }
+  
+  /* Card styling */
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  .card-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    background-color: #f1f1f1;
+  }
+  
+
+
+  
