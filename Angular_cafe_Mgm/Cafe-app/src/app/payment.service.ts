@@ -69,6 +69,11 @@ export class PaymentService {
         }
         return throwError(errorMessage);
     }
+
+    processPayment(paymentData: any): Observable<any> {
+        // Send a POST request with the payment data
+        return this.http.post(this.apiUrl, paymentData);
+      }
 }
 
 

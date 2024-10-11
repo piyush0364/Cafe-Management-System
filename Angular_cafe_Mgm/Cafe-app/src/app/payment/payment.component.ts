@@ -7,34 +7,30 @@ import { PaymentService, Payment } from '../payment.service';
     styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent {
-    model: Payment = {
-        name: '',
-        address: '',
-        CardNo: null,
-        CvvNo: null,
-        ExpiryDate : null,
-        paymentMode: ''
-    };
+    model: any = {};
 
-     
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
     constructor(private paymentService: PaymentService) {}
  
-
-
-    onSubmit(form:any) {
-        this.paymentService.submitPayment(form.value).subscribe(
-            response => {
-                this.submissionMessage = 'Payment submitted successfully!';
-                this.model = { name: '', address: '', CardNo: '', CvvNo: '', ExpiryDate: '', paymentMode: '' }; // Reset form
-           
+    onSubmit(form: any) {
+        if (form.valid) {
+          this.paymentService.processPayment(form.value).subscribe(
+            (response) => {
+              this.submissionMessage = "Payment submitted successfully!";
+              this.errorMessage = null;
+              console.log(response);
             },
-            error => {
-                this.errorMessage = 'Error submitting payment. Please try again.';
-                console.error('Error submitting payment', error);
+            (error) => {
+              this.errorMessage = "Error processing payment. Please try again.";
+              this.submissionMessage = null;
+              console.error(error);
             }
-        );
-    }
+          );
+        } else {
+          this.errorMessage = "Please fill in all required fields.";
+          this.submissionMessage = null;
+        }
+      }
 }
