@@ -12,9 +12,13 @@ import { ProductsComponent } from './admin/products/products.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { Contact } from './Models/contact.model';
 import { ContactComponent } from './admin/contact/contact.component';
+
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CustomersComponent } from './admin/customers/customers.component';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,11 @@ import { CustomersComponent } from './admin/customers/customers.component';
     ContactComponent,
     LoginComponent,
     SignupComponent,
-
+    HomeComponent,
+    NavComponent,
+    FeedbackComponent,
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

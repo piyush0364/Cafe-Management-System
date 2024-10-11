@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  selector: 'app-feedback',
+  templateUrl: './feedback.component.html',
+  styleUrl: './feedback.component.css'
 })
-export class ContactComponent {
-
+export class FeedbackComponent {
   readonly ppApiUrl='https://localhost:44390/api/Contacts';
 
   constructor(private http: HttpClient) {}
@@ -29,5 +28,4 @@ export class ContactComponent {
         }
       });
   }
-
 }
