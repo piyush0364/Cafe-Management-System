@@ -1,0 +1,60 @@
+
+<div class="container mt-5">
+    <!-- Cart Title -->
+    <h2 class="text-center mb-4 font-weight-bold">Your Cart</h2>
+
+    <!-- Cart Items Table -->
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-uppercase text-muted">Product</th>
+                    <th scope="col" class="text-uppercase text-muted">Price</th>
+                    <th scope="col" class="text-uppercase text-muted">Quantity</th>
+                    <th scope="col" class="text-uppercase text-muted text-right">Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop over cart items -->
+                <tr *ngFor="let item of cartItems">
+                    <td class="d-flex align-items-center">
+                        <img [src]="item.product?.imageUrl || 'default_image.jpg'" class="img-fluid cart-img rounded mr-3" alt="Product Image">
+                        <div>
+                            <p class="mb-1 font-weight-bold">{{ item.product?.name }}</p>
+                        </div>
+                    </td>
+                    <td>{{ item.product?.Price|| 0 | currency }}</td>
+
+                    <td>
+                        <div class="input-group quantity-control">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary btn-sm" (click)="decreaseQuantity(item)">−</button>
+                            </div>
+                            <input type="text" class="form-control text-center" [(ngModel)]="item.Quantity" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-sm" (click)="increaseQuantity(item)">+</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right">{{ (item.product?.Price || 0) * (item.Quantity || 0) | currency }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" (click)="removeItem(item)">✕</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Checkout Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-muted">Taxes and delivery not included</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <h4>Total: <span class="text-primary">{{ calculateTotal() | currency }}</span></h4>
+            <button class="btn btn-lg btn-success mt-2">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+

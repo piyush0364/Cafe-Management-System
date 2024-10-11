@@ -19,6 +19,7 @@ import { CustomersComponent } from './admin/customers/customers.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     HomeComponent,
     NavComponent,
     FeedbackComponent,
+    CartComponent,
   ],
   
   imports: [
