@@ -80,3 +80,4 @@ CvvNo int null,
 Address varchar(max) null,
 PaymentMode varchar(50) null
 )
+select * from Users

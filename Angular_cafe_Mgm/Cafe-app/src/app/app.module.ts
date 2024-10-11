@@ -4,21 +4,40 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { ProductsComponent } from './admin/products/products.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { Contact } from './Models/contact.model';
+import { ContactComponent } from './admin/contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { CustomersComponent } from './admin/customers/customers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    DashboardComponent,
+    CategoriesComponent,
+    ProductsComponent,
+    OrdersComponent,
+    CustomersComponent,
+    ContactComponent,
+    LoginComponent,
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,DashboardComponent,CategoriesComponent,ProductsComponent,OrdersComponent,CustomersComponent,ContactComponent]
 })
 export class AppModule { }

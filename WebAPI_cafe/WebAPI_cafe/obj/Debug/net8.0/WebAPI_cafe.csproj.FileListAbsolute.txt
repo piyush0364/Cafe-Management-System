@@ -250,3 +250,5 @@ C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\bin\Debug\net8.0\
 C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\obj\Debug\net8.0\WebAPI_cafe.sourcelink.json
+C:\Users\user\Desktop\Capstone_Project\WebAPI_cafe\WebAPI_cafe\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

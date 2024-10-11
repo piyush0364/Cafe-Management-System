@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../../Service/categories.service';
+import { AuthService } from '../../Service/auth.service';
 
 @Component({
   selector: 'app-categories',
@@ -7,7 +8,7 @@ import { CategoriesService } from '../../Service/categories.service';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit{
-  constructor(public objs:CategoriesService){}
+  constructor(public objs:CategoriesService,private auth:AuthService){}
 
   ngOnInit(): void {
     this.objs.getCategoriesList();
@@ -27,6 +28,11 @@ export class CategoriesComponent implements OnInit{
        },
       err=>{alert("Error!!!"+err);})
    }
+  }
+
+  logout()
+  {
+    this.auth.signOut();
   }
 
 }

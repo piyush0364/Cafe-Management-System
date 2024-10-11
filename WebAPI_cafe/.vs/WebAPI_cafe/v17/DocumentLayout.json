@@ -1,12 +1,101 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\capstone_project\\webapi_cafe\\webapi_cafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\capstone_project\\webapi_cafe\\webapi_cafe\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\capstone_project\\webapi_cafe\\webapi_cafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\capstone_project\\webapi_cafe\\webapi_cafe\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\capstone_project\\webapi_cafe\\webapi_cafe\\models\\cafemgmcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\cafemgmcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\Payment.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Models\\Payment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T08:18:25.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Program.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Program.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Program.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAAC4AAACMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T21:05:34.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAYwFMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T20:52:34.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CafeMgmContext.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\CafeMgmContext.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Models\\CafeMgmContext.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\CafeMgmContext.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Models\\CafeMgmContext.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T20:19:04.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\User.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\Models\\User.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Models\\User.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T20:18:38.562Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
