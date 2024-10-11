@@ -2,7 +2,7 @@
     <nav class="navbar navbar-dark bg-dark justify-content-center">
       <a class="navbar-brand mx-auto" style="color: white; text-align: center;"><h2><b>CAFE  ADMIN</b></h2></a>
       <form class="form-inline" style="position: absolute; right: 20px;">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Login/Logout</button>
+        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
       </form>
     </nav>
   </div>
@@ -15,14 +15,14 @@
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-danger">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <!-- <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"> -->
                         <span class="fs-5 d-none d-sm-inline"><b>Admin Portal</b></span>
-                    </a>
+                    <!-- </a> -->
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                        
                       
                         <li>
-                            <a routerLink="/" class="nav-link px-0 align-middle">
+                            <a routerLink="/dashboard" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-speedometer2" style="color: white; font-size: large;"></i> <span class="ms-1 d-none d-sm-inline text-white fw-bold">Dashboard</span> </a>
                 
                         </li>

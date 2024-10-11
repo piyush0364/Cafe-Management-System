@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class CategoryService {
 
   cData:Category = new Category()
-  readonly ppApiUrl='https://localhost:44390/api/Categories';
+  readonly ppApiUrl='https://localhost:44344/api/Categories';
 
   cList:Category[];
 
