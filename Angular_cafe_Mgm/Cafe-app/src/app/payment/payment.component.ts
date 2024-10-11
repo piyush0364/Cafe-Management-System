@@ -16,23 +16,13 @@ export class PaymentComponent {
         paymentMode: ''
     };
 
-    mode: string;
      
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
     constructor(private paymentService: PaymentService) {}
  
-    onPaymentModeChange() {
 
-        this.mode = ononline;
-        // Reset card details when payment mode changes
-        // if (this.model.paymentMode !== 'online') {
-        //     this.model.CardNo = null;
-        //     this.model.CvvNo = null;
-        //     this.model.ExpiryDate = null;
-        // }
-    }
 
     onSubmit(form:any) {
         this.paymentService.submitPayment(form.value).subscribe(
