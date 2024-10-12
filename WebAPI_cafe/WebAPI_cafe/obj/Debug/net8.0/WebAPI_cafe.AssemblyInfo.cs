@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI_cafe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcac6f85c4505d182b3b063c1504a1b550b9ec7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78f16b52fcfa999e2a041d032adab82e0b253763")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI_cafe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI_cafe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
