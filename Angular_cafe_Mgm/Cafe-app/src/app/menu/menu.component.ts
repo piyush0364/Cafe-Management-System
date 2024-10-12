@@ -1,7 +1,9 @@
 import { Component,OnInit,ApplicationModule } from '@angular/core';
-import { ProductService } from '../service/product.service';
-import { CategoryService } from '../service/category.service';
+import { ProductService } from '../Service/product.service';
+import { CategoryService } from '../Service/category.service';
 import { Product } from '../model/product.model';
+import { catchError, of, switchMap } from 'rxjs';
+import { CartService } from '../Service/cart.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,16 +16,20 @@ export class MenuComponent {
  
   title = 'productinfo-app';
   activeItem: string;
+  id:number;
   
   items: Product[] = [];
   fItems: Product[] = [];
 
-  constructor(public psrv:ProductService, public csrv:CategoryService)
-  {  
+  constructor(public psrv:ProductService, public csrv:CategoryService, public crt:CartService)
+  {       this.id = JSON.parse(localStorage.getItem('id'));
+
     this.activeItem= 'all';
   }
 
    ngOnInit(): void {
+    const id = localStorage.getItem('id');
+   console.log(id)
 
     this.csrv.getCategoryList();
 
@@ -47,6 +53,34 @@ export class MenuComponent {
     }
     this.activeItem=categoryname;
 
+  }
+
+
+  addItemToCart(productId: number) {
+    console.log(this.id);
+    this.crt.getCartItems(this.id).pipe(
+      switchMap((cartItems) => {
+        const existingItem = cartItems.find(item => item.ProductId === productId);
+
+        if (existingItem) {
+          return this.crt.updateCart(existingItem.CartId, existingItem.Quantity + 1,productId);
+        } else {
+          return this.crt.addToCart({ ProductId : productId, Quantity : 1,UserId:  this.id });
+        }
+      }),
+      catchError((err) => {
+        console.error('Error processing cart item:', err);
+        return of(null); 
+      })
+    ).subscribe({
+      next: (response) => {
+        console.log('Cart updated:', response);
+        
+      },
+      error: (err) => {
+        console.error('Error updating cart:', err);
+      }
+    });
   }
   
 

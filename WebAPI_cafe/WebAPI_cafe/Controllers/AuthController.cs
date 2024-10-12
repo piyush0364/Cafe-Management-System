@@ -43,6 +43,7 @@ namespace WebAPI_cafe.Controllers
 
             return Ok(new {
                 Token = t,
+                id=user.UserId,
                 Message = "Login Success!" 
             });
 

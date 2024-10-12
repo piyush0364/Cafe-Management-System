@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './guards/auth.guard';
-import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -23,9 +22,7 @@ const routes: Routes = [
   {path:'contact',component:ContactComponent},
   {path:'customers',component:CustomersComponent},
   {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
-  {path:'cart',component:CartComponent}
-
+  {path:'signup',component:SignupComponent}
 ];
 
 @NgModule({
