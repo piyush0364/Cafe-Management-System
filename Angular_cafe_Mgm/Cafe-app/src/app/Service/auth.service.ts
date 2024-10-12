@@ -23,8 +23,9 @@ export class AuthService {
     this.router.navigate(['login'])
   }
 
-  storeToken(tokenValue : string){
-    localStorage.setItem('token',tokenValue)
+  storeToken(tvalue){
+    localStorage.setItem('token',tvalue.Token);
+    localStorage.setItem('id',tvalue.id);
   }
 
   getToken(){

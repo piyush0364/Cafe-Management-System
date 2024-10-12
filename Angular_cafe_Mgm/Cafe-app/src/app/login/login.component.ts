@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit{
           if (res?.Message) {
             alert(res.Message);
             this.loginForm.reset();
-            this.auth.storeToken(res.token);
+            this.auth.storeToken(res);
             this.router.navigate(['menu'])
           } else {
             alert("No message found in the response");

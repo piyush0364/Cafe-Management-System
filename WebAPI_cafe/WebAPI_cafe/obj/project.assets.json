@@ -7884,11 +7884,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\WebAPI_cafe.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\WebAPI_cafe.csproj",
       "projectName": "WebAPI_cafe",
-      "projectPath": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\WebAPI_cafe.csproj",
+      "projectPath": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\WebAPI_cafe.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\Capstone_Project\\WebAPI_cafe\\WebAPI_cafe\\obj\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
