@@ -15,5 +15,6 @@ export class ProductService {
     getProducts(): Observable<Product[]> {
       return this.objHttp.get<Product[]>(this.ppApiUrl);
     }
+    
 
 }

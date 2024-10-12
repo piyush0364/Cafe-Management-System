@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'contact',component:ContactComponent},
   {path:'customers',component:CustomersComponent},
   {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent}
+  {path:'signup',component:SignupComponent},
+  {path:'home',component:HomeComponent}
 
 ];
 

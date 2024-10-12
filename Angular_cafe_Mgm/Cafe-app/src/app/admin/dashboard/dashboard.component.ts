@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Service/auth.service';
+import { UserStoreService } from '../../Service/user-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { AuthService } from '../../Service/auth.service';
 })
 export class DashboardComponent {
 
-  constructor(private auth:AuthService){
+  constructor(private auth:AuthService, private userStore: UserStoreService){
 
   }
 

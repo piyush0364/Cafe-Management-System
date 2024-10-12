@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup ,Validators} from '@angular/forms';
 import { AuthService } from '../Service/auth.service';
 import { Router } from '@angular/router';
+import { UserStoreService } from '../Service/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,21 @@ export class LoginComponent implements OnInit{
   isText: boolean = false;
   eyeIcon: string = "fa-eye";
 
+  public role!:string;
+
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private auth: AuthService,private router:Router){ }
+  constructor(private fb: FormBuilder, private auth: AuthService,private router:Router,private userStore: UserStoreService){ }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required]
+    });
+
+    this.userStore.getRoleFromStore()
+    .subscribe(val => {
+      const roleFromToken = this.auth.getRoleFromToken();
+      this.role = val || roleFromToken;
     })
   }
 
@@ -40,7 +49,13 @@ export class LoginComponent implements OnInit{
             alert(res.Message);
             this.loginForm.reset();
             this.auth.storeToken(res.token);
-            this.router.navigate(['menu'])
+            const tokenPayload = this.auth.decodedToken();
+            this.userStore.setNameForStore(tokenPayload.name);
+            this.userStore.setRoleForStore(tokenPayload.role);
+
+          
+            this.router.navigate(['dashboard'])
+          
           } else {
             alert("No message found in the response");
           }
