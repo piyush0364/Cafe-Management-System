@@ -55,9 +55,11 @@ export class CartService {
     return this.http.put(`${this.apiUrl}/${cartId}`, payload, { headers });
   }
 
+
   // Delete a cart
   deleteCart(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
+    console.log("2");
     return this.http.delete(url);
   }
 }
