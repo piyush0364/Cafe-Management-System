@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { CartComponent } from './cart/cart.component';
+import { HomoComponent } from './homo/homo.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     NavComponent,
     FeedbackComponent,
-    CartComponent
+    CartComponent,
+    HomoComponent
   ],
   
   imports: [
