@@ -15,6 +15,7 @@ import { HomoComponent } from './homo/homo.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path:'cart',component:CartComponent,canActivate:[AuthGuard]},
   {path:'homo',component:HomoComponent},
   {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
-  {path:'about',component:AboutComponent}
+  {path:'about',component:AboutComponent},
+  {path:'payment',component:PaymentComponent}
 ];
 
 @NgModule({
