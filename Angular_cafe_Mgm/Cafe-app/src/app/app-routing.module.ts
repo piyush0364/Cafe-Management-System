@@ -16,6 +16,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FeedbackAdminComponent } from './admin/feedback/feedback.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path:'categories',component:CategoriesComponent},
   {path:'products',component:ProductsComponent},
   {path:'orders',component:OrdersComponent},
-  {path:'contact',component:ContactComponent},
+ // {path:'contact',component:ContactComponent},
   {path:'customers',component:CustomersComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'homo',component:HomoComponent},
   {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
   {path:'about',component:AboutComponent},
-  {path:'payment',component:PaymentComponent}
+  {path:'payment',component:PaymentComponent},
+  { path: 'contact', component: FeedbackAdminComponent },
 ];
 
 @NgModule({

@@ -23,6 +23,8 @@ import { CartComponent } from './cart/cart.component';
 import { HomoComponent } from './homo/homo.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RouterModule, ROUTES } from '@angular/router';
+import { FeedbackAdminComponent } from './admin/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { PaymentComponent } from './payment/payment.component';
     CartComponent,
     HomoComponent,
     AboutComponent,
-    PaymentComponent
+    PaymentComponent,
+    FeedbackAdminComponent
   ],
   
   imports: [
@@ -50,7 +53,9 @@ import { PaymentComponent } from './payment/payment.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent,DashboardComponent,CategoriesComponent,ProductsComponent,OrdersComponent,CustomersComponent,ContactComponent]

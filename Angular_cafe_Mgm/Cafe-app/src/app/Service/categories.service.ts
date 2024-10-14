@@ -3,7 +3,7 @@ import { Categories } from '../Models/categories.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class CategoriesService {
 
