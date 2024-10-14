@@ -78,7 +78,7 @@
                         <tr *ngFor="let p of objs.cList">
                             <td>{{p.CategoryId}}</td>
                             <td>{{p.Name}}</td>
-                            <td>{{p.ImageUrl}}</td>
+                            <td>  <img [src]="p.ImageUrl" [alt]="p.Name"> </td>
                             <td>{{p.IsActive}}</td>
                            <td>{{p.CreatedDate}}</td>
                            <td><i class="bi bi-trash3" (click)="onDelete(p.CategoryId)"></i></td>

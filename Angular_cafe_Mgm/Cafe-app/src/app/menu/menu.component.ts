@@ -74,6 +74,7 @@ export class MenuComponent {
       })
     ).subscribe({
       next: (response) => {
+        alert("Product added to Cart")
         console.log('Cart updated:', response);
         
       },

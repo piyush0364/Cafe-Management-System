@@ -11,11 +11,15 @@ import { SignupComponent } from './signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CartComponent } from './cart/cart.component';
+import { HomoComponent } from './homo/homo.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
-  {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:'',component:HomoComponent},
+  {path:'dashboard',component:DashboardComponent},
   {path:'menu',component:MenuComponent, canActivate:[AuthGuard]},
   {path:'categories',component:CategoriesComponent},
   {path:'products',component:ProductsComponent},
@@ -24,7 +28,10 @@ const routes: Routes = [
   {path:'customers',component:CustomersComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'cart',component:CartComponent}
+  {path:'cart',component:CartComponent,canActivate:[AuthGuard]},
+  {path:'homo',component:HomoComponent},
+  {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
+  {path:'about',component:AboutComponent}
 ];
 
 @NgModule({
