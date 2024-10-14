@@ -21,11 +21,10 @@ export class DisplayComponent implements OnInit{
     this.objs.cData = Object.assign({}, selectedPP);
   }
 
- 
   
   onDelete(categories: Categories) {
     if (confirm("Are you sure? You want to delete this  Categories?")) {
-        this.objs.deleteCategories(categories. CategoryId).subscribe(
+        this.objs.deleteCategories(categories.CategoryId).subscribe(
             res => {
                 this.objs.getCategoriesList(); // Refresh the list after deletion
                 alert("Record Deleted!!!");
@@ -34,6 +33,21 @@ export class DisplayComponent implements OnInit{
         );
     }
 }
+
+
+ 
+  
+//   onDelete(categories: Categories) {
+//     if (confirm("Are you sure? You want to delete this  Categories?")) {
+//         this.objs.deleteCategories(categories.CategoryId).subscribe(
+//             res => {
+//                 this.objs.getCategoriesList(); // Refresh the list after deletion
+//                 alert("Record Deleted!!!");
+//             },
+//             err => { alert("Error!!! " + err); }
+//         );
+//     }
+// }
  
 
 

@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CartService } from '../service/cart.service';
 
 export interface CartItem {
+  ProductId : number,
+  CartId : number,
   ProductName: string;
   Price: number;
   ImageUrl: string;
@@ -17,9 +20,12 @@ export interface CartItem {
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
-  id : number; // Replace with actual logged-in user ID
+  id : number; 
 
-  constructor(private http: HttpClient) {}
+  @Input() items: any[] = [];
+ 
+
+  constructor(private http: HttpClient, public crt : CartService) {}
 
   ngOnInit(): void {
     this.id = JSON.parse(localStorage.getItem('id'));
@@ -38,6 +44,7 @@ export class CartComponent implements OnInit {
     );
   }
 
+
   getCartItems(userId: number): Observable<CartItem[]> {
     const apiUrl = `https://localhost:44344/api/cartitem/${userId}`;
     return this.http.get<CartItem[]>(apiUrl).pipe(
@@ -54,4 +61,65 @@ export class CartComponent implements OnInit {
       });
     };
   }
+
+
+
+  get totalItems(): number {
+    return this.cartItems.reduce((total, item) => total + item.Quantity, 0);
+  }
+
+  get subtotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.Price * item.Quantity, 0);
+  }
+
+  get shipping(): number {
+    return 5.00;
+  }
+
+  removeItem(item: CartItem): void {
+    if(item.Quantity == 1){
+      console.log("1");
+      this.crt.deleteCart(item.CartId).subscribe(
+        (response) => {
+          console.log('Cart removed successfully', response);
+          this.loadCartItems();
+  
+        },
+        (error) => {
+          console.error('Error updating cart', error);
+        }
+      );
+
+    }
+    else{
+    this.crt.updateCart(item.CartId,item.Quantity-1,item.ProductId).subscribe(
+      (response) => {
+        console.log('Cart updated successfully', response);
+        this.loadCartItems();
+
+      },
+      (error) => {
+        console.error('Error updating cart', error);
+      }
+    );
+  }
+
+  }
+
+  addItem(item: CartItem): void {
+     this.crt.updateCart(item.CartId,item.Quantity+1,item.ProductId).subscribe(
+      (response) => {
+        console.log('Cart updated successfully', response);
+        this.loadCartItems();
+
+      },
+      (error) => {
+        console.error('Error updating cart', error);
+      }
+    );
+  }
+
+
+
+
 }

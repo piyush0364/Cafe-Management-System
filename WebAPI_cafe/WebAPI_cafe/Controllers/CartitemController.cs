@@ -27,7 +27,8 @@ namespace WebAPI_cafe.Controllers
                                    on cart.ProductId equals product.ProductId
                                    where cart.UserId == userId
                                    select new CartItemDto
-                                   {
+                                   {   ProductId = product.ProductId,
+                                       CartId = cart.CartId,
                                        ProductName = product.Name,
                                        Price = (decimal)product.Price,
                                        ImageUrl = product.ImageUrl,

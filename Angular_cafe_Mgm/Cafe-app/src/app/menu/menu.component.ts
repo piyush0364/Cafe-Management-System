@@ -1,9 +1,9 @@
 import { Component,OnInit,ApplicationModule } from '@angular/core';
-import { ProductService } from '../Service/product.service';
-import { CategoryService } from '../Service/category.service';
+import { ProductService } from '../service/product.service';
+import { CategoryService } from '../service/category.service';
 import { Product } from '../model/product.model';
 import { catchError, of, switchMap } from 'rxjs';
-import { CartService } from '../Service/cart.service';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-menu',
@@ -74,6 +74,7 @@ export class MenuComponent {
       })
     ).subscribe({
       next: (response) => {
+        alert("Product added to Cart")
         console.log('Cart updated:', response);
         
       },
