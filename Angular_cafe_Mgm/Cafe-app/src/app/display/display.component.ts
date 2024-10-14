@@ -23,9 +23,9 @@ export class DisplayComponent implements OnInit{
 
  
   
-  onDelete(passport: Categories) {
-    if (confirm("Are you sure? You want to delete this passport?")) {
-        this.objs.deleteCategories(passport. CategoryId).subscribe(
+  onDelete(categories: Categories) {
+    if (confirm("Are you sure? You want to delete this  Categories?")) {
+        this.objs.deleteCategories(categories. CategoryId).subscribe(
             res => {
                 this.objs.getCategoriesList(); // Refresh the list after deletion
                 alert("Record Deleted!!!");

@@ -9,14 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit{
-CategoriesService: any;
-  // onSubmit(...args: [_t80: NgForm]) {
-  //   if (this.objService.ppData.Id == 0) {
-  //     this.insertRecord(form);
-  //   } else {
-  //     this.updatePassport(form);
-  //   }
-  // }
+ 
 
 
   constructor (public objService:CategoriesService){
@@ -58,7 +51,7 @@ CategoriesService: any;
  }
 
  insertRecord(form: NgForm) {
-   this.objService.cData = form.value; // Set ppData from the form values
+  //  this.objService.cData = form.value; // Set cData from the form values
    this.objService.createCategories().subscribe(res => {
      this.resetForm(form);
      alert('New Categories Creation Success');

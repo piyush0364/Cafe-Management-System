@@ -11,6 +11,7 @@ export class CategoriesService {
   readonly ApiUrl='https://localhost:44344/api/Categories';
 
   cList:Categories[];
+  // cList: Categories[] = []; // Initialize as an empty array
 
 
 
@@ -20,12 +21,9 @@ export class CategoriesService {
    }
 
 
-  
-
-
    getCategoriesList() {
      this.objHttp.get<Categories[]>(this.ApiUrl).toPromise().then(res => {
-       this.cList = res; // Assign response to ppList
+       this.cList = res; // Assign response to cList
      }).catch(err => {
        console.error('Error fetching passport list:', err); // Handle errors
      });
@@ -45,9 +43,9 @@ export class CategoriesService {
 
    
 
-   deleteCategories(id: number) {
-     console.log(`Deleting passport with ID: ${id}`); // Log the ID
-     return this.objHttp.delete(`${this.ApiUrl}/${id}`);
+   deleteCategories(CategoryId: number) {
+     console.log(`Deleting passport with ID: ${CategoryId}`); // Log the ID
+     return this.objHttp.delete(`${this.ApiUrl}/${CategoryId}`);
  }
  
 
