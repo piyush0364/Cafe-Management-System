@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable,catchError } from 'rxjs';
 import { Cart } from '../model/cart.model';
+
+export interface CartItem {
+  ProductId : number,
+  CartId : number,
+  ProductName: string;
+  Price: number;
+  ImageUrl: string;
+  Quantity: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +25,25 @@ export class CartService {
   }
 
 
-  getCartItems(userId: number): Observable<any[]> {
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-    });
+  
 
-    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
-        map(cartItems => cartItems.filter(item => item.UserId === userId))
+  getCartItems(userId: number): Observable<CartItem[]> {
+    const apiUrl = `https://localhost:44344/api/cartitem/${userId}`;
+    return this.http.get<CartItem[]>(apiUrl).pipe(
+      catchError(this.handleError<CartItem[]>('getCartItems', []))
     );
   }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return new Observable<T>((observer) => {
+        observer.next(result as T);
+        observer.complete();
+      });
+    };
+  }
+
 
   
 
@@ -62,4 +80,10 @@ export class CartService {
     console.log("2");
     return this.http.delete(url);
   }
+
+
+
+  
+
+
 }
