@@ -1,0 +1,26 @@
+<table class="table table-hover table-dark table-bordered">
+    <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Image</th>
+            <th>IsActive</th>
+            <th>Created Date</th>
+            <th>Delete</th>
+            <th>Select</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of objs.cList">
+            <td>{{p.CategoryId}}</td>
+            <td>{{p.Name}}</td>
+            <td>{{p.ImageUrl}}</td>
+            <td>{{p.IsActive}}</td>
+           <td>{{p.CreatedDate}}</td>
+           <td><i class="bi bi-trash3" (click)="onDelete(p.CategoryId)"></i></td>
+           <td><i class="bi bi-pencil-square" (click)="fillData(p)"></i></td>
+           
+        </tr>
+    </tbody>
+</table>

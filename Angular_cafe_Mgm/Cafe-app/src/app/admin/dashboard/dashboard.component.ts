@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../Service/auth.service';
+ 
+// import { AuthService } from '../../Service/auth.service';
+// import { AuthService } from '../../Service/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,17 +10,17 @@ import { AuthService } from '../../Service/auth.service';
 })
 export class DashboardComponent {
 
-  constructor(private auth:AuthService){
+  // constructor(private auth:AuthService){
 
-  }
+  // }
 
-  toggle = false;
-  toggleSidebar() {
-    this.toggle = !this.toggle;
-  }
+  // toggle = false;
+  // toggleSidebar() {
+  //   this.toggle = !this.toggle;
+  // }
 
-  logout()
-  {
-    this.auth.signOut();
-  }
+  // logout()
+  // {
+  //   this.auth.signOut();
+  // }
 }

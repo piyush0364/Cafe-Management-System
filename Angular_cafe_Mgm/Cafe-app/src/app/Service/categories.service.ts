@@ -13,23 +13,67 @@ export class CategoriesService {
   cList:Categories[];
 
 
-  constructor(private objHttp:HttpClient) { }
 
-  getCategoriesList()
+  constructor(private objHttp:HttpClient)
   {
-    this.objHttp.get(this.ApiUrl).toPromise()
-    .then(res=>this.cList=res as Categories[]);
-  }
-  createCategory()
-  {
-    return this.objHttp.post(this.ApiUrl,this.cData);
-  }
-  updateCategory()
-  {
-    return this.objHttp.put(this.ApiUrl+"/"+this.cData.CategoryId,this.cData);
-  }
-  deletePassport(id)
-  {
-    return this.objHttp.delete(this.ApiUrl + '/'+id);
-  }
+
+   }
+
+
+  
+
+
+   getCategoriesList() {
+     this.objHttp.get<Categories[]>(this.ApiUrl).toPromise().then(res => {
+       this.cList = res; // Assign response to ppList
+     }).catch(err => {
+       console.error('Error fetching passport list:', err); // Handle errors
+     });
+   }
+
+
+
+   createCategories()
+   {
+     return this.objHttp.post(this.ApiUrl,this.cData);
+   }
+
+
+   updateCategories(){
+     return this.objHttp.put(this.ApiUrl+"/"+this.cData.CategoryId,this.cData);
+   }
+
+   
+
+   deleteCategories(id: number) {
+     console.log(`Deleting passport with ID: ${id}`); // Log the ID
+     return this.objHttp.delete(`${this.ApiUrl}/${id}`);
+ }
+ 
+
+
+
+
+
+
+
+  // constructor(private objHttp:HttpClient) { }
+
+  // getCategoriesList()
+  // {
+  //   this.objHttp.get(this.ApiUrl).toPromise()
+  //   .then(res=>this.cList=res as Categories[]);
+  // }
+  // createCategory()
+  // {
+  //   return this.objHttp.post(this.ApiUrl,this.cData);
+  // }
+  // updateCategory()
+  // {
+  //   return this.objHttp.put(this.ApiUrl+"/"+this.cData.CategoryId,this.cData);
+  // }
+  // deletePassport(id)
+  // {
+  //   return this.objHttp.delete(this.ApiUrl + '/'+id);
+  // }
 }
