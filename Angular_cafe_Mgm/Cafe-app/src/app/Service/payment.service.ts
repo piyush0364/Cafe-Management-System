@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CartService } from './cart.service';
 
 export interface Payment {
  
@@ -19,7 +20,7 @@ export interface Payment {
 export class PaymentService {
     private apiUrl = 'https://localhost:44344/api/Payments'; // Adjust URL as needed
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,private crt : CartService) { }
 
     submitPayment(payment: Payment): Observable<Payment> {
         return this.http.post<Payment>(this.apiUrl, payment).pipe(
@@ -41,8 +42,32 @@ export class PaymentService {
         return throwError(() => new Error(errorMessage));
     }
 
+
+
     processPayment(paymentData: any): Observable<any> {
         // Send a POST request with the payment data
+        console.log(paymentData);
         return this.http.post(this.apiUrl, paymentData);
       }
+
+    
+  createOrder(orderData: any,CartId: any): Observable<any> {
+    var url = 'https://localhost:44344/api/Orders';
+    this.crt.deleteCart(CartId).subscribe(
+        (response) => {
+          console.log('Order deleted successfully:', response);
+          // Handle successful response (e.g., display a success message)
+        },
+        (error) => {
+          console.error('Error deleting order:', error);
+          // Handle error response (e.g., display an error message)
+        }
+      );
+
+    return this.http.post(url, orderData);
+  }
+
+
+
+
 }

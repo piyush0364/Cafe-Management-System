@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid"  >Submit</button>
 
         <div *ngIf="submissionMessage" class="alert alert-success mt-3">{{ submissionMessage }}</div>
         <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>

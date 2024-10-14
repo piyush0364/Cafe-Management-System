@@ -55,6 +55,6 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent,DashboardComponent,CategoriesComponent,ProductsComponent,OrdersComponent,CustomersComponent,ContactComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
