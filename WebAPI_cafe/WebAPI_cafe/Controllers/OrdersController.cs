@@ -77,6 +77,8 @@ namespace WebAPI_cafe.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
+            order.OrderNo = $"ORD-{DateTime.UtcNow.Ticks}";
+
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
