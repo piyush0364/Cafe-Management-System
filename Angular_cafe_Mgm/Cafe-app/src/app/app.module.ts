@@ -22,6 +22,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { CartComponent } from './cart/cart.component';
 import { HomoComponent } from './homo/homo.component';
 import { AboutComponent } from './about/about.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AboutComponent } from './about/about.component';
     FeedbackComponent,
     CartComponent,
     HomoComponent,
-    AboutComponent
+    AboutComponent,
+    PaymentComponent
   ],
   
   imports: [
