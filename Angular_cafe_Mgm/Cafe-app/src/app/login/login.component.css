@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+
 .outer{
     height: 100vh;
-    background: linear-gradient(to top,#c9c9ff 50%, #6e6ef6 90%) !important; 
+    /* background-color: rgba(0, 0,0,0.5); */
     
 }
 

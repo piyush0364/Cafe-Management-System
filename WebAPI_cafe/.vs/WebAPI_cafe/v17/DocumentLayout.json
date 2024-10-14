@@ -129,7 +129,11 @@
               "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\CartitemController.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\CartitemController.cs",
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CartitemController.cs",
+<<<<<<< HEAD
+              "ViewState": "AQIAAAsAAAAAAAAAAAAIwB4AAAAhAAAA",
+=======
               "ViewState": "AQIAAAYAAAAAAAAAAADwvx4AAAAhAAAA",
+>>>>>>> 2178b22a75ca627009e672f1aaa4ae769ff820ff
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T20:35:23.892Z"
             },
@@ -143,7 +147,8 @@
               "RelativeToolTip": "WebAPI_cafe\\Dto\\CartItemDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T20:33:35.823Z"
+              "WhenOpened": "2024-10-12T20:33:35.823Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
