@@ -23,6 +23,7 @@ import { CartComponent } from './cart/cart.component';
 import { HomoComponent } from './homo/homo.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PaymentComponent } from './payment/payment.component';
     CartComponent,
     HomoComponent,
     AboutComponent,
-    PaymentComponent
+    PaymentComponent,
+    FooterComponent
   ],
   
   imports: [
