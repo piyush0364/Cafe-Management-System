@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\OrdersController.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\OrdersController.cs",
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAIwE8AAAAzAAAA",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAIwE4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T17:25:14.247Z",
               "EditorCaption": ""
@@ -83,8 +83,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CategoriesController.cs",
               "ViewState": "AQIAAEoAAAAAAAAAAAAIwFQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T16:57:55.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T16:57:55.905Z"
             },
             {
               "$type": "Document",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CartsController.cs",
               "ViewState": "AQIAAEcAAAAAAAAAAAAIwFUAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T16:57:21.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T16:57:21.975Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CartitemController.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAADwvx4AAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T20:35:23.892Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-12T20:35:23.892Z"
             },
             {
               "$type": "Document",
@@ -146,8 +143,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Dto\\CartItemDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T20:33:35.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-12T20:33:35.823Z"
             },
             {
               "$type": "Document",
@@ -183,8 +179,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\AuthController.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAuwCkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T20:52:34.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T20:52:34.898Z"
             },
             {
               "$type": "Document",
