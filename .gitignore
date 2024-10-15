@@ -1,5 +1,5 @@
 *.vsidx
-
-/bin
+*.suo
+WebAPI_cafe/WebAPI_cafe/bin/
 
 /obj
