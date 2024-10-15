@@ -5,6 +5,10 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+ 
+
+
+
 export class CategoriesService {
 
   cData: Categories = new Categories();
@@ -28,7 +32,7 @@ export class CategoriesService {
   {
     return this.objHttp.put(this.ApiUrl+"/"+this.cData.CategoryId,this.cData);
   }
-  deletePassport(id)
+  deleteCategory(id)
   {
     return this.objHttp.delete(this.ApiUrl + '/'+id);
   }
