@@ -1,5 +1,5 @@
 *.vsidx
 
-bin/
+/bin
 
-obj/
+/obj
