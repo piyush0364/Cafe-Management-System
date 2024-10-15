@@ -16,24 +16,25 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AdminGuard } from './admin.guard';
 
 
 const routes: Routes = [
   {path:'',component:HomoComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'menu',component:MenuComponent, canActivate:[AuthGuard]},
-  {path:'categories',component:CategoriesComponent},
-  {path:'products',component:ProductsComponent},
-  {path:'orders',component:OrdersComponent},
-  {path:'contact',component:ContactComponent},
-  {path:'customers',component:CustomersComponent},
+  {path:'dashboard',component:DashboardComponent,canActivate:[AdminGuard]},
+  {path:'menu',component:MenuComponent,canActivate:[AuthGuard]},
+  {path:'categories',component:CategoriesComponent,canActivate:[AdminGuard]},
+  {path:'products',component:ProductsComponent,canActivate:[AdminGuard]},
+  {path:'orders',component:OrdersComponent,canActivate:[AdminGuard]},
+  {path:'contact',component:ContactComponent,canActivate:[AdminGuard]},
+  {path:'customers',component:CustomersComponent,canActivate:[AdminGuard]},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent,canActivate:[AuthGuard]},
   {path:'homo',component:HomoComponent},
   {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
   {path:'about',component:AboutComponent},
-  {path:'payment',component:PaymentComponent}
+  {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

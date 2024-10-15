@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|c:\\users\\user\\desktop\\cafe-project\\cafe-management-system\\webapi_cafe\\webapi_cafe\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +38,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Models\\User.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Models\\User.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T15:32:31.196Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "WebAPI_cafe\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAIwFwAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T15:30:58.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "WebAPI_cafe\\Properties\\launchSettings.json",
@@ -42,12 +75,11 @@
               "RelativeToolTip": "WebAPI_cafe\\Properties\\launchSettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-15T06:53:53.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T06:53:53.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Models\\Order.cs",
               "RelativeDocumentMoniker": "WebAPI_cafe\\Models\\Order.cs",
@@ -59,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CartitemController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\CartitemController.cs",
               "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\CartitemController.cs",
@@ -71,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "CartsController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Controllers\\CartsController.cs",
               "RelativeDocumentMoniker": "WebAPI_cafe\\Controllers\\CartsController.cs",
@@ -83,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "CartItemDto.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\WebAPI_cafe\\Dto\\CartItemDto.cs",
               "RelativeDocumentMoniker": "WebAPI_cafe\\Dto\\CartItemDto.cs",

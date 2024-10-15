@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +10,11 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private baseUrl:string = "https://localhost:44344/api/Auth/"
-  constructor(public http : HttpClient, private router : Router) { }
+  private userPayload:any;
+
+  constructor(public http : HttpClient, private router : Router) { 
+    this.userPayload = this.decodedToken();
+  }
 
   signUp(userObj:any){
     return this.http.post<any>(`${this.baseUrl}register`,userObj);
@@ -35,4 +40,19 @@ export class AuthService {
   isLoggedIn() : boolean{
     return !!localStorage.getItem('token')
   }
+
+  //for role based auth
+  decodedToken(){
+    const jwtHelper = new JwtHelperService();
+    const token = this.getToken()!;
+    console.log(jwtHelper.decodeToken(token))
+    return jwtHelper.decodeToken(token)
+  }
+  // getNameFromToken(){
+  //   if(this.userPayload)
+  //     return this.userPayload.name;
+  // }
+  // getUsernameFromToken(){
+  //   return this.userPayload.username;
+  // }
 }

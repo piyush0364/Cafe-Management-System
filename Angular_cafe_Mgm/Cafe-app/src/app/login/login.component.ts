@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup ,Validators} from '@angular/forms';
 import { AuthService } from '../Service/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,9 +41,22 @@ export class LoginComponent implements OnInit{
             alert(res.Message);
             this.loginForm.reset();
             this.auth.storeToken(res);
-            this.router.navigate(['homo'])
+            
+
+            const tokenPayload = this.auth.decodedToken();
+
+            if(tokenPayload.role === "Admin1256"){
+              this.router.navigate(['dashboard'])
+            }
+
+            else{
+              this.router.navigate(['homo'])
+            }
+
+           
           } else {
             alert("No message found in the response");
+          
           }
         },
         error: (err) => {
