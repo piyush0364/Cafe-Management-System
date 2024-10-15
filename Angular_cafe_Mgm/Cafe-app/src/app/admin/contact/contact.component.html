@@ -58,10 +58,50 @@
                 </div>
             </div>
             <div class="col py-3">
-            
-
-                    <h1>Contact works!</h1>
-
+                <section class="admin-feedback layout_padding">
+                    <div class="container">
+                      <div class="heading_container">
+                        <h2>Customer Feedback</h2>
+                      </div>
+                  
+                      <div *ngIf="feedbackList.length > 0; else noFeedback">
+                        <table class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Subject</th>
+                              <th>Message</th>
+                              <th>Created Date</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let feedback of feedbackList">
+                              <td>{{ feedback.ContactId }}</td>
+                              <td>{{ feedback.Name }}</td>
+                              <td>{{ feedback.Email }}</td>
+                              <td>{{ feedback.Subject }}</td>
+                              <td>{{ feedback.Message }}</td>
+                              <td>{{ feedback.CreatedDate }}</td>
+                              <td>
+                                <button 
+                                  class="btn btn-danger btn-sm" 
+                                  (click)="deleteFeedback(feedback.ContactId)">
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  
+                      <ng-template #noFeedback>
+                        <p>No feedback available.</p>
+                      </ng-template>
+                    </div>
+                  </section>    
             </div>
         </div>
     </div>
