@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../Service/payment.service';
 import { CartService } from '../Service/cart.service';
+import { Router } from '@angular/router';
 
 export interface CartItem {
   ProductId : number,
@@ -29,7 +30,7 @@ export class PaymentComponent implements OnInit {
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
-    constructor(private paymentService: PaymentService, private crt : CartService) {}
+    constructor(private paymentService: PaymentService, private crt : CartService,private router : Router) {}
 
     ngOnInit(): void {
       this.id = JSON.parse(localStorage.getItem('id'));
@@ -55,8 +56,11 @@ export class PaymentComponent implements OnInit {
         if (form.valid) {
           this.paymentService.processPayment(form.value).subscribe(
             (response) => {
+              
               console.log("Order about to be created", response);
               this.createOrder(response.PaymentId);
+              alert("Order Placed Successfully")
+              this.router.navigate(['homo'])
             },
             (error) => {
               console.error(error);

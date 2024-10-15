@@ -59,8 +59,37 @@
             </div>
             <div class="col py-3">
             
+<!-- 
+                    <h1>Orders works!</h1> -->
+                    <table class="table table-hover table-dark table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order No.</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                                <th>Delete</th>
+                                <th>Update Status</th>
+                    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of objs.oList">
+                                <td>{{p.OrderNo}}</td>
+                                <td>{{p.OrderDate}}</td>
+                                <td>{{p.Status}}</td>
+                              
+                               <td><i class="bi bi-trash3" (click)="onDelete(p.OrderDetailsId)"></i></td>
+                               <td><i class="bi bi-pencil-square" (click)="fillData(p)"></i></td>
 
-                    <h1>Orders works!</h1>
+                               <!-- <button class="btn btn-outline-light"
+                               (click)="toggleStatus(p)">
+                               {{ p.Status === 'Pending' ? 'Mark as Delivered' : 'Delivered' }}
+                             </button> -->
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+
 
             </div>
         </div>

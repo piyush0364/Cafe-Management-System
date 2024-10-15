@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit{
             alert(res.Message);
             this.loginForm.reset();
             this.auth.storeToken(res);
-            this.router.navigate(['menu'])
+            this.router.navigate(['homo'])
           } else {
             alert("No message found in the response");
           }

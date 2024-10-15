@@ -8,7 +8,7 @@ import { AuthService } from '../../Service/auth.service';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit{
-  constructor(public objs:CategoriesService,private auth:AuthService){}
+  constructor(public objs:CategoriesService,private auth : AuthService){}
 
   ngOnInit(): void {
     this.objs.getCategoriesList();
@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit{
   }
   onDelete(categoryID)
   {
-   if(confirm("Are you sure? you wanna delete this passport?"))
+   if(confirm("Are you sure? you wanna delete this Category?"))
    {
      this.objs.deletePassport(categoryID).subscribe(
        res=>{this.objs.getCategoriesList()

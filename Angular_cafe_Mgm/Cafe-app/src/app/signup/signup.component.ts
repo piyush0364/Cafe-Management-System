@@ -26,7 +26,7 @@ export class SignupComponent {
       email: ['',Validators.required],
       address: ['',Validators.required],
       postcode: ['',Validators.required],
-      password: ['',Validators.required],
+      password: ['',Validators.required]
 
     })
   }
