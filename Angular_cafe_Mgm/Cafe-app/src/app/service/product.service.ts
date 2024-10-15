@@ -6,14 +6,40 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+ 
+
 export class ProductService {
+
+  pData: Product = new  Product();
   readonly ppApiUrl='https://localhost:44344/api/Products';
 
-  constructor(private objHttp : HttpClient) { }
+  pList:Product[];
 
 
-    getProducts(): Observable<Product[]> {
+  constructor(private objHttp:HttpClient) { }
+
+      getProducts(): Observable<Product[]> {
       return this.objHttp.get<Product[]>(this.ppApiUrl);
     }
 
+  getProductList()
+  {
+    this.objHttp.get(this.ppApiUrl).toPromise()
+    .then(res=>this.pList=res as Product[]);
+  }
+  createProduct()
+  {
+    return this.objHttp.post(this.ppApiUrl,this.pData);
+  }
+
+  updateProduct()
+  {
+    return this.objHttp.put(this.ppApiUrl+"/"+this.pData.ProductId,this.pData);
+  }
+
+  deleteProduct(Product)
+  {
+    return this.objHttp.delete(this.ppApiUrl + '/'+Product);
+  }
 }
+
