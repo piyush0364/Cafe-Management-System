@@ -91,6 +91,71 @@
 
 
             </div>
+
+
+            <div class="col">
+               
+            <h1>Register Categaries</h1>
+
+            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-white text-warning">
+                                <!-- <i class="bi bi-tag" [class.bg-success.subtle]="CategoryName.valid" 
+                                [class.bg-danger]="CategoryName.invalid && CategoryName.touched"></i> -->
+                                <input type="text" class="form-control" name="Name" #Name="ngModel"
+                                 [(ngModel)]="objs.cData.Name" placeholder="Category Name" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-white text-warning">
+                                <!-- <i class="bi bi-image" [class.bg-success.subtle]="ImageUrl.valid" 
+                                [class.bg-danger]="ImageUrl.invalid && ImageUrl.touched"></i> -->
+                                <input type="url" class="form-control" name="ImageUrl" #ImageUrl="ngModel"
+                                 [(ngModel)]="objs.cData.ImageUrl" placeholder="Image URL" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input type="checkbox" class="form-check-input" name="IsActive" [(ngModel)]="objs.cData.IsActive">
+                            <label class="form-check-label">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-white text-warning">
+                                <!-- <i class="bi bi-calendar" [class.bg-success.subtle]="CreatedDate.valid" 
+                                [class.bg-danger]="CreatedDate.invalid && CreatedDate.touched"></i> -->
+                                <input type="date" class="form-control" name="CreatedDate" #CreatedDate="ngModel"
+                                 [(ngModel)]="objs.cData.CreatedDate" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg" type="submit">
+                        <i class="bi bi-plus-circle"></i>Create/Update Category
+                    </button>
+                </div>
+            
+            </form>
+
+            </div>
         </div>
     </div>
   

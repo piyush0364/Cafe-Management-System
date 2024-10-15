@@ -58,6 +58,7 @@
                 </div>
             </div>
             <div class="col py-3">
+<<<<<<< HEAD
             
 <!-- 
                     <h1>Orders works!</h1> -->
@@ -90,6 +91,51 @@
                         </tbody>
                     </table>
 
+=======
+            <h2>Order Details</h2>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Order No</th>
+                        <th>Product ID</th>
+                        <th>Quantity</th>
+                        <th>User ID</th>
+                        <th>Status</th>
+                        <th>Payment ID</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let order of orders">
+                        <td>{{ order.OrderNo }}</td>
+                        <td>{{ order.ProductId }}</td>
+                        <td>{{ order.Quantity }}</td>
+                        <td>{{ order.UserId }}</td>
+                        <td>{{ order.Status }}</td>
+                        <td>{{ order.PaymentId }}</td>
+                        <td>{{ order.OrderDate | date: 'medium' }}</td>
+                        <td>
+                          <button 
+                            class="btn btn-success btn-sm" 
+                            (click)="updateStatus(order, 'completed')"
+                            [disabled]="order.Status === 'completed'"
+                          >
+                            Mark as Completed
+                          </button>
+                          <button 
+                            class="btn btn-danger btn-sm" 
+                            (click)="updateStatus(order, 'cancelled')"
+                            [disabled]="order.Status === 'cancelled'"
+                          >
+                            Cancel
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+>>>>>>> 479b0e4ffb23e19f64110193d493555b30a9fd70
 
             </div>
         </div>
