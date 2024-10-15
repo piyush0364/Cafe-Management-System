@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
 
+
+  profileImageUrl: string | ArrayBuffer | null = null;
+
+
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa-eye";
@@ -36,9 +40,27 @@ export class SignupComponent {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.profileImageUrl = reader.result; // This is the Base64 string
+      console.log(  this.profileImageUrl);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file); // Converts to Base64
+    }
+  }
+
+
   onSignup(){
     if(this.signUpForm.valid){
       //perform logic for signup
+      this.signUpForm.value.ImageUrl = this.profileImageUrl;
+      console.log(this.signUpForm.value);
       this.auth.signUp(this.signUpForm.value)
       .subscribe({
         next:(res=>{
