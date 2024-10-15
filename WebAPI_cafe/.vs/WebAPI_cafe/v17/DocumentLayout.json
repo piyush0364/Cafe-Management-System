@@ -55,8 +55,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Models\\Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T06:20:21.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T06:20:21.085Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CartitemController.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAgwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T05:48:32.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T05:48:32.372Z"
             },
             {
               "$type": "Document",
@@ -81,8 +79,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Controllers\\CartsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T05:48:17.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T05:48:17.111Z"
             },
             {
               "$type": "Document",
@@ -94,8 +91,7 @@
               "RelativeToolTip": "WebAPI_cafe\\Dto\\CartItemDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T05:47:55.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T05:47:55.769Z"
             }
           ]
         }
