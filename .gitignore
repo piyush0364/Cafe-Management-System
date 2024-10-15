@@ -1,1 +1,5 @@
 *.vsidx
+
+WebAPI_cafe/WebAPI_cafe/bin/
+
+WebAPI_cafe/WebAPI_cafe/obj/

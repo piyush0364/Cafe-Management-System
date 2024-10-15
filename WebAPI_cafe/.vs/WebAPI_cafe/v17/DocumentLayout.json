@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Cafe-Project\\Cafe-Management-System\\WebAPI_cafe\\",
   "Documents": [
     {
@@ -31,10 +32,15 @@
       "RelativeMoniker": "D:0:0:{298F9DCD-C9B7-45AA-B5F7-C7DFCC5C232A}|WebAPI_cafe\\WebAPI_cafe.csproj|solutionrelative:webapi_cafe\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
+=======
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\clone\\Cafe-Management-System\\WebAPI_cafe\\",
+  "Documents": [],
+>>>>>>> e2a2424e9bc13d72d8d324fbe0950b284d01e87b
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
+<<<<<<< HEAD
       "DocumentGroups": [
         {
           "DockedWidth": 200,
@@ -128,6 +134,9 @@
           ]
         }
       ]
+=======
+      "DocumentGroups": []
+>>>>>>> e2a2424e9bc13d72d8d324fbe0950b284d01e87b
     }
   ]
 }

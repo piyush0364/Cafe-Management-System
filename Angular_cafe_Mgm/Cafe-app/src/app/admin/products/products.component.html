@@ -57,10 +57,105 @@
                 
                 </div>
             </div>
+
+            <div class="col py-3">
+                  
+                <table class="table table-hover table-dark table-bordered">
+                    <thead>
+                        <tr>
+                            <th>PId</th>
+                            <th>PName</th>
+                            <th>ImageUrl</th>
+                            <th>IsActive</th>
+                            <th>Qty</th>
+                            <!-- <th>Description</th> -->
+                            <th>Price</th>
+                            <!-- <th>Created Date</th> -->
+                            <!-- <th>Category</th> -->
+                            <th>Delete</th>
+                            <th>Select</th>  
+                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of objs.pList">
+                            <td>{{p.ProductId}}</td>
+                            <td>{{p.Name}}</td>
+                            <td>  <img [src]="p.ImageUrl" [alt]="p.Name"> </td>
+                            <td>{{p.IsActive}}</td>
+                           <td>{{p.Quantity}}</td>
+                           <!-- <td>{{p.Description}}</td> -->
+                           <td>{{p.Price}}</td>
+                           <!-- <td>{{p.CreatedDate}}</td> -->
+                           <!-- <td>{{p.CategoryId}}</td> -->
+                           
+                           <td><i class="bi bi-trash3" (click)="onDelete(p.ProductId)"></i></td>
+                           <td><i class="bi bi-pencil-square" (click)="fillData(p)"></i></td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
             <div class="col py-3">
             
 
-                    <h1>Products works!</h1>
+                <h1>Register Product</h1>
+
+                <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="Name" 
+                           [(ngModel)]="objs.pData.Name" placeholder="Product Name" required>
+                  </div>
+                
+                  <!-- <div class="form-group">
+                    <textarea class="form-control" name="Description" 
+                              [(ngModel)]="objs.pData.Description" placeholder="Product Description"></textarea>
+                  </div> -->
+                
+                  <div class="form-group">
+                    <input type="number" class="form-control" name="Price" 
+                           [(ngModel)]="objs.pData.Price" placeholder="Price" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <input type="number" class="form-control" name="Quantity" 
+                           [(ngModel)]="objs.pData.Quantity" placeholder="Quantity" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <input type="url" class="form-control" name="ImageUrl" 
+                           [(ngModel)]="objs.pData.ImageUrl" placeholder="Image URL" required>
+                  </div>
+                
+                  <!-- <div class="form-group">
+                    <select class="form-control" name="CategoryId" [(ngModel)]="objs.pData.CategoryId" required>
+                      <option *ngFor="let category of categories" [value]="category.CategoryId">
+                        {{ category.Name }}
+                      </option>
+                    </select>
+                  </div>
+                 -->
+                  <!-- <div class="form-group">
+                    <input type="checkbox" name="IsActive" [(ngModel)]="objs.pData.IsActive">
+                    <label>Is Active</label>
+                  </div> -->
+                
+                  <div class="form-group">
+                    <input type="date" class="form-control" name="CreatedDate" 
+                           [(ngModel)]="objs.pData.CreatedDate">
+                  </div>
+                
+                  <div class="form-group">
+                    <button class="btn btn-success btn-lg" type="submit">
+                      <i class="bi bi-plus-circle"></i> Create/Update Product
+                    </button>
+                  </div>
+                </form>
+                
 
             </div>
         </div>
