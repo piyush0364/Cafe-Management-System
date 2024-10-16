@@ -27,8 +27,9 @@ export class ProductService {
     this.objHttp.get(this.ppApiUrl).toPromise()
     .then(res=>this.pList=res as Product[]);
   }
-  createProduct()
+  createProduct(p:any)
   {
+    this.pData.ImageUrl = p;
     return this.objHttp.post(this.ppApiUrl,this.pData);
   }
 

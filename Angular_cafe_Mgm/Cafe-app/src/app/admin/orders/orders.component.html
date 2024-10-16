@@ -1,13 +1,4 @@
-<div>
-    <nav class="navbar navbar-dark bg-dark justify-content-center">
-      <a class="navbar-brand mx-auto" style="color: white; text-align: center;"><h2><b>CAFE  ADMIN</b></h2></a>
-      <form class="form-inline" style="position: absolute; right: 20px;">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Login/Logout</button>
-      </form>
-    </nav>
-  </div>
-
-
+<app-adminnav></app-adminnav>
   
     <div class="row " >
       <!-- Sidebar -->
@@ -58,40 +49,6 @@
                 </div>
             </div>
             <div class="col py-3">
-<<<<<<< HEAD
-            
-<!-- 
-                    <h1>Orders works!</h1> -->
-                    <table class="table table-hover table-dark table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Order No.</th>
-                                <th>Order Date</th>
-                                <th>Status</th>
-                                <th>Delete</th>
-                                <th>Update Status</th>
-                    
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let p of objs.oList">
-                                <td>{{p.OrderNo}}</td>
-                                <td>{{p.OrderDate}}</td>
-                                <td>{{p.Status}}</td>
-                              
-                               <td><i class="bi bi-trash3" (click)="onDelete(p.OrderDetailsId)"></i></td>
-                               <td><i class="bi bi-pencil-square" (click)="fillData(p)"></i></td>
-
-                               <!-- <button class="btn btn-outline-light"
-                               (click)="toggleStatus(p)">
-                               {{ p.Status === 'Pending' ? 'Mark as Delivered' : 'Delivered' }}
-                             </button> -->
-                               
-                            </tr>
-                        </tbody>
-                    </table>
-
-=======
             <h2>Order Details</h2>
 
                 <table class="table table-bordered table-striped">
@@ -135,7 +92,6 @@
                       </tr>
                     </tbody>
                   </table>
->>>>>>> 479b0e4ffb23e19f64110193d493555b30a9fd70
 
             </div>
         </div>

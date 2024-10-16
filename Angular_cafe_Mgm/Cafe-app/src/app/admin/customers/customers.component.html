@@ -1,11 +1,4 @@
-<div>
-    <nav class="navbar navbar-dark bg-dark justify-content-center">
-      <a class="navbar-brand mx-auto" style="color: white; text-align: center;"><h2><b>CAFE  ADMIN</b></h2></a>
-      <form class="form-inline" style="position: absolute; right: 20px;">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Login/Logout</button>
-      </form>
-    </nav>
-  </div>
+<app-adminnav></app-adminnav>
 
 
   
@@ -59,8 +52,41 @@
             </div>
             <div class="col py-3">
             
+<h2 style="font-family: 'Dancing Script',cursive; text-align: center;">Profile Details</h2>
+               
+                    <table class="table table-hover table-dark table-bordered">
+                        <thead>
+                            <tr>
+                                <th>UserID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Post Code</th>
+                                <th>Delete Customer</th>
+                               
+                    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of objs.uList" >
+                                
+                                <td >{{p.UserId}}</td>
+                                <td><img [src] = "p.ImageUrl" alt="Not Found" ></td>
+                                <td>{{p.Name}}</td>
+                                <td>{{p.Mobile}}</td>
+                               <td>{{p.Email}}</td>
+                               <td>{{p.Address}}</td>
+                               <td>{{p.PostCode}}</td>
+                               <td><i class="bi bi-trash3" (click)="onDelete(p.UserId)"></i></td>
+                                
+                           
+                               
+                            </tr>
+                        </tbody>
+                    </table>
 
-                    <h1>Customers works!</h1>
 
             </div>
         </div>

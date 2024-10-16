@@ -11,7 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 
 export class CategoriesComponent implements OnInit{
-  constructor(public objs:CategoriesService,private auth : AuthService){}
+  profileImageUrl: string | ArrayBuffer | null = null;
+  constructor(public objs:CategoriesService){}
 
   ngOnInit(): void {
     this.resetForm();
@@ -70,17 +71,28 @@ export class CategoriesComponent implements OnInit{
     }
   }
 
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.profileImageUrl = reader.result; // This is the Base64 string
+      console.log(  this.profileImageUrl);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file); // Converts to Base64
+    }
+  }
+
+
 
 
 
 
   onDelete(categoryID)
   {
-<<<<<<< HEAD
-   if(confirm("Are you sure? you wanna delete this Category?"))
-=======
    if(confirm("Are you sure? you wanna delete this  Categories?"))
->>>>>>> 479b0e4ffb23e19f64110193d493555b30a9fd70
    {
      this.objs.deleteCategory(categoryID).subscribe(
        res=>{this.objs.getCategoriesList()
@@ -90,9 +102,6 @@ export class CategoriesComponent implements OnInit{
    }
   }
 
-  logout()
-  {
-    this.auth.signOut();
-  }
+
 
 }

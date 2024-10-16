@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categories } from '../Models/categories.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,12 @@ export class CategoriesService {
   deleteCategory(id)
   {
     return this.objHttp.delete(this.ApiUrl + '/'+id);
+  }
+
+  //for fk purpose
+  getcategoryList1():Observable<Categories[]>{
+    
+      return this.objHttp.get<Categories[]>(this.ApiUrl);
+    
   }
 }
