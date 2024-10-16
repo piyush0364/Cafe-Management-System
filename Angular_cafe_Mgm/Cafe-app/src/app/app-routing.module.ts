@@ -22,7 +22,6 @@ import { PurchaseComponent } from './purchase/purchase.component';
 
 
 const routes: Routes = [
-  {path:'',component:HomoComponent},
   {path:'dashboard',component:DashboardComponent,canActivate:[AdminGuard]},
   {path:'menu',component:MenuComponent,canActivate:[AuthGuard]},
   {path:'categories',component:CategoriesComponent,canActivate:[AdminGuard]},
@@ -38,7 +37,9 @@ const routes: Routes = [
   {path:'about',component:AboutComponent},
   {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]},
   {path:'user',component:UserComponent,canActivate:[AuthGuard]},
-  {path:'purchase',component:PurchaseComponent,canActivate:[AuthGuard]}
+  {path:'purchase',component:PurchaseComponent,canActivate:[AuthGuard]},
+  {path:'',component:HomoComponent}
+
 ];
 
 @NgModule({
