@@ -21,7 +21,6 @@ import { UserComponent } from './user/user.component';
 
 
 const routes: Routes = [
-  {path:'',component:HomoComponent},
   {path:'dashboard',component:DashboardComponent,canActivate:[AdminGuard]},
   {path:'menu',component:MenuComponent,canActivate:[AuthGuard]},
   {path:'categories',component:CategoriesComponent,canActivate:[AdminGuard]},
@@ -36,7 +35,8 @@ const routes: Routes = [
   {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
   {path:'about',component:AboutComponent},
   {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]},
-  {path:'user',component:UserComponent,canActivate:[AuthGuard]}
+  {path:'user',component:UserComponent,canActivate:[AuthGuard]},
+  {path:'',component:HomoComponent}
 ];
 
 @NgModule({
