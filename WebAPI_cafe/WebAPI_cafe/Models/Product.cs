@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WebAPI_cafe.Models;
 
@@ -27,5 +28,6 @@ public partial class Product
 
     public virtual Category? Category { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Order>? Orders { get; set; } = new List<Order>();
 }

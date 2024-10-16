@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WebAPI_cafe.Models;
 
@@ -23,6 +24,7 @@ public partial class Order
 
     public virtual Payment? Payment { get; set; }
 
+    [JsonIgnore]
     public virtual Product? Product { get; set; }
 
     public virtual User? User { get; set; }

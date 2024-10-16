@@ -48,11 +48,5 @@ export class AuthService {
     console.log(jwtHelper.decodeToken(token))
     return jwtHelper.decodeToken(token)
   }
-  // getNameFromToken(){
-  //   if(this.userPayload)
-  //     return this.userPayload.name;
-  // }
-  // getUsernameFromToken(){
-  //   return this.userPayload.username;
-  // }
+
 }
