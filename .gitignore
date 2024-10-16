@@ -1,1 +1,16 @@
 *.vsidx
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+
+# Other temp files
+*.exe
+*.dll
+*.pdb
