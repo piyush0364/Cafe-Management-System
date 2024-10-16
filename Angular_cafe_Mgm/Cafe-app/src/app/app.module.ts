@@ -24,6 +24,8 @@ import { HomoComponent } from './homo/homo.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserComponent } from './user/user.component';
+import { AdminnavComponent } from './adminnav/adminnav.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { FooterComponent } from './footer/footer.component';
     HomoComponent,
     AboutComponent,
     PaymentComponent,
-    FooterComponent
+    FooterComponent,
+    UserComponent,
+    AdminnavComponent
   ],
   
   imports: [

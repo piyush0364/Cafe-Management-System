@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { OrderService } from '../../Service/order.service';
-<<<<<<< HEAD
-import { AuthService } from '../../Service/auth.service';
-=======
 import { Orders } from '../../Models/orders.model';
->>>>>>> 479b0e4ffb23e19f64110193d493555b30a9fd70
 
 @Component({
   selector: 'app-orders',
@@ -14,36 +10,6 @@ import { Orders } from '../../Models/orders.model';
 export class OrdersComponent {
   orders: Orders[] = [];
 
-<<<<<<< HEAD
-
-constructor(public objs:OrderService,private auth : AuthService) {}
-
-ngOnInit(): void {
-  this.objs.getOrdersList();
-
-}
-fillData(selectedOL)
-{
- this.objs.oData=Object.assign({},selectedOL);
-}
-onDelete(orderID)
-{
- if(confirm("Are you sure? you wanna delete this Category?"))
- {
-   this.objs.deleteOrder(orderID).subscribe(
-     res=>{this.objs.getOrdersList()
-       alert("Record Deleted!!!")
-     },
-    err=>{alert("Error!!!"+err);})
- }
-}
-
-logout()
-{
-  this.auth.signOut();
-}
-
-=======
   constructor(private ordersService: OrderService) {}
 
   ngOnInit(): void {
@@ -69,6 +35,5 @@ logout()
       (error) => console.error('Failed to update status:', error)
     );
   }
->>>>>>> 479b0e4ffb23e19f64110193d493555b30a9fd70
 }
 

@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AdminGuard } from './admin.guard';
+import { UserComponent } from './user/user.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path:'homo',component:HomoComponent},
   {path:'feedback',component:FeedbackComponent,canActivate:[AuthGuard]},
   {path:'about',component:AboutComponent},
-  {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]}
+  {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]},
+  {path:'user',component:UserComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

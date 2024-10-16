@@ -1,11 +1,4 @@
-<div>
-    <nav class="navbar navbar-dark bg-dark justify-content-center">
-      <a class="navbar-brand mx-auto" style="color: white; text-align: center;"><h2><b>CAFE  ADMIN</b></h2></a>
-      <form class="form-inline" style="position: absolute; right: 20px;">
-        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
-      </form>
-    </nav>
-  </div>
+<app-adminnav></app-adminnav>
 
 
   
@@ -93,7 +86,7 @@
             </div>
 
 
-            <div class="col">
+            <div class="col py-3">
                
             <h1>Register Categaries</h1>
 
@@ -118,8 +111,16 @@
                             <div class="input-group-text bg-white text-warning">
                                 <!-- <i class="bi bi-image" [class.bg-success.subtle]="ImageUrl.valid" 
                                 [class.bg-danger]="ImageUrl.invalid && ImageUrl.touched"></i> -->
-                                <input type="url" class="form-control" name="ImageUrl" #ImageUrl="ngModel"
-                                 [(ngModel)]="objs.cData.ImageUrl" placeholder="Image URL" required>
+                                 <input type="url" class="form-control" name="ImageUrl" #ImageUrl="ngModel"
+                                 [(ngModel)]="objs.cData.ImageUrl" placeholder="Image URL" required> 
+
+                                  <!-- <div class="form-group pt-3">
+                                    <label for="imageUpload" class="font-weight-bold">Upload Image</label>
+                                    <div class="input-field">
+                                        <input type="file" (change)="onFileSelected($event)" />
+                                    </div>
+                                </div>  -->
+
                             </div>
                         </div>
                     </div>

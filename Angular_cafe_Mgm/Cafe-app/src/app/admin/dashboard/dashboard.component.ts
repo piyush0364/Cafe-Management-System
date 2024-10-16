@@ -8,7 +8,7 @@ import { AuthService } from '../../Service/auth.service';
 })
 export class DashboardComponent {
 
-  constructor(private auth:AuthService){
+  constructor(){
 
   }
 
@@ -17,8 +17,4 @@ export class DashboardComponent {
     this.toggle = !this.toggle;
   }
 
-  logout()
-  {
-    this.auth.signOut();
-  }
 }
