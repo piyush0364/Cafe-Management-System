@@ -26,6 +26,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './user/user.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
+import { PurchaseComponent } from './purchase/purchase.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AdminnavComponent } from './adminnav/adminnav.component';
     PaymentComponent,
     FooterComponent,
     UserComponent,
-    AdminnavComponent
+    AdminnavComponent,
+    PurchaseComponent
   ],
   
   imports: [

@@ -13,13 +13,26 @@ export class OrderService {
     return this.http.get<Orders[]>(this.apiUrl);
   }
 
-  // Update order status
-  // updateOrderStatus(id: number, status: string): Observable<any> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   return this.http.put(`${this.apiUrl}/${id}`, { status }, { headers });
-  // }
   updateOrderStatus(order:Orders): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(`${this.apiUrl}/${order.OrderDetailsId}`,order, { headers });
   }
+
+  //purchase history
+  getOrderHistory(): Observable<any> {
+    // Retrieve UserId from localStorage
+    const UserId = localStorage.getItem('id');
+    
+    if (!UserId) {
+      throw new Error('UserId not found in local storage');
+    }
+
+    // Send request with the UserId
+    return this.http.get(`${this.apiUrl}/history/${UserId}`);
+  }
+  deleteOrder(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+
 }

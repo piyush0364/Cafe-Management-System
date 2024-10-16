@@ -42,5 +42,9 @@ export class ProductService {
   {
     return this.objHttp.delete(this.ppApiUrl + '/'+Product);
   }
+
+  getProductById(productId:any): Observable<Product> {
+    return this.objHttp.get<Product>(`${this.ppApiUrl}/${productId}`);
+  }
 }
 

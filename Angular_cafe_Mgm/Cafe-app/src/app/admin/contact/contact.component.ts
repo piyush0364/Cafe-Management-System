@@ -27,7 +27,7 @@ export class ContactComponent {
   }
   deleteFeedback(ContactId)
   {
-   if(confirm("Are you sure? you wanna delete this passport?"))
+   if(confirm("Are you sure? you wanna delete this Contact?"))
    {
      this.feedbackService.deleteFeedback(ContactId).subscribe(
        res=>{this.feedbackService.getFeedback()
