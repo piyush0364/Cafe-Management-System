@@ -20,6 +20,8 @@ export class DashboardComponent {
   tp = 0;
   oList : any;
   pList : any;
+  pi = 0;
+  ci = 0;
 
   constructor(private c : CategoriesService, private p : ProductService, private o : OrderService,private u : UserService,private f : FeedbackService){
        this.onLoad();
@@ -53,6 +55,10 @@ export class DashboardComponent {
     
             // Calculate total price
             this.tp = res2.reduce((total, order) => {
+                  if(order.Status=='pending')
+                    this.pi+=1;
+                  else 
+                  this.ci+=1;
               const productPrice = productMap[order.ProductId] || 0;
               return total+ productPrice * order.Quantity;
             }, 0);
@@ -79,10 +85,6 @@ export class DashboardComponent {
 
   
   }
-    
-
- 
-
 
  
 
