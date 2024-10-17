@@ -54,7 +54,7 @@ export class DashboardComponent {
             // Calculate total price
             this.tp = res2.reduce((total, order) => {
               const productPrice = productMap[order.ProductId] || 0;
-              return total + productPrice * order.Quantity;
+              return total+ productPrice * order.Quantity;
             }, 0);
           },
           (err) => console.log(err) // Error handling for getOrders
