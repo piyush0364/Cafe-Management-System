@@ -17,6 +17,9 @@ export class DashboardComponent {
   ol = 1;
   ul = 1;
   fl = 1;
+  tp = 0;
+  oList : any;
+  pList : any;
 
   constructor(private c : CategoriesService, private p : ProductService, private o : OrderService,private u : UserService,private f : FeedbackService){
        this.onLoad();
@@ -26,21 +29,42 @@ export class DashboardComponent {
   onLoad(){
 
 
+
     this.c.getcategoryList1().subscribe((res)=>(
       this.cl = res.length
     ),(err)=>
     console.log(err));
 
-    this.p.getProducts().subscribe((res)=>(
-      this.pl = res.length
-    ),(err)=>
-    console.log(err));
+   
+    this.p.getProducts().subscribe(
+      (res1) => {
+        this.pl = res1.length;
+        this.pList = res1;
+    
+        this.o.getOrders().subscribe(
+          (res2) => {
+            this.ol = res2.length;
+            this.oList = res2;
+    
+            const productMap = res1.reduce((acc, product) => {
+              acc[product.ProductId] = product.Price;
+              return acc;
+            }, {} as { [key: number]: number });
+    
+            // Calculate total price
+            this.tp = res2.reduce((total, order) => {
+              const productPrice = productMap[order.ProductId] || 0;
+              return total+ productPrice * order.Quantity;
+            }, 0);
+          },
+          (err) => console.log(err) // Error handling for getOrders
+        );
+      },
+      (err) => console.log(err) // Error handling for getProducts
+    );
+    
 
-
-    this.o.getOrders().subscribe((res)=>(
-      this.ol = res.length
-    ),(err)=>
-    console.log(err));
+ 
     
     this.u.getUserList1().subscribe((res)=>(
       this.ul = res.length
@@ -51,14 +75,16 @@ export class DashboardComponent {
       this.fl = res.length
     ),(err)=>
     console.log(err));
-    
 
 
-
-    
-
-
+  
   }
+    
+
+ 
+
+
+ 
 
   toggle = false;
   toggleSidebar() {
