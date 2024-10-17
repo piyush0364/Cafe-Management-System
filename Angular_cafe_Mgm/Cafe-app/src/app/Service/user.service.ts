@@ -28,6 +28,12 @@ export class UserService {
     getUserListById(): Observable<any> {
       return this.http.get<any>(`${this.ApiUrl}/${localStorage.getItem('id')}`);
     }
+
+    
+    getUserList1(): Observable<any> {
+      return this.http.get<any>(this.ApiUrl);
+    }
+    
   
 
 }
