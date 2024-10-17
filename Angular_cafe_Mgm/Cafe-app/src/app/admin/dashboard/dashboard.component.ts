@@ -55,10 +55,12 @@ export class DashboardComponent {
     
             // Calculate total price
             this.tp = res2.reduce((total, order) => {
-                  if(order.Status=='pending')
-                    this.pi+=1;
+                  if(order.Status === 'delivered'){
+                    this.ci+=1;
+                    console.log(order.Status);
+                  }
                   else 
-                  this.ci+=1;
+                  this.pi+=1;
               const productPrice = productMap[order.ProductId] || 0;
               return total+ productPrice * order.Quantity;
             }, 0);
