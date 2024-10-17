@@ -77,17 +77,17 @@
                         <td>
                           <button 
                             class="btn btn-success btn-sm" 
-                            (click)="updateStatus(order, 'completed')"
-                            [disabled]="order.Status === 'completed'"
+                            (click)="updateStatus(order, 'delivered')"
+                            [disabled]="order.Status === 'delivered'"
                           >
-                            Mark as Completed
+                            Delivered
                           </button>
                           <button 
                             class="btn btn-danger btn-sm" 
-                            (click)="updateStatus(order, 'cancelled')"
-                            [disabled]="order.Status === 'cancelled'"
+                            (click)="updateStatus(order, 'pending')"
+                            [disabled]="order.Status === 'pending'"
                           >
-                            Cancel
+                            Pending 
                           </button>
                         </td>
                         <td>
