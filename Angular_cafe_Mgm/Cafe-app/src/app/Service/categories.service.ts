@@ -25,8 +25,9 @@ export class CategoriesService {
     this.objHttp.get(this.ApiUrl).toPromise()
     .then(res=>this.cList=res as Categories[]);
   }
-  createCategory()
+  createCategory(c:any)
   {
+    this.cData.ImageUrl = c;
     return this.objHttp.post(this.ApiUrl,this.cData);
   }
   updateCategory()

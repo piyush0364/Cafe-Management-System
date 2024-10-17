@@ -35,5 +35,17 @@ export class OrdersComponent {
       (error) => console.error('Failed to update status:', error)
     );
   }
+  onDelete(OrderId)
+  {
+   if(confirm("Are you sure? you wanna delete this Product?"))
+   {
+     this.ordersService.deleteOrder(OrderId).subscribe(
+       res=>{this.ordersService.getOrders()
+         alert("Record Deleted!!!")
+         this.fetchOrders();
+       },
+      err=>{alert("Error!!!"+err);})
+   }
+  }
 }
 

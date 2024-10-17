@@ -11,7 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class CategoriesComponent implements OnInit{
+
   profileImageUrl: string | ArrayBuffer | null = null;
+
   constructor(public objs:CategoriesService){}
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class CategoriesComponent implements OnInit{
 
   insertRecord(form: NgForm) {
     //  this.objService.cData = form.value; // Set cData from the form values
-     this.objs.createCategory().subscribe(res => {
+     this.objs.createCategory(this.profileImageUrl).subscribe(res => {
        this.resetForm(form);
        alert('New Categories Creation Success');
        this.objs.getCategoriesList(); // Refresh the list
