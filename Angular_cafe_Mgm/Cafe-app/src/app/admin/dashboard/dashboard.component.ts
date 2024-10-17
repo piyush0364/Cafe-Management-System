@@ -3,6 +3,7 @@ import { AuthService } from '../../Service/auth.service';
 import { CategoriesService } from '../../Service/categories.service';
 import { ProductService } from '../../Service/product.service';
 import { OrderService } from '../../Service/order.service';
+import { UserService } from '../../Service/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +14,9 @@ export class DashboardComponent {
   cl = 1;
   pl = 1;
   ol = 1;
+  ul = 1;
 
-  constructor(private c : CategoriesService, private p : ProductService, private o : OrderService){
+  constructor(private c : CategoriesService, private p : ProductService, private o : OrderService,private u : UserService){
        this.onLoad();
   }
 
@@ -37,7 +39,14 @@ export class DashboardComponent {
       this.ol = res.length
     ),(err)=>
     console.log(err));
- 
+    
+    this.u.getUserList1().subscribe((res)=>(
+      this.ul = res.length
+    ),(err)=>
+    console.log(err));
+    
+
+
 
     
 
