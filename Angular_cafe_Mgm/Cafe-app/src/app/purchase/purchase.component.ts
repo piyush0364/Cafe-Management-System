@@ -36,18 +36,4 @@ export class PurchaseComponent {
     });
   }
 
-  
-  deleteOrder(OrderId)
-  {
-   if(confirm("Are you sure? you wanna delete this Order?"))
-   {
-     this.orderService.deleteOrder(OrderId).subscribe(
-       res=>{this.orderService.getOrders()
-      },
-
-      err=>{alert("Error!!!"+err);})
-      
-   }
   }
-
-}

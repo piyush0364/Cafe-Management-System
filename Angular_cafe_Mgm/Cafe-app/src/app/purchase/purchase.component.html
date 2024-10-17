@@ -15,7 +15,7 @@
             <th>Quantity</th>
             <th>Status</th>
             <th>Order Date</th>
-            <th>Delete</th>
+        
           </tr>
         </thead>
         <tbody>
@@ -38,13 +38,7 @@
 
             <td>{{ order.OrderDate | date }}</td>
 
-            <td>
-            <button 
-            class="btn btn-danger btn-sm" 
-            (click)="deleteOrder(order.OrderDetailsId)">
-            Delete
-          </button>
-          </td>
+ 
 
           </tr>
         </tbody>
