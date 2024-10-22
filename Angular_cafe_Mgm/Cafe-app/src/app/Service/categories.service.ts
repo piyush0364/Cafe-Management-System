@@ -8,8 +8,6 @@ import { Observable } from 'rxjs';
 })
  
 
-
-
 export class CategoriesService {
 
   cData: Categories = new Categories();

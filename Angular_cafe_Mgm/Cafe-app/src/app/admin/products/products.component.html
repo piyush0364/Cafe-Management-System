@@ -56,13 +56,14 @@
                 <table class="table table-hover table-dark table-bordered">
                     <thead>
                         <tr>
-                            <th>PId</th>
-                            <th>PName</th>
-                            <th>ImageUrl</th>
-                            <th>IsActive</th>
-                            <th>Qty</th>
+                            <!-- <th>PId</th> -->
+                            <th>Product Name</th>
+                            <th>Image</th>
+                            <!-- <th>IsActive</th> -->
+                            <!-- <th>Qty</th> -->
                         
                             <th>Price</th>
+                            <!-- <th>Created Date</th> -->
                            
                             <th>Delete</th>
                             <th>Select</th>  
@@ -71,11 +72,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let p of objs.pList">
-                            <td>{{p.ProductId}}</td>
+                            <!-- <td>{{p.ProductId}}</td> -->
                             <td>{{p.Name}}</td>
                             <td>  <img [src]= p.ImageUrl [alt]="p.Name"> </td>
-                            <td>{{p.IsActive}}</td>
-                           <td>{{p.Quantity}}</td>
+                            <!-- <td>{{p.IsActive}}</td> -->
+                           <!-- <td>{{p.Quantity}}</td> -->
                            <!-- <td>{{p.Description}}</td> -->
                            <td>{{p.Price}}</td>
                            <!-- <td>{{p.CreatedDate}}</td> -->
@@ -108,11 +109,11 @@
                     <input type="number" class="form-control" name="Price" 
                            [(ngModel)]="objs.pData.Price" placeholder="Price" required>
                   </div>
-                
+<!--                 
                   <div class="form-group">
                     <input type="number" class="form-control" name="Quantity" 
                            [(ngModel)]="objs.pData.Quantity" placeholder="Quantity" required>
-                  </div>
+                  </div> -->
 
                  <div class="form-group">
                     <input type="textarea" class="form-control" name="Description" 

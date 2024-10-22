@@ -55,11 +55,10 @@
                     <thead>
                       <tr>
                         <th>Order No</th>
-                        <th>Product ID</th>
+                        <th>Product Name</th>
                         <th>Quantity</th>
-                        <th>User ID</th>
+                        <th>User Name</th>
                         <th>Status</th>
-                        <th>Payment ID</th>
                         <th>Order Date</th>
                         <th>Actions</th>
                         <th>Delete</th>
@@ -68,14 +67,13 @@
                     <tbody>
                       <tr *ngFor="let order of orders">
                         <td>{{ order.OrderNo }}</td>
-                        <td>{{ order.ProductId }}</td>
+                        <td>{{ p[order.ProductId] }}</td>
                         <td>{{ order.Quantity }}</td>
-                        <td>{{ order.UserId }}</td>
+                        <td>{{ u[order.UserId] }}</td>
                         <td>{{ order.Status }}</td>
-                        <td>{{ order.PaymentId }}</td>
                         <td>{{ order.OrderDate | date: 'medium' }}</td>
                         <td>
-                          <button 
+                          <!-- <button 
                             class="btn btn-success btn-sm" 
                             (click)="updateStatus(order, 'delivered')"
                             [disabled]="order.Status === 'delivered'"
@@ -88,7 +86,15 @@
                             [disabled]="order.Status === 'pending'"
                           >
                             Pending 
-                          </button>
+                          </button> -->
+
+                          <button class="btn" 
+  [ngClass]="order.Status === 'delivered' ? 'btn-danger' : 'btn-success'" 
+  (click)="toggleStatus(order)"
+>
+  {{ order.Status === 'delivered' ? 'Pending' : 'Delivered' }}
+</button>
+
                         </td>
                         <td>
                           <button 
