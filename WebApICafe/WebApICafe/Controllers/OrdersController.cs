@@ -103,5 +103,21 @@ namespace WebApICafe.Controllers
         {
             return _context.Orders.Any(e => e.OrderId == id);
         }
+
+        [HttpGet("history/{userId}")]
+        public async Task<IActionResult> GetOrderHistory(int userId)
+        {
+            // Fetch the order history for the provided userId
+            var orderHistory = await _context.Orders
+                .Where(o => o.UserId == userId)
+                .ToListAsync();
+
+            if (orderHistory == null || !orderHistory.Any())
+            {
+                return NotFound("No orders found for the specified user.");
+            }
+
+            return Ok(orderHistory);
+        }
     }
 }

@@ -1,0 +1,42 @@
+<app-nav></app-nav>
+
+<section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Send Your Query</h2>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form #queryForm="ngForm" (ngSubmit)="onSubmit(queryForm)">
+              <div>
+                <input name="Name" ngModel class="form-control" placeholder="Your Name" id="txtName" required />
+              </div>
+            
+              <div>
+                <input name="Email" type="email" ngModel class="form-control" placeholder="Your Email" id="txtEmail" required email/>
+              </div>
+            
+              <div>
+                <input name="Subject" ngModel class="form-control" placeholder="Subject" id="txtSubject" />
+              </div>
+            
+              <div>
+                <textarea name="Message" ngModel class="form-control" placeholder="Enter Your Query/Feedback" id="txtMessage"></textarea>
+              </div>
+            
+              <div class="btn_box">
+                <button type="submit" [disabled]="!queryForm.valid" class="btn btn-warning rounded-pill pl-4 pr-4 text-white" id="btnSubmit">Submit</button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+  
+      
+      </div>
+    </div>
+  </section>
+  
+  <app-footer></app-footer>

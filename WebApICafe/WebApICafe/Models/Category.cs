@@ -13,5 +13,5 @@ public partial class Category
 
     public DateTime? CreatedDate { get; set; }
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<Product> ? Products { get; set; } = new List<Product>();
 }

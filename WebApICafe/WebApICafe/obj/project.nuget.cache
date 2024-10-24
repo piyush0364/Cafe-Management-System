@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IHqkfY8JLvU=",
+  "dgSpecHash": "KsNIMHFDbWc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\new-cafe\\WebApICafe\\WebApICafe\\WebApICafe.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\modify\\Cafe-modify\\WebApICafe\\WebApICafe\\WebApICafe.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
