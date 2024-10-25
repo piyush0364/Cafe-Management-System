@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Service/auth.service';
-import { CategoriesService } from '../../Service/categories.service';
+// import { CategoriesService } from '../../Service/categories.service';
 import { ProductService } from '../../Service/product.service';
 import { OrderService } from '../../Service/order.service';
 import { UserService } from '../../Service/user.service';
 import { FeedbackService } from '../../Service/feedback.service';
 import { OrderitemService } from '../../Service/orderitem.service';
+import { CategoryService } from '../../Service/category.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,7 @@ export class DashboardComponent {
   ci = 0; // Completed orders
   
   constructor(
-    private c: CategoriesService,
+    private c: CategoryService,
     private p: ProductService,
     private o: OrderService,
     private u: UserService,

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Service/product.service';
 import { AuthService } from '../../Service/auth.service';
-import { CategoriesService } from '../../Service/categories.service';
+// import { CategoriesService } from '../../Service/categories.service';
 import { NgForm } from '@angular/forms';
+import { CategoryService } from '../../Service/category.service';
 
 @Component({
   selector: 'app-products',
@@ -20,7 +21,7 @@ export class ProductsComponent {
   // categoryList: Category[] = []; // Array to hold categories
  
 
-  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoriesService){}
+  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoryService){}
 
   
 

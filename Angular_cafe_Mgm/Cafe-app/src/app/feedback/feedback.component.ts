@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './feedback.component.css'
 })
 export class FeedbackComponent {
-  readonly ppApiUrl='https://localhost:44344/api/Contacts';
+  readonly ppApiUrl='https://localhost:44331/api/Contacts';
 
   constructor(private http: HttpClient) {}
 

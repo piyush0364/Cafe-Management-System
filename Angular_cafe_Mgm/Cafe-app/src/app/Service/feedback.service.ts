@@ -22,14 +22,7 @@ export class FeedbackService {
   sendFeedback(feedback: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, feedback);
   }
-//   getFeedback(): Observable<any[]> {
-//     return this.http.get<any[]>(this.apiUrl);
-//   }
 
-//   // Delete a feedback entry by ID
-//   deleteFeedback(id: number): Observable<void> {
-//     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-// }
 }
 
 

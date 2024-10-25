@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace WebApICafe.Controllers
 
         // GET: api/Contacts
         [HttpGet]
+        [Authorize(Roles = "Admin1256")]
+
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
         {
             return await _context.Contacts.ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Contacts/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Contact>> GetContact(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);
@@ -44,6 +48,8 @@ namespace WebApICafe.Controllers
         // PUT: api/Contacts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin1256")]
+
         public async Task<IActionResult> PutContact(int id, Contact contact)
         {
             if (id != contact.ContactId)
@@ -75,6 +81,7 @@ namespace WebApICafe.Controllers
         // POST: api/Contacts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
             _context.Contacts.Add(contact);
@@ -85,6 +92,7 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/Contacts/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteContact(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);

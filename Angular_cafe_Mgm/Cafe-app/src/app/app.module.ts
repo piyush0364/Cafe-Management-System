@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { OrdersComponent } from './admin/orders/orders.component';
@@ -14,7 +14,6 @@ import { ContactComponent } from './admin/contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CustomersComponent } from './admin/customers/customers.component';
-import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { CartComponent } from './cart/cart.component';
@@ -26,6 +25,7 @@ import { UserComponent } from './user/user.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { ProductsComponent } from './admin/products/products.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { ProductsComponent } from './admin/products/products.component';
     ContactComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent,
     NavComponent,
     FeedbackComponent,
     CartComponent,
@@ -59,7 +58,11 @@ import { ProductsComponent } from './admin/products/products.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass:TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

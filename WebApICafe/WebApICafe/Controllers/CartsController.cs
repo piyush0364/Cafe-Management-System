@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Carts
         [HttpGet]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCarts()
         {
             return await _context.Carts.ToListAsync();
@@ -29,6 +31,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Carts/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Cart>> GetCart(int id)
         {
             var cart = await _context.Carts.FindAsync(id);
@@ -44,6 +47,7 @@ namespace WebApICafe.Controllers
         // PUT: api/Carts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutCart(int id, Cart cart)
         {
             if (id != cart.CartId)
@@ -75,6 +79,7 @@ namespace WebApICafe.Controllers
         // POST: api/Carts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Cart>> PostCart(Cart cart)
         {
             _context.Carts.Add(cart);
@@ -85,6 +90,7 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/Carts/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteCart(int id)
         {
             var cart = await _context.Carts.FindAsync(id);

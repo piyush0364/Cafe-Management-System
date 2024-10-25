@@ -12,7 +12,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { CartComponent } from './cart/cart.component';
 import { HomoComponent } from './homo/homo.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AdminGuard } from './admin.guard';

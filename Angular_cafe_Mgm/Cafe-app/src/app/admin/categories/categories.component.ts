@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from '../../Service/categories.service';
+// import { CategoriesService } from '../../Service/categories.service';
 import { AuthService } from '../../Service/auth.service';
  
 import { NgForm } from '@angular/forms';
+import { CategoryService } from '../../Service/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -12,107 +13,14 @@ import { NgForm } from '@angular/forms';
 
 export class CategoriesComponent implements OnInit{
 
-  // profileImageUrl: string | ArrayBuffer | null = null;
-
-  // constructor(public objs:CategoriesService, private csrv : CategoriesService){}
-
-  // ngOnInit(): void {
-  //   this.resetForm();
-  //   this.objs.getCategoriesList();
-  //   this.csrv.getCategoriesList();
- 
-  // }
-
-  // resetForm(form?:NgForm){
-    
-  //   if(form != null){
-  //     form.form.reset();
-  //   }else{
-  //     this.objs.cData={CategoryId:0,Name:'',ImageUrl:'',IsActive:'',CreatedDate:''}
-  //   }
-  // }
-
-
-  // fillData(selectedCL)
-  // {
-  //  this.objs.cData=Object.assign({},selectedCL);
-  // }
-
-
-  // insertRecord(form: NgForm) {
-  //   //  this.objService.cData = form.value; // Set cData from the form values
-  //    this.objs.createCategory(this.profileImageUrl).subscribe(res => {
-  //      this.resetForm(form);
-  //      alert('New Categories Creation Success');
-  //      this.objs.getCategoriesList(); // Refresh the list
-  //    },
-  //    err => {
-  //      alert('Error: ' + err);
-  //    });
-  //  }
-
-
-
-
-  //  updateCategories(form:NgForm){
-  //   this.objs.updateCategory().subscribe(res => {
-  //     this.resetForm(form);
-  //     alert('Categories Updation Success');
-  //     this.objs.getCategoriesList();
-  //   },
-  //   err => {alert('Error !!!' + err);}
-  // )
-  // }
-  
-
-  // onSubmit(form: NgForm)
-  // { 
-  //   if(this.objs.cData.CategoryId==0){
-  //     this.insertRecord(form);
-  //   }else{
-  //     this.updateCategories(form);
-  //   }
-  // }
-
-  // onFileSelected(event: any): void {
-  //   const file: File = event.target.files[0];
-  //   const reader = new FileReader();
-
-  //   reader.onload = () => {
-  //     this.profileImageUrl = reader.result; // This is the Base64 string
-  //     console.log(  this.profileImageUrl);
-  //   };
-
-  //   if (file) {
-  //     reader.readAsDataURL(file); // Converts to Base64
-  //   }
-  // }
-
-
-
-
-
-
-  // onDelete(categoryID)
-  // {
-  //  if(confirm("Are you sure? you wanna delete this  Categories?"))
-  //  {
-  //    this.objs.deleteCategory(categoryID).subscribe(
-  //      res=>{this.objs.getCategoriesList()
-  //        alert("Record Deleted!!!")
-  //      },
-  //     err=>{alert("Error!!!"+err);})
-  //  }
-  // }
-
 
   profileImageUrl: string | ArrayBuffer | null = null;
 
-  constructor(public objs: CategoriesService) {}
+  constructor(public objs: CategoryService) {}
 
   ngOnInit(): void {
     this.resetForm();
-    this.objs.getCategoriesList();
+    this.objs.getCategoryList();
   }
 
   resetForm(form?: NgForm) {
@@ -132,7 +40,7 @@ export class CategoriesComponent implements OnInit{
       () => {
         this.resetForm(form);
         alert('New Categories Creation Success');
-        this.objs.getCategoriesList(); // Refresh the list
+        this.objs.getCategoryList(); // Refresh the list
       },
       (err) => {
         alert('Error: ' + err);
@@ -145,7 +53,7 @@ export class CategoriesComponent implements OnInit{
       () => {
         this.resetForm(form);
         alert('Categories Updation Success');
-        this.objs.getCategoriesList();
+        this.objs.getCategoryList();
       },
       (err) => {
         alert('Error !!!' + err);
@@ -178,7 +86,7 @@ export class CategoriesComponent implements OnInit{
     if (confirm('Are you sure? you want to delete this category?')) {
       this.objs.deleteCategory(categoryID).subscribe(
         () => {
-          this.objs.getCategoriesList();
+          this.objs.getCategoryList();
           alert('Record Deleted!!!');
         },
         (err) => {

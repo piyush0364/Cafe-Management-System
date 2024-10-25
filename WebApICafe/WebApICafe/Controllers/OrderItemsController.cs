@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/OrderItems
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
         {
             return await _context.OrderItems.ToListAsync();
@@ -29,6 +31,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/OrderItems/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
         {
             var orderItem = await _context.OrderItems.FindAsync(id);
@@ -44,6 +47,7 @@ namespace WebApICafe.Controllers
         // PUT: api/OrderItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> PutOrderItem(int id, OrderItem orderItem)
         {
             if (id != orderItem.OrderItemId)
@@ -75,6 +79,7 @@ namespace WebApICafe.Controllers
         // POST: api/OrderItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
         {
             _context.OrderItems.Add(orderItem);
@@ -85,6 +90,7 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/OrderItems/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteOrderItem(int id)
         {
             var orderItem = await _context.OrderItems.FindAsync(id);
