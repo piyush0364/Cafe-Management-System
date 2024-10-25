@@ -4,6 +4,7 @@ import { AuthService } from '../../Service/auth.service';
 import { CategoryService } from '../../Service/category.service';
  
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -109,7 +110,7 @@ export class CategoriesComponent implements OnInit{
 
   profileImageUrl: string | ArrayBuffer | null = null;
 
-  constructor(public objs: CategoryService) {}
+  constructor(public objs: CategoryService,private toastr:ToastrService) {}
 
   ngOnInit(): void {
     this.resetForm();
@@ -130,11 +131,12 @@ export class CategoriesComponent implements OnInit{
 
     this.objs.createCategory(this.profileImageUrl,form).subscribe(
       () => {
-        alert('New Categories Creation Success');
+       
+        this.toastr.success('Success','New Category Creation Success')
         this.objs.getCategoryList(); // Refresh the list
       },
       (err) => {
-        alert('Error: ' + err);
+        this.toastr.error('Error',err);
       }
     );
 
@@ -144,11 +146,13 @@ export class CategoriesComponent implements OnInit{
     this.objs.updateCategory(this.profileImageUrl).subscribe(
       () => {
         this.resetForm(form);
-        alert('Categories Updation Success');
+      
+        this.toastr.success('Success','Categories Updation Success')
         this.objs.getCategoryList();
       },
       (err) => {
-        alert('Error !!!' + err);
+        
+        this.toastr.error('Error','Error !!!' +err)
       }
     );
   }
@@ -184,10 +188,11 @@ export class CategoriesComponent implements OnInit{
       this.objs.deleteCategory(categoryID).subscribe(
         () => {
           this.objs.getCategoryList();
-          alert('Record Deleted!!!');
+       
+          this.toastr.success('Success','Record Deleted!!!');
         },
         (err) => {
-          alert('Error!!!' + err);
+          this.toastr.error('Error','Error!!!' + err);
         }
       );
     }

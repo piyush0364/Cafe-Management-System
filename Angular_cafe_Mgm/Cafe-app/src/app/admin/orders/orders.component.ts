@@ -5,6 +5,7 @@ import { ProductService } from '../../Service/product.service';
 import { Product } from '../../model/product.model';
 import { UserService } from '../../Service/user.service';
 import { PaymentService } from '../../Service/payment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-orders',
@@ -16,7 +17,9 @@ export class OrdersComponent {
   p: any;
   u : any;
 
-  constructor(private ordersService: OrderService, private psrv : PaymentService,private usrv : UserService) {}
+  constructor(private ordersService: OrderService, private psrv : PaymentService,private usrv : UserService,
+    private toastr : ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.fetchOrders();
@@ -92,7 +95,9 @@ export class OrdersComponent {
     this.ordersService.updateOrderStatus(updatedOrder).subscribe(
       () => {
         order.Status = status; // Update status locally for UI
-        alert(`Order ${order.OrderId} status updated to ${status}`);
+        
+        this.toastr.success('Success',`Order ${order.OrderId} status updated to ${status}`)
+        
       },
       (error) => console.error('Failed to update status:', error)
     );
@@ -105,10 +110,13 @@ export class OrdersComponent {
    {
      this.ordersService.deleteOrder(OrderId).subscribe(
        res=>{this.ordersService.getOrders()
-         alert("Record Deleted!!!")
+         this.toastr.success('Success','Record Deleted!!!')
          this.fetchOrders();
        },
-      err=>{alert("Error!!!"+err);})
+      err=>{
+        
+        this.toastr.error('Error','Error!!!'+err);
+      })
    }
   }
 }

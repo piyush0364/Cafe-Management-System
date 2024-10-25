@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../Service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-customers',
@@ -7,7 +8,7 @@ import { UserService } from '../../Service/user.service';
   styleUrl: './customers.component.css'
 })
 export class CustomersComponent {
-  constructor(public objs : UserService){}
+  constructor(public objs : UserService,private toastr: ToastrService){}
 
   ngOnInit(): void {
     this.objs.getUserList();
@@ -20,9 +21,13 @@ export class CustomersComponent {
    {
      this.objs.deleteUser(Id).subscribe(
        res=>{this.objs.getUserList()
-         alert("Record Deleted!!!")
+        this.toastr.success('Success','Record Deleted !!!')
        },
-      err=>{alert("Error!!!"+err);})
+      err=>{
+        this.toastr.error('Error','Error !!!'+err)
+
+      }
+    )
    }
   }
 

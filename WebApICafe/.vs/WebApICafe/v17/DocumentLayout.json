@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|c:\\users\\user\\desktop\\interceptor\\cafe-management-system\\webapicafe\\webapicafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|solutionrelative:webapicafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|c:\\users\\user\\desktop\\interceptor\\cafe-management-system\\webapicafe\\webapicafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|solutionrelative:webapicafe\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|c:\\users\\user\\desktop\\interceptor\\cafe-management-system\\webapicafe\\webapicafe\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|solutionrelative:webapicafe\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|c:\\users\\user\\desktop\\interceptor\\cafe-management-system\\webapicafe\\webapicafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|solutionrelative:webapicafe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A8EFE51-6BAC-4EE6-A557-9912BB49A7E0}|WebApICafe\\WebApICafe.csproj|c:\\users\\user\\desktop\\interceptor\\cafe-management-system\\webapicafe\\webapicafe\\helpers\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,20 +62,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CartItemController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartItemController.cs",
-              "RelativeDocumentMoniker": "WebApICafe\\Controllers\\CartItemController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartItemController.cs",
-              "RelativeToolTip": "WebApICafe\\Controllers\\CartItemController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:46:41.696Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "WebApICafe\\Controllers\\UsersController.cs",
@@ -83,8 +70,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\UsersController.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAgwCEAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:40:06.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:40:06.163Z"
             },
             {
               "$type": "Document",
@@ -96,8 +82,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\ProductsController.cs",
               "ViewState": "AQIAAFIAAAAAAAAAAAA5wHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:39:39.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:39:39.676Z"
             },
             {
               "$type": "Document",
@@ -109,8 +94,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\PaymentsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:39:03.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:39:03.395Z"
             },
             {
               "$type": "Document",
@@ -122,8 +106,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\OrdersController.cs",
               "ViewState": "AQIAAGMAAAAAAAAAAAAowIIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:38:38.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:38:38.695Z"
             },
             {
               "$type": "Document",
@@ -135,8 +118,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\OrderItemsController.cs",
               "ViewState": "AQIAAFIAAAAAAAAAAAA5wHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:38:19.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:38:19.628Z"
             },
             {
               "$type": "Document",
@@ -148,8 +130,7 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\ContactsController.cs",
               "ViewState": "AQIAAFQAAAAAAAAAAAA5wHMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:38:09.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:38:09.249Z"
             },
             {
               "$type": "Document",
@@ -161,21 +142,45 @@
               "RelativeToolTip": "WebApICafe\\Controllers\\CategoriesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:37:01.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:37:01.119Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CartsController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartsController.cs",
               "RelativeDocumentMoniker": "WebApICafe\\Controllers\\CartsController.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartsController.cs",
               "RelativeToolTip": "WebApICafe\\Controllers\\CartsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFwAAAASAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-25T19:35:56.457Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebApICafe\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "WebApICafe\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAADwv3cAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T19:24:32.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CartItemController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartItemController.cs",
+              "RelativeDocumentMoniker": "WebApICafe\\Controllers\\CartItemController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\CartItemController.cs",
+              "RelativeToolTip": "WebApICafe\\Controllers\\CartItemController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T19:46:41.696Z"
             },
             {
               "$type": "Document",
@@ -187,21 +192,7 @@
               "RelativeToolTip": "WebApICafe\\Helpers\\PasswordHasher.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:42:12.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "WebApICafe\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\interceptor\\Cafe-Management-System\\WebApICafe\\WebApICafe\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "WebApICafe\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T19:24:32.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T19:42:12.163Z"
             },
             {
               "$type": "Document",

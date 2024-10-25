@@ -4,6 +4,7 @@ import { CategoryService } from '../Service/category.service';
 import { Product } from '../model/product.model';
 import { catchError, of, switchMap } from 'rxjs';
 import { CartService } from '../Service/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +22,7 @@ export class MenuComponent {
   items: Product[] = [];
   fItems: Product[] = [];
 
-  constructor(public psrv:ProductService, public csrv:CategoryService, public crt:CartService)
+  constructor(public psrv:ProductService, public csrv:CategoryService, public crt:CartService,private toastr:ToastrService)
   {       this.id = JSON.parse(localStorage.getItem('id'));
 
     this.activeItem= 'all';
@@ -75,7 +76,9 @@ export class MenuComponent {
       })
     ).subscribe({
       next: (response) => {
-        alert("Product added to Cart")
+        // alert("Product added to Cart")
+        this.toastr.success('Success','Products Added To Cart')
+
         console.log('Cart updated:', response);
         
       },
