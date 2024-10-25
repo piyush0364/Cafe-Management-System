@@ -123,6 +123,7 @@ export class CategoriesComponent implements OnInit{
   fillData(p) {
      this.objs.cData.Name = p.Name;
      this.objs.cData.CategoryId = p.CategoryId;
+   
   }
 
   insertRecord(form: NgForm) {

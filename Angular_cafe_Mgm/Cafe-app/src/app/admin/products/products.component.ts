@@ -26,9 +26,14 @@ export class ProductsComponent {
   
 
   ngOnInit(): void {
+    this.resetForm();
     this.fetchCategories();
     this.objs.getProductList();
  }
+
+ resetForm(form?: NgForm) {
+  this.objs.pData.ProductId = 0;
+}
 
 
   fetchCategories() {
@@ -73,6 +78,7 @@ export class ProductsComponent {
 
    updateCategories(form:NgForm){
     this.objs.updateProduct(this.profileImageUrl).subscribe(res => {
+      this.resetForm(form);
       alert('Product Updation Success');
       this.objs.getProductList();
     },

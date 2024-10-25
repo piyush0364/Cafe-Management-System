@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Orders
         [HttpGet]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _context.Orders.ToListAsync();
@@ -29,6 +31,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);
@@ -44,6 +47,7 @@ namespace WebApICafe.Controllers
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
             if (id != order.OrderId)
@@ -75,6 +79,7 @@ namespace WebApICafe.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
             _context.Orders.Add(order);
@@ -85,6 +90,7 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/Orders/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);
@@ -105,6 +111,7 @@ namespace WebApICafe.Controllers
         }
 
         [HttpGet("history/{userId}")]
+        [Authorize]
         public async Task<IActionResult> GetOrderHistory(int userId)
         {
             // Fetch the order history for the provided userId
