@@ -5,6 +5,7 @@ using System.Linq; // For LINQ methods
 using System.Collections.Generic;
 using WebApICafe.Dto;
 using WebApICafe.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI_cafe.Controllers
 {
@@ -20,6 +21,7 @@ namespace WebAPI_cafe.Controllers
         }
 
         [HttpGet("{userId}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<CartItemDto>>> GetCartItems(int userId)
         {
             var cartItems = await (from cart in _context.Carts

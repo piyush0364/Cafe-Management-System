@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Payments
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
         {
             return await _context.Payments.ToListAsync();
@@ -29,6 +31,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Payments/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Payment>> GetPayment(int id)
         {
             var payment = await _context.Payments.FindAsync(id);
@@ -44,6 +47,7 @@ namespace WebApICafe.Controllers
         // PUT: api/Payments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
             if (id != payment.PaymentId)
@@ -75,6 +79,7 @@ namespace WebApICafe.Controllers
         // POST: api/Payments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             _context.Payments.Add(payment);
@@ -85,6 +90,7 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/Payments/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             var payment = await _context.Payments.FindAsync(id);

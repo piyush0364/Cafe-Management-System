@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using NuGet.Common;
+using NuGet.Protocol;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using WebApICafe.Helpers;
 using WebApICafe.Models;
 
 namespace WebAPI_cafe.Controllers
@@ -29,12 +31,17 @@ namespace WebAPI_cafe.Controllers
                 return BadRequest(new { Message = "Request body is null" });
             }
 
-            var user = await _authcontext.Users.FirstOrDefaultAsync(x => x.Username == userObj.Username && x.Password == userObj.Password);
+            var user = await _authcontext.Users.FirstOrDefaultAsync(x => x.Username == userObj.Username);
 
             if (user == null)
             {
                 Console.WriteLine("User not found");
                 return NotFound(new { Message = "User Not Found!" });
+            }
+
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
+            {
+                return BadRequest(new { Message = "Password is Incorrect" });
             }
 
             Console.WriteLine("Login Success");
@@ -66,7 +73,9 @@ namespace WebAPI_cafe.Controllers
                 return BadRequest(new { Message = "Email Already Exist" });
             }
 
-            //check the password strength
+
+
+            userObj.Password = PasswordHasher.HashPassword(userObj.Password);
 
 
             await _authcontext.Users.AddAsync(userObj);

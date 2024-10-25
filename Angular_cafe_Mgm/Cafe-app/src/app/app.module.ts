@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { OrdersComponent } from './admin/orders/orders.component';
@@ -26,6 +26,7 @@ import { UserComponent } from './user/user.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { ProductsComponent } from './admin/products/products.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,9 @@ import { ProductsComponent } from './admin/products/products.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,
+    useClass:TokenInterceptor,
+    multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
