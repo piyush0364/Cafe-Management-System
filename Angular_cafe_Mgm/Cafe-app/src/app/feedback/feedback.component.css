@@ -76,3 +76,10 @@
   #txtMessage{
     height:142px;
   }
+
+
+
+.error{
+    border: 1px solid red;
+    color: red;
+}

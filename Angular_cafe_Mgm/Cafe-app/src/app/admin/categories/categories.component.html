@@ -92,7 +92,7 @@
                
             <h1>Register Categaries</h1>
 
-            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form,fileInput)">
 
                 <div class="form-group">
                    <input type="text" class="form-control" name="Name" #Name="ngModel"
@@ -104,7 +104,7 @@
                 <div class="form-group pt-3">
                     <label for="imageUpload" class="font-weight-bold">Upload Image</label>
                         <div class="input-field">
-                            <input type="file" (change)="onFileSelected($event)" />
+                            <input type="file" #fileInput (change)="onFileSelected($event)" />
                         </div>
                 </div> 
 

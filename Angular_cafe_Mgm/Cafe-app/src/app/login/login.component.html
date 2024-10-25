@@ -64,7 +64,9 @@
                              <div class="form-group pt-3">
                                  <div class="input-field" [class.error]="username.invalid && (username.dirty || username.touched)">
                                      <span class="fa fa-user p-2"></span>
-                                     <input name="username" ngModel required type="text" placeholder="Username" #username="ngModel">
+                                     <input name="username" ngModel required type="text" placeholder="Username" #username="ngModel" minlength="3"
+                                     maxlength="20"
+                                     pattern="^[a-zA-Z0-9_@]*$">
                                  </div>
                              </div>
                              <small *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">*Username is required</small>

@@ -3,6 +3,7 @@ import { ProductService } from '../../Service/product.service';
 import { AuthService } from '../../Service/auth.service';
 import { CategoriesService } from '../../Service/categories.service';
 import { NgForm } from '@angular/forms';
+import { CategoryService } from '../../Service/category.service';
 
 @Component({
   selector: 'app-products',
@@ -14,18 +15,17 @@ export class ProductsComponent {
 
   obj: any = {
    
-    pData: {},
+    // pData: {},
     categoryList :[] 
   };
   // categoryList: Category[] = []; // Array to hold categories
  
 
-  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoriesService){}
+  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoryService){}
 
   
 
   ngOnInit(): void {
-    this.resetForm();
     this.fetchCategories();
     this.objs.getProductList();
  }
@@ -37,32 +37,34 @@ export class ProductsComponent {
     });
   }
 
-  resetForm(form?:NgForm){
+  // resetForm(form?:NgForm){
     
-    if(form != null){
-      form.form.reset();
-    }else{
-      this.objs.pData={ProductId:0,Name:'',Description:'',Price:'',ImageUrl:'',CategoryId:''}
-    }
-  }
+  //   if(form != null){
+  //     form.form.reset();
+  //   }else{
+  //     this.objs.pData={ProductId:0,Name:'',Description:'',Price:'',ImageUrl:'',CategoryId:''}
+  //   }
+  // }
 
 
-  fillData(selectedPL)
-  {
-   this.objs.pData=Object.assign({},selectedPL);
+  fillData(p : any)
+  {   this.objs.pData.ProductId = p.ProductId;
+      this.objs.pData.Name = p.Name;
+      this.objs.pData.Price = p.Price;
+      this.objs.pData.Description = p.Description;
+      this.objs.pData.CategoryId = p.CategoryId;
   }
 
 
   insertRecord(form: NgForm) {
      this.objs.pData = form.value; // Set cData from the form values
      this.objs.createProduct(this.profileImageUrl).subscribe(res => {
-       this.resetForm(form);
+      //  this.resetForm(form);
        alert('New Product Creation Success');
        this.objs.getProductList(); // Refresh the list
      },
      err => {
        alert('Error: ' + err);
-       this.resetForm(form);
      });
    }
 
@@ -70,19 +72,17 @@ export class ProductsComponent {
 
 
    updateCategories(form:NgForm){
-    this.objs.updateProduct().subscribe(res => {
-      this.resetForm(form);
+    this.objs.updateProduct(this.profileImageUrl).subscribe(res => {
       alert('Product Updation Success');
       this.objs.getProductList();
     },
     err => {alert('Error !!!' + err);
-      this.resetForm(form);
     }
   )
   }
   
 
-  onSubmit(form: NgForm)
+  onSubmit(form: NgForm,fileInput : any)
   {
 
     
@@ -91,6 +91,12 @@ export class ProductsComponent {
     }else{
       this.updateCategories(form);
     }
+
+    form.reset();
+    this.objs.pData.ProductId = 0;
+    fileInput.value = '';
+    this.profileImageUrl = '';
+
   }
 
 
