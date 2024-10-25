@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from '../../Service/categories.service';
+import { Category } from '../../model/category.model';
 import { AuthService } from '../../Service/auth.service';
+import { CategoryService } from '../../Service/category.service';
  
 import { NgForm } from '@angular/forms';
 
@@ -108,44 +109,42 @@ export class CategoriesComponent implements OnInit{
 
   profileImageUrl: string | ArrayBuffer | null = null;
 
-  constructor(public objs: CategoriesService) {}
+  constructor(public objs: CategoryService) {}
 
   ngOnInit(): void {
     this.resetForm();
-    this.objs.getCategoriesList();
+    this.objs.getCategoryList();
   }
 
   resetForm(form?: NgForm) {
-    if (form) {
-      form.reset();
-    } else {
-      this.objs.cData = { CategoryId: 0, Name: '', ImageUrl: '', CreatedDate: '' };
-    }
+      this.objs.cData.CategoryId = 0;
   }
 
-  fillData(selectedCL) {
-    this.objs.cData = Object.assign({}, selectedCL);
+  fillData(p) {
+     this.objs.cData.Name = p.Name;
+     this.objs.cData.CategoryId = p.CategoryId;
   }
 
   insertRecord(form: NgForm) {
-    this.objs.createCategory(this.profileImageUrl).subscribe(
+
+    this.objs.createCategory(this.profileImageUrl,form).subscribe(
       () => {
-        this.resetForm(form);
         alert('New Categories Creation Success');
-        this.objs.getCategoriesList(); // Refresh the list
+        this.objs.getCategoryList(); // Refresh the list
       },
       (err) => {
         alert('Error: ' + err);
       }
     );
+
   }
 
   updateCategories(form: NgForm) {
-    this.objs.updateCategory().subscribe(
+    this.objs.updateCategory(this.profileImageUrl).subscribe(
       () => {
         this.resetForm(form);
         alert('Categories Updation Success');
-        this.objs.getCategoriesList();
+        this.objs.getCategoryList();
       },
       (err) => {
         alert('Error !!!' + err);
@@ -153,12 +152,17 @@ export class CategoriesComponent implements OnInit{
     );
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm,fileInput : any) {
     if (this.objs.cData.CategoryId === 0) {
       this.insertRecord(form);
     } else {
       this.updateCategories(form);
     }
+    form.reset();
+    this.objs.cData.CategoryId = 0;
+    fileInput.value = '';
+    this.profileImageUrl = '';
+
   }
 
   onFileSelected(event: any): void {
@@ -178,7 +182,7 @@ export class CategoriesComponent implements OnInit{
     if (confirm('Are you sure? you want to delete this category?')) {
       this.objs.deleteCategory(categoryID).subscribe(
         () => {
-          this.objs.getCategoriesList();
+          this.objs.getCategoryList();
           alert('Record Deleted!!!');
         },
         (err) => {

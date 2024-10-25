@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApICafe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fde2c4e4922baaed8fe4f258db5b53800047f0e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c34ff45344723fb3dc57602d8bff010d724af415")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApICafe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApICafe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

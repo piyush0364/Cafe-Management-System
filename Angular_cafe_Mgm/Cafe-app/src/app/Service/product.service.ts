@@ -33,9 +33,9 @@ export class ProductService {
     return this.objHttp.post(this.ppApiUrl,this.pData);
   }
 
-  updateProduct()
+  updateProduct(img : any)
   {
-    return this.objHttp.put(this.ppApiUrl+"/"+this.pData.ProductId,this.pData);
+    return this.objHttp.put(this.ppApiUrl+"/"+this.pData.ProductId,{...this.pData,ImageUrl : img});
   }
 
   deleteProduct(Product)
