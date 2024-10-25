@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup ,Validators} from '@angular/forms';
 import { AuthService } from '../Service/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -88,7 +89,7 @@ export class LoginComponent implements OnInit{
   isText: boolean = false;
   eyeIcon: string = "fa-eye";
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router,private toastr : ToastrService) { }
 
   ngOnInit(): void { }
 
@@ -105,7 +106,10 @@ export class LoginComponent implements OnInit{
         next: (res) => {
           console.log('Response:', res); // Log the full response object
           if (res?.Message) {
-            alert(res.Message);
+          
+          this.toastr.success('Success','Login Success',{timeOut: 5000,
+            progressBar: true,
+          });
             form.reset(); // Reset the form
 
             this.auth.storeToken(res);
@@ -117,16 +121,18 @@ export class LoginComponent implements OnInit{
               this.router.navigate(['homo']);
             }
           } else {
-            alert("No message found in the response");
+         
+            this.toastr.error('Error','No message found in the response')
           }
         },
         error: (err) => {
           console.log('Error:', err); // Log the error response
-          alert(err?.error?.message || "Something went wrong");
+         
+          this.toastr.error('Error','Something went wrong')
         }
       });
     } else {
-      alert("Your form is invalid");
+      this.toastr.error('Error','Your Form is Invalid')
     }
   }
 

@@ -4,6 +4,7 @@ import { AuthService } from '../../Service/auth.service';
 import { CategoriesService } from '../../Service/categories.service';
 import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../Service/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -21,7 +22,7 @@ export class ProductsComponent {
   // categoryList: Category[] = []; // Array to hold categories
  
 
-  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoryService){}
+  constructor(public objs:ProductService,private auth:AuthService,public cat:CategoryService,private toastr:ToastrService){}
 
   
 
@@ -65,11 +66,12 @@ export class ProductsComponent {
      this.objs.pData = form.value; // Set cData from the form values
      this.objs.createProduct(this.profileImageUrl).subscribe(res => {
       //  this.resetForm(form);
-       alert('New Product Creation Success');
+      
+       this.toastr.success('Success','New Product Creation Success')
        this.objs.getProductList(); // Refresh the list
      },
      err => {
-       alert('Error: ' + err);
+       this.toastr.error('Error','Error: '+err)
      });
    }
 
@@ -79,10 +81,12 @@ export class ProductsComponent {
    updateCategories(form:NgForm){
     this.objs.updateProduct(this.profileImageUrl).subscribe(res => {
       this.resetForm(form);
-      alert('Product Updation Success');
+     
+      this.toastr.success('Success','Product Updation Success')
       this.objs.getProductList();
     },
-    err => {alert('Error !!!' + err);
+    err => {
+      this.toastr.error('Error','Error !!! '+err)
     }
   )
   }
@@ -115,9 +119,13 @@ export class ProductsComponent {
    {
      this.objs.deleteProduct(ProductId).subscribe(
        res=>{this.objs.getProductList()
-         alert("Record Deleted!!!")
+         
+         this.toastr.success('Success','Record Deleted!!!')
        },
-      err=>{alert("Error!!!"+err);})
+      err=>{
+        this.toastr.error('Error','Error: '+err)
+      }
+    )
    }
   }
 

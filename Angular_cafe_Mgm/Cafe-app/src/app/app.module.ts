@@ -28,6 +28,11 @@ import { PurchaseComponent } from './purchase/purchase.component';
 import { ProductsComponent } from './admin/products/products.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +55,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     UserComponent,
     AdminnavComponent,
     PurchaseComponent,
-    ProductsComponent
+    ProductsComponent,
+
   ],
   
   imports: [
@@ -58,7 +64,13 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // Required animations module
+    ToastrModule.forRoot( { timeOut: 5000,
+      progressBar: true,      // Duration in milliseconds
+      positionClass: 'toast-top-right', // Positioning
+      preventDuplicates: true,           // Prevent duplicate toasts
+      closeButton: true }),
   ],
   providers: [{provide: HTTP_INTERCEPTORS,
     useClass:TokenInterceptor,

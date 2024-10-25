@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FeedbackService } from '../../Service/feedback.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -9,7 +10,7 @@ import { FeedbackService } from '../../Service/feedback.service';
 export class ContactComponent {
   feedbackList: any[] = [];
 
-  constructor(private feedbackService: FeedbackService) {}
+  constructor(private feedbackService: FeedbackService,private toastr : ToastrService) {}
 
   ngOnInit(): void {
     this.loadFeedback();
@@ -31,9 +32,15 @@ export class ContactComponent {
    {
      this.feedbackService.deleteFeedback(ContactId).subscribe(
        res=>{this.feedbackService.getFeedback()
-         alert("Record Deleted!!!")
+      
+        this.toastr.success('Success','Record Deleted !!!')
        },
-      err=>{alert("Error!!!"+err);})
+      err=>{
+    
+        this.toastr.error('Error','Error !!!'+err)
+
+      }
+    )
    }
   }
 }

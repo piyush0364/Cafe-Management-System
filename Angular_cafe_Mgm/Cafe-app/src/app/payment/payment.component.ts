@@ -4,6 +4,7 @@ import { CartService } from '../Service/cart.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../Service/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface CartItem {
   ProductId : number,
@@ -36,7 +37,9 @@ export class PaymentComponent implements OnInit {
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
-    constructor(private paymentService: PaymentService, private crt : CartService,private router : Router,private http : HttpClient,private psrv : ProductService) {}
+    constructor(private paymentService: PaymentService, private crt : CartService,private router : Router,private http : HttpClient,private psrv : ProductService,
+      private toastr : ToastrService
+    ) {}
 
     ngOnInit(): void {
       this.id = JSON.parse(localStorage.getItem('id'));
@@ -89,7 +92,7 @@ export class PaymentComponent implements OnInit {
               
               console.log("Order about to be created", response);
               this.createOrder(response.PaymentId);
-              alert("Order Placed Successfully")
+             this.toastr.success('Success','Order Placed Successfully')
               this.router.navigate(['homo'])
             },
             (error) => {

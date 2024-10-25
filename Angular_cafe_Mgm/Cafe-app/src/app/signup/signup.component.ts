@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../Service/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -101,7 +102,7 @@ export class SignupComponent {
   isText: boolean = false;
   eyeIcon: string = "fa-eye";
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router,private toastr:ToastrService) {}
 
   ngOnInit(): void {
     // No need to initialize a form group in template-driven forms
@@ -134,12 +135,15 @@ export class SignupComponent {
       console.log(signUpForm.value);
       this.auth.signUp(signUpForm.value).subscribe({
         next: (res) => {
-          alert(res.Message);
+          // alert(res.Message);
+          this.toastr.success('Success','User Registered')
+
           signUpForm.reset();
           this.router.navigate(['login']);
         },
         error: (err) => {
-          alert(err?.error.Message);
+          // alert(err?.error.Message);
+          this.toastr.error('Error',err?.error.Message);        
         }
       });
     } else {
