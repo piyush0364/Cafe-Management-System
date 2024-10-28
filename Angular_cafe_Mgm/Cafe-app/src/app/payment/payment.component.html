@@ -23,12 +23,12 @@
         <div *ngIf="paymentForm.value.PaymentMode === 'online'">
             <div class="mb-3">
                 <label for="CardNo" class="form-label">Card Number</label>
-                <input type="text" id="CardNo" name="CardNo" class="form-control" maxlength="16" ngModel placeholder="xxxx xxxx xxxx xxxx" required>
+                <input type="text" id="CardNo" name="CardNo" class="form-control" maxlength="16" minlength="16" ngModel placeholder="xxxx xxxx xxxx xxxx" required>
             </div>
 
             <div class="mb-3">
                 <label for="CvvNo" class="form-label">CCV</label>
-                <input type="text" id="CvvNo" name="CvvNo" class="form-control" ngModel maxlength="3" placeholder="Enter CCV Number" required>
+                <input type="text" id="CvvNo" name="CvvNo" class="form-control" ngModel minlength="3" maxlength="3" placeholder="Enter CCV Number" required>
             </div>
 
             <div class="mb-3">

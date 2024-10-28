@@ -83,3 +83,24 @@
     border: 1px solid red;
     color: red;
 }
+
+
+.input-field {
+  position: relative; /* Set relative positioning for the input field */
+}
+
+.input-field span {
+  position: absolute; /* Position the icon absolutely */
+  left: 10px; /* Adjust the left position as needed */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  pointer-events: none; /* Prevent the icon from interfering with input clicks */
+}
+
+.input-field input,
+.input-field textarea {
+  margin-left:40px;
+  padding-left: 40px; /* Add padding to make space for the icon */
+  width: 100%; /* Ensure full width for inputs */
+  box-sizing: border-box; /* Include padding in width calculation */
+}

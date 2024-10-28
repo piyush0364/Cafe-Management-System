@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit{
           console.log('Response:', res); // Log the full response object
           if (res?.Message) {
           
-          this.toastr.success('Success','Login Success',{timeOut: 5000,
+          this.toastr.success('Success','Login Success',{timeOut: 2000,
             progressBar: true,
           });
             form.reset(); // Reset the form

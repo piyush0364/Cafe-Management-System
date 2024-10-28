@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FeedbackService } from '../../Service/feedback.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact',
@@ -26,24 +27,37 @@ export class ContactComponent {
       }
     });
   }
-  deleteFeedback(ContactId)
-  {
-   if(confirm("Are you sure? you wanna delete this Contact?"))
-   {
-     this.feedbackService.deleteFeedback(ContactId).subscribe(
-       res=>{this.feedbackService.getFeedback()
-      
-        this.toastr.success('Success','Record Deleted !!!')
-       },
-      err=>{
-    
-        this.toastr.error('Error','Error !!!'+err)
 
+  deleteFeedback(ContactId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this contact?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.feedbackService.deleteFeedback(ContactId).subscribe({
+          next: () => {
+            this.toastr.success('Record Deleted Successfully!', 'Success');
+            this.loadFeedback();
+          },
+          error: (err) => {
+            this.toastr.error('An error occurred while deleting the record.', 'Error');
+            console.error('Error deleting feedback:', err);
+          }
+        });
+      } else {
+        this.toastr.info('Deletion canceled', 'Info');
       }
-    )
-   }
+    });
   }
 }
+
+
+
+
 
 
 

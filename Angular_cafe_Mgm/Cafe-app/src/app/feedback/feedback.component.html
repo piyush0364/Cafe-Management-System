@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<!-- <app-nav></app-nav>
 
 <section class="book_section layout_padding">
     <div class="container">
@@ -64,4 +64,67 @@
     </div>
   </section>
   
-  <app-footer></app-footer>
+  <app-footer></app-footer> -->
+
+
+
+  <app-nav></app-nav>
+
+<section class="book_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>Send Your Query</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <form #queryForm="ngForm" (ngSubmit)="onSubmit(queryForm)">
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-user"></span>
+                                <input name="Name" ngModel class="form-control" required type="text" placeholder="Your Name" id="txtName"
+                                       pattern="^(?!\s)([A-Za-z]+(\s[A-Za-z]+)*)?(?<!\s)$">
+                            </div>
+                            <small *ngIf="queryForm.controls['Name']?.dirty && queryForm.controls['Name']?.invalid" 
+                                   class="text-danger">Name is required</small>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="bi bi-envelope-fill"></span>
+                                <input name="Email" ngModel class="form-control" required type="email" placeholder="Your Email" id="txtEmail"
+                                       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                            </div>
+                            <small *ngIf="queryForm.controls['Email']?.dirty && queryForm.controls['Email']?.invalid" 
+                                   class="text-danger">Email is required</small>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-pencil"></span>
+                                <input name="Subject" ngModel class="form-control" type="text" placeholder="Subject" id="txtSubject" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-comment"></span>
+                                <textarea name="Message" ngModel class="form-control" placeholder="Enter Your Query/Feedback" id="txtMessage" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="btn_box">
+                            <button type="submit" [disabled]="!queryForm.valid" 
+                                    class="btn btn-warning rounded-pill pl-4 pr-4 text-white" id="btnSubmit">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

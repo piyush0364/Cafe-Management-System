@@ -30,6 +30,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { OrderitemComponent } from './orderitem/orderitem.component';
 
 
 
@@ -56,6 +57,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminnavComponent,
     PurchaseComponent,
     ProductsComponent,
+    OrderitemComponent,
 
   ],
   
@@ -66,7 +68,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // Required animations module
-    ToastrModule.forRoot( { timeOut: 5000,
+    ToastrModule.forRoot( { timeOut: 1500,
       progressBar: true,      // Duration in milliseconds
       positionClass: 'toast-top-right', // Positioning
       preventDuplicates: true,           // Prevent duplicate toasts

@@ -1,0 +1,9 @@
+.badge-pending {
+    background-color: #dc3545;; /* Yellow for pending */
+  }
+  
+  .badge-completed{
+    background-color: #28a745; /* Green for completed */
+  }
+  
+

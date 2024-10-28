@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { OrderService } from '../Service/order.service';
 import { Orders } from '../Models/orders.model';
 import { ProductService } from '../Service/product.service';
+import { OrderitemService } from '../Service/orderitem.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-purchase',
@@ -12,7 +14,7 @@ export class PurchaseComponent {
   orders: Orders[];
   productNames: { [key: string]: string } = {};
 
-  constructor(private orderService : OrderService,private productService:ProductService){}
+  constructor(private orderService : OrderService,private productService:ProductService,private ot : OrderitemService,private route : Router){}
 
   ngOnInit(): void {
     this.fetchOrders();
@@ -23,17 +25,13 @@ export class PurchaseComponent {
     this.orderService.getOrderHistory().subscribe(orders => {
       console.log(orders);
       this.orders = orders;
-      // this.fetchProductNames();
     });
   }
 
-  // fetchProductNames(): void {
-  //   const productIds = [...new Set(this.orders.map(order => order.ProductId))]; // Get unique product IDs
-  //   productIds.forEach(productId => {
-  //     this.productService.getProductById(productId).subscribe(product => {
-  //       this.productNames[productId] = product.Name; // Assuming product object has a 'name' property
-  //     });
-  //   });
-  // }
+  getOrderbyNo(orderId: number): void {
+   
+    this.route.navigate(['/orderitem', orderId]);
+  }
+
 
   }

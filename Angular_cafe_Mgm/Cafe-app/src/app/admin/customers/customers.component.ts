@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../Service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customers',
@@ -15,20 +16,30 @@ export class CustomersComponent {
  
   }
 
-  onDelete(Id)
-  {
-   if(confirm("Are you sure? you wanna delete this Customer?"))
-   {
-     this.objs.deleteUser(Id).subscribe(
-       res=>{this.objs.getUserList()
-        this.toastr.success('Success','Record Deleted !!!')
-       },
-      err=>{
-        this.toastr.error('Error','Error !!!'+err)
-
+  onDelete(Id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this Customer?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.objs.deleteUser(Id).subscribe({
+          next: () => {
+            this.toastr.success('Record Deleted Successfully!', 'Success');
+            this.objs.getUserList();
+          },
+          error: (err) => {
+            this.toastr.error('An error occurred while deleting the record.', 'Error');
+            console.error('Error deleting feedback:', err);
+          }
+        });
+      } else {
+        this.toastr.info('Deletion canceled', 'Info');
       }
-    )
-   }
+    });
   }
 
 }

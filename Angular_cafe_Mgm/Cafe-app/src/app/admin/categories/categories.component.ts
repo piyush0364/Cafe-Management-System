@@ -5,6 +5,7 @@ import { CategoryService } from '../../Service/category.service';
  
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories',
@@ -13,100 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class CategoriesComponent implements OnInit{
-
-  // profileImageUrl: string | ArrayBuffer | null = null;
-
-  // constructor(public objs:CategoriesService, private csrv : CategoriesService){}
-
-  // ngOnInit(): void {
-  //   this.resetForm();
-  //   this.objs.getCategoriesList();
-  //   this.csrv.getCategoriesList();
- 
-  // }
-
-  // resetForm(form?:NgForm){
-    
-  //   if(form != null){
-  //     form.form.reset();
-  //   }else{
-  //     this.objs.cData={CategoryId:0,Name:'',ImageUrl:'',IsActive:'',CreatedDate:''}
-  //   }
-  // }
-
-
-  // fillData(selectedCL)
-  // {
-  //  this.objs.cData=Object.assign({},selectedCL);
-  // }
-
-
-  // insertRecord(form: NgForm) {
-  //   //  this.objService.cData = form.value; // Set cData from the form values
-  //    this.objs.createCategory(this.profileImageUrl).subscribe(res => {
-  //      this.resetForm(form);
-  //      alert('New Categories Creation Success');
-  //      this.objs.getCategoriesList(); // Refresh the list
-  //    },
-  //    err => {
-  //      alert('Error: ' + err);
-  //    });
-  //  }
-
-
-
-
-  //  updateCategories(form:NgForm){
-  //   this.objs.updateCategory().subscribe(res => {
-  //     this.resetForm(form);
-  //     alert('Categories Updation Success');
-  //     this.objs.getCategoriesList();
-  //   },
-  //   err => {alert('Error !!!' + err);}
-  // )
-  // }
-  
-
-  // onSubmit(form: NgForm)
-  // { 
-  //   if(this.objs.cData.CategoryId==0){
-  //     this.insertRecord(form);
-  //   }else{
-  //     this.updateCategories(form);
-  //   }
-  // }
-
-  // onFileSelected(event: any): void {
-  //   const file: File = event.target.files[0];
-  //   const reader = new FileReader();
-
-  //   reader.onload = () => {
-  //     this.profileImageUrl = reader.result; // This is the Base64 string
-  //     console.log(  this.profileImageUrl);
-  //   };
-
-  //   if (file) {
-  //     reader.readAsDataURL(file); // Converts to Base64
-  //   }
-  // }
-
-
-
-
-
-
-  // onDelete(categoryID)
-  // {
-  //  if(confirm("Are you sure? you wanna delete this  Categories?"))
-  //  {
-  //    this.objs.deleteCategory(categoryID).subscribe(
-  //      res=>{this.objs.getCategoriesList()
-  //        alert("Record Deleted!!!")
-  //      },
-  //     err=>{alert("Error!!!"+err);})
-  //  }
-  // }
-
 
   profileImageUrl: string | ArrayBuffer | null = null;
 
@@ -183,19 +90,31 @@ export class CategoriesComponent implements OnInit{
     }
   }
 
-  onDelete(categoryID) {
-    if (confirm('Are you sure? you want to delete this category?')) {
-      this.objs.deleteCategory(categoryID).subscribe(
-        () => {
-          this.objs.getCategoryList();
-       
-          this.toastr.success('Success','Record Deleted!!!');
-        },
-        (err) => {
-          this.toastr.error('Error','Error!!!' + err);
-        }
-      );
-    }
+
+  onDelete(ProductId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete this category?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.objs.deleteCategory(ProductId).subscribe({
+          next: () => {
+            this.toastr.success('Record Deleted Successfully!', 'Success');
+            this.objs.getCategoryList(); // Update the product list
+          },
+          error: (err) => {
+            this.toastr.error('An error occurred while deleting the record.', 'Error');
+            console.error('Error deleting product:', err);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.toastr.info('Deletion canceled', 'Info');
+      }
+    });
   }
 
 
