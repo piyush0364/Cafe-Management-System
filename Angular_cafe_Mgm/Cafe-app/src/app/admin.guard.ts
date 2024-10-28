@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './Service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { AuthService } from './Service/auth.service';
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(private router: Router,private auth : AuthService) { }
+  constructor(private router: Router,private auth : AuthService,private toast : ToastrService) { }
 
   canActivate(): boolean {
     if (this.auth.isLoggedIn()) {
@@ -17,8 +18,9 @@ export class AdminGuard implements CanActivate {
         return true; 
       }
     }
-    alert("Only Admin is allowed")
+    this.toast.info('Only Admin is allowed')
     this.router.navigate(['/login'])
     return false;
   }
+  
 }

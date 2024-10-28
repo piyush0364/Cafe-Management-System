@@ -61,30 +61,18 @@
                         <th>Order Date</th>
                         <th>Actions</th>
                         <th>Delete</th>
+                        <th>Details</th>
+
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let order of orders">
                         <td>{{ u[order.UserId] }}</td>
-                        <td>{{    order.TotalAmount }}</td>
+                        <td>{{order.TotalAmount }}</td>
                         <td>{{ order.Status }}</td>
                         <td>{{p[order.PaymentId]}}</td>
                         <td>{{ order.OrderDate | date: 'medium' }}</td>
                         <td>
-                          <!-- <button 
-                            class="btn btn-success btn-sm" 
-                            (click)="updateStatus(order, 'delivered')"
-                            [disabled]="order.Status === 'delivered'"
-                          >
-                            Delivered
-                          </button>
-                          <button 
-                            class="btn btn-danger btn-sm" 
-                            (click)="updateStatus(order, 'pending')"
-                            [disabled]="order.Status === 'pending'"
-                          >
-                            Pending 
-                          </button> -->
 
                           <button class="btn" 
   [ngClass]="order.Status === 'delivered' ? 'btn-danger' : 'btn-success'" 
@@ -101,6 +89,7 @@
                           Delete
                         </button>
                         </td>
+                        <td><i class="bi bi-menu-down" (click) = "getOrderbyNo(order.OrderId)"></i></td>
                       </tr>
                     </tbody>
                   </table>

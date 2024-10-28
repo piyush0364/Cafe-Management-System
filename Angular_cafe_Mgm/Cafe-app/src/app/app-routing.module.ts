@@ -19,6 +19,7 @@ import { AdminGuard } from './admin.guard';
 import { UserComponent } from './user/user.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { ProductsComponent } from './admin/products/products.component';
+import { OrderitemComponent } from './orderitem/orderitem.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
   {path:'payment',component:PaymentComponent,canActivate:[AuthGuard]},
   {path:'user',component:UserComponent,canActivate:[AuthGuard]},
   {path:'purchase',component:PurchaseComponent,canActivate:[AuthGuard]},
-  {path:'',component:HomoComponent}
+  {path:'',component:HomoComponent},
+  { path: 'orderitem/:id', component: OrderitemComponent }
 
 ];
 

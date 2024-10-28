@@ -5,6 +5,7 @@ import { CategoriesService } from '../../Service/categories.service';
 import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../Service/category.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products',
@@ -43,14 +44,6 @@ export class ProductsComponent {
     });
   }
 
-  // resetForm(form?:NgForm){
-    
-  //   if(form != null){
-  //     form.form.reset();
-  //   }else{
-  //     this.objs.pData={ProductId:0,Name:'',Description:'',Price:'',ImageUrl:'',CategoryId:''}
-  //   }
-  // }
 
 
   fillData(p : any)
@@ -113,21 +106,32 @@ export class ProductsComponent {
 
 
 
-  onDelete(ProductId)
-  {
-   if(confirm("Are you sure? you wanna delete this Product?"))
-   {
-     this.objs.deleteProduct(ProductId).subscribe(
-       res=>{this.objs.getProductList()
-         
-         this.toastr.success('Success','Record Deleted!!!')
-       },
-      err=>{
-        this.toastr.error('Error','Error: '+err)
+  onDelete(ProductId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete this product?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.objs.deleteProduct(ProductId).subscribe({
+          next: () => {
+            this.toastr.success('Record Deleted Successfully!', 'Success');
+            this.objs.getProductList(); // Update the product list
+          },
+          error: (err) => {
+            this.toastr.error('An error occurred while deleting the record.', 'Error');
+            console.error('Error deleting product:', err);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.toastr.info('Deletion canceled', 'Info');
       }
-    )
-   }
+    });
   }
+
 
   logout()
   {

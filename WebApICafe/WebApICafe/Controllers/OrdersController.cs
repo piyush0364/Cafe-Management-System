@@ -31,7 +31,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin1256")]
+        [Authorize]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);

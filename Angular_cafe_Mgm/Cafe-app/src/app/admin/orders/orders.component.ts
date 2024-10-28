@@ -6,6 +6,8 @@ import { Product } from '../../model/product.model';
 import { UserService } from '../../Service/user.service';
 import { PaymentService } from '../../Service/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -18,7 +20,7 @@ export class OrdersComponent {
   u : any;
 
   constructor(private ordersService: OrderService, private psrv : PaymentService,private usrv : UserService,
-    private toastr : ToastrService
+    private toastr : ToastrService,private route : Router
   ) {}
 
   ngOnInit(): void {
@@ -73,18 +75,6 @@ export class OrdersComponent {
 
 
 
-  // Handle order status update
-  // updateStatus(order: Orders, status: string): void {
-  //   const updatedOrder={...order,status};
-  //   this.ordersService.updateOrderStatus(updatedOrder).subscribe(
-  //     () => {
-  //       order.Status = status; // Update status locally for UI
-  //       alert(`Order ${order.OrderNo} status updated to ${status}`);
-  //     },
-  //     (error) => console.error('Failed to update status:', error)
-  //   );
-  // }
-
   toggleStatus(order: Orders): void {
     const newStatus = order.Status === 'delivered' ? 'pending' : 'delivered';
     this.updateStatus(order, newStatus);
@@ -103,21 +93,37 @@ export class OrdersComponent {
     );
   }
 
-  
-  onDelete(OrderId)
-  {
-   if(confirm("Are you sure? you wanna delete this Product?"))
-   {
-     this.ordersService.deleteOrder(OrderId).subscribe(
-       res=>{this.ordersService.getOrders()
-         this.toastr.success('Success','Record Deleted!!!')
-         this.fetchOrders();
-       },
-      err=>{
-        
-        this.toastr.error('Error','Error!!!'+err);
-      })
-   }
+  onDelete(OrderId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete this order?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ordersService.deleteOrder(OrderId).subscribe({
+          next: () => {
+            this.toastr.success('Record Deleted Successfully!', 'Success');
+            this.fetchOrders(); // Refresh the orders list
+          },
+          error: (err) => {
+            this.toastr.error('An error occurred while deleting the record.', 'Error');
+            console.error('Error deleting order:', err);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.toastr.info('Deletion canceled', 'Info');
+      }
+    });
   }
+
+  getOrderbyNo(orderId: number): void {
+   
+    this.route.navigate(['/orderitem', orderId]);
+  }
+
+
 }
 

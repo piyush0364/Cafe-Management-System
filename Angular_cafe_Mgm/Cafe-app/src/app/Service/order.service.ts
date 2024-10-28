@@ -34,5 +34,9 @@ export class OrderService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  getOrderByNo(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
 
 }

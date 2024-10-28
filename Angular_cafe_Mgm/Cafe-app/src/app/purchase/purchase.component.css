@@ -48,6 +48,10 @@
   .badge-cancelled {
     background-color: #dc3545; /* Red for cancelled */
   }
+
+  .bi-menu-down {
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
   
   /* Responsive styling */
   @media (max-width: 768px) {

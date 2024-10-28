@@ -23,7 +23,7 @@ namespace WebApICafe.Controllers
 
         // GET: api/Categories
         [HttpGet]
-        [Authorize]
+       
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();

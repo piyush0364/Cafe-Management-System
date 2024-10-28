@@ -49,4 +49,12 @@ export class AuthService {
     return jwtHelper.decodeToken(token)
   }
 
+  isAdmin(): boolean{
+    const userpayload = this.decodedToken()
+      if (userpayload.role.includes('Admin1256')) {
+        return true; 
+      }
+      return false;
+  }
+
 }
