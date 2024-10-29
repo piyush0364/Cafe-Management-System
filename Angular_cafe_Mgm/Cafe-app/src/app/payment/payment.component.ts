@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../Service/product.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../Service/user.service';
+import { Orders } from '../Models/orders.model';
 
 export interface CartItem {
   ProductId : number,
@@ -25,20 +27,20 @@ export interface CartItem {
 
 
 export class PaymentComponent implements OnInit {
-  private apiUrl = 'https://localhost:44331/api/OrderItems';  // Replace with your actual API URL
-    model: any = {};
+  // private apiUrl = 'https://localhost:44331/api/OrderItems';  
     cartItems: CartItem[] = [];
     id : number; 
     orderData : any;
     orderiData : any;
     p:any;
+    savedAddress : string;
 
 
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
     constructor(private paymentService: PaymentService, private crt : CartService,private router : Router,private http : HttpClient,private psrv : ProductService,
-      private toastr : ToastrService
+      private toastr : ToastrService, private u : UserService
     ) {}
 
     ngOnInit(): void {
@@ -158,5 +160,17 @@ console.log("failed");
 
 
       }
+
+
+
+      useSavedAddress() {
+        this.u.getUserListById().subscribe((res)=>{
+              this.savedAddress = res.Address;
+              console.log(this.savedAddress)
+        },
+      (err)=>{
+        console.log(err);
+      })
+    }
 
 }

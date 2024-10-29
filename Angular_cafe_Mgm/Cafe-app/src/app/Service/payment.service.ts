@@ -49,7 +49,7 @@ export class PaymentService {
     processPayment(paymentData: any): Observable<any> {
         // Send a POST request with the payment data
         console.log(paymentData);
-        return this.http.post(this.apiUrl, {...paymentData , Address : "5b"});
+        return this.http.post(this.apiUrl, {...paymentData });
       }
 
     
