@@ -91,7 +91,6 @@ namespace WebApICafe.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);

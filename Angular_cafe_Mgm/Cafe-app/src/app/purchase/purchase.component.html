@@ -21,7 +21,7 @@
         <tbody>
           <tr *ngFor="let order of orders">
             <td>{{order.OrderId}}</td>
-             <td>{{order.TotalAmount}}</td>
+             <td>₹{{order.TotalAmount + 5}}</td>
             <td >
                   <span [ngClass]="{
                     'badge-pending': order.Status === 'pending',

@@ -3,7 +3,7 @@
 
 <div class="container my-5">
 
-    <h2 class="text-center mb-4" style="color:  #0c0c0c;" *ngIf = !this.b>My Orders</h2>
+    <h2 class="text-center mb-4" style="color:  #0c0c0c;" *ngIf = !this.b>My Order</h2>
 
   
     <div>
@@ -29,13 +29,11 @@
             </div>
           </div>
   
-          <!-- Shipping Address
           <div class="mt-3">
-            <h6><i class="fa fa-map-marker-alt me-2"></i>Shipping Address:</h6>
-            <p>{{ order.ShipToAddress.FlatHouseNo }}, {{ order.ShipToAddress.AreaSector }}, {{ order.ShipToAddress.City }}, {{ order.ShipToAddress.State }} - {{ order.ShipToAddress.Pincode }}</p>
+            <h6><i class="fa fa-map-marker-alt me-2"></i>Delivery Address:</h6>
+            <p>{{ pMap3[order.PaymentId]}}</p>
           </div>
-   -->
-          <!-- Ordered Items Table -->
+
           <div class="mt-3">
             <h6><i class="fa fa-box me-2"></i>Ordered Items:</h6>
             <table class="table table-bordered table-hover mt-2">

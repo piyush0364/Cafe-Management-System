@@ -142,7 +142,7 @@
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['address']?.dirty && signUpForm.controls['address']?.invalid">
                                     <span class="bi bi-house-door-fill p-2"></span>
-                                    <input name="address" ngModel required type="text" placeholder="Address" pattern="^(?! )[^\s]+(?:[^\s]*[^\s])?(?! )$">
+                                    <input name="address" ngModel required type="text" placeholder="Address" pattern="^(?!.*[\s,;-]{2})(?!\s)([A-Za-z0-9]+(?:[\s,;-][A-Za-z0-9]+)*)?(?<!\s)$">
                                 </div>
                             </div>
                             <small *ngIf="signUpForm.controls['address']?.dirty && signUpForm.controls['address']?.invalid" class="text-danger">Address is required</small>
