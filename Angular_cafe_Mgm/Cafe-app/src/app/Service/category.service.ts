@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../model/category.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment} from '../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class CategoryService {
 
   cData:Category = new Category()
-  readonly ApiUrl='https://localhost:44331/api/Categories';
+  readonly ApiUrl=`${environment.apiUrl}/Categories`;
 
   cList:Category[];
 

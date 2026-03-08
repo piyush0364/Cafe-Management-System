@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable,catchError } from 'rxjs';
 import { Cart } from '../model/cart.model';
+import { environment } from '../../environment';
 
 export interface CartItem {
   ProductId : number,
@@ -17,7 +18,7 @@ export interface CartItem {
 })
 export class CartService {
 
-  private apiUrl = 'https://localhost:44331/api/Carts';  // Replace with your actual API URL
+  private apiUrl = `${environment.apiUrl}/Carts`;  // Replace with your actual API URL
   id:number;
 
   constructor(private http: HttpClient) {
@@ -28,7 +29,7 @@ export class CartService {
   
 
   getCartItems(userId: number): Observable<CartItem[]> {
-    const apiUrl = `https://localhost:44331/api/cartitem/${userId}`;
+    const apiUrl = `${environment.apiUrl}/cartitem/${userId}`;
     return this.http.get<CartItem[]>(apiUrl).pipe(
       catchError(this.handleError<CartItem[]>('getCartItems', []))
     );

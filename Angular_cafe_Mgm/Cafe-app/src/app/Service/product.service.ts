@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment';  
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   pData: Product = new  Product();
-  readonly ppApiUrl='https://localhost:44331/api/Products';
+  readonly ppApiUrl=`${environment.apiUrl}/Products`;
 
   pList:Product[];
 

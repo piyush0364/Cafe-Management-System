@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-feedback',
@@ -8,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './feedback.component.css'
 })
 export class FeedbackComponent {
-  readonly ppApiUrl='https://localhost:44331/api/Contacts';
+  readonly ppApiUrl=`${environment.apiUrl}/Contacts`;
 
   constructor(private http: HttpClient,private toastr: ToastrService) {}
 

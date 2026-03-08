@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../user.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   uData: User = new User();
-  readonly ApiUrl='https://localhost:44331/api/Users';
+  readonly ApiUrl=`${environment.apiUrl}/Users`;
 
   uList:User[];
 

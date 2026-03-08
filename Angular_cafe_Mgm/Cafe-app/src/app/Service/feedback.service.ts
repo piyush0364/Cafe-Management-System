@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedbackService {
 
-  private readonly apiUrl='https://localhost:44331/api/Contacts'
+  private readonly apiUrl=`${environment.apiUrl}/Contacts`;
   constructor(private http: HttpClient) { }
   getFeedback(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
