@@ -1,12 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +12,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IRepository<Contact> _contacts;
 
-        public ContactsController(CafeMgm2Context context)
+        public ContactsController(IRepository<Contact> contacts)
         {
-            _context = context;
+            _contacts = contacts;
         }
 
         // GET: api/Contacts
@@ -27,7 +25,7 @@ namespace WebApICafe.Controllers
 
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
         {
-            return await _context.Contacts.ToListAsync();
+            return Ok(await _contacts.GetAllAsync());
         }
 
         // GET: api/Contacts/5
@@ -35,7 +33,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Contact>> GetContact(int id)
         {
-            var contact = await _context.Contacts.FindAsync(id);
+            var contact = await _contacts.GetByIdAsync(id);
 
             if (contact == null)
             {
@@ -57,22 +55,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(contact).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _contacts.UpdateAsync(contact);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContactExists(id))
+                if (!await _contacts.ExistsAsync(e => e.ContactId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -84,8 +78,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
-            _context.Contacts.Add(contact);
-            await _context.SaveChangesAsync();
+            await _contacts.AddAsync(contact);
 
             return CreatedAtAction("GetContact", new { id = contact.ContactId }, contact);
         }
@@ -95,21 +88,15 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteContact(int id)
         {
-            var contact = await _context.Contacts.FindAsync(id);
+            var contact = await _contacts.GetByIdAsync(id);
             if (contact == null)
             {
                 return NotFound();
             }
 
-            _context.Contacts.Remove(contact);
-            await _context.SaveChangesAsync();
+            await _contacts.DeleteAsync(contact);
 
             return NoContent();
-        }
-
-        private bool ContactExists(int id)
-        {
-            return _context.Contacts.Any(e => e.ContactId == id);
         }
     }
 }

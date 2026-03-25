@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,10 @@ builder.Services.AddCors();
 builder.Services.AddDbContext<CafeMgm2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CafeMgm"))
 );
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 // Controllers + JSON settings
 builder.Services.AddControllers().AddJsonOptions(options =>

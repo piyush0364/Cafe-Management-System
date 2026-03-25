@@ -1,12 +1,11 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +13,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IRepository<Order> _orders;
 
-        public OrdersController(CafeMgm2Context context)
+        public OrdersController(IRepository<Order> orders)
         {
-            _context = context;
+            _orders = orders;
         }
 
         // GET: api/Orders
@@ -26,7 +25,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return Ok(await _orders.GetAllAsync());
         }
 
         // GET: api/Orders/5
@@ -34,7 +33,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _orders.GetByIdAsync(id);
 
             if (order == null)
             {
@@ -55,22 +54,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(order).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _orders.UpdateAsync(order);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!await _orders.ExistsAsync(e => e.OrderId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -82,8 +77,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            await _orders.AddAsync(order);
 
             return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
         }
@@ -93,33 +87,24 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _orders.GetByIdAsync(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
+            await _orders.DeleteAsync(order);
 
             return NoContent();
-        }
-
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderId == id);
         }
 
         [HttpGet("history/{userId}")]
         [Authorize]
         public async Task<IActionResult> GetOrderHistory(int userId)
         {
-            // Fetch the order history for the provided userId
-            var orderHistory = await _context.Orders
-                .Where(o => o.UserId == userId)
-                .ToListAsync();
+            var orderHistory = await _orders.GetWhereAsync(o => o.UserId == userId);
 
-            if (orderHistory == null || !orderHistory.Any())
+            if (!orderHistory.Any())
             {
                 return NotFound("No orders found for the specified user.");
             }

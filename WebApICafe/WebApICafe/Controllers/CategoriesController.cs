@@ -1,12 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,19 +12,19 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IRepository<Category> _categories;
 
-        public CategoriesController(CafeMgm2Context context)
+        public CategoriesController(IRepository<Category> categories)
         {
-            _context = context;
+            _categories = categories;
         }
 
         // GET: api/Categories
         [HttpGet]
-       
+
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return Ok(await _categories.GetAllAsync());
         }
 
         // GET: api/Categories/5
@@ -34,7 +32,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categories.GetByIdAsync(id);
 
             if (category == null)
             {
@@ -55,22 +53,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _categories.UpdateAsync(category);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!await _categories.ExistsAsync(e => e.CategoryId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -82,8 +76,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            await _categories.AddAsync(category);
 
             return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
@@ -93,21 +86,15 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categories.GetByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            await _categories.DeleteAsync(category);
 
             return NoContent();
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

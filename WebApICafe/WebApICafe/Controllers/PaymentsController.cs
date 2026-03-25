@@ -1,12 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +12,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IRepository<Payment> _payments;
 
-        public PaymentsController(CafeMgm2Context context)
+        public PaymentsController(IRepository<Payment> payments)
         {
-            _context = context;
+            _payments = payments;
         }
 
         // GET: api/Payments
@@ -26,7 +24,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
         {
-            return await _context.Payments.ToListAsync();
+            return Ok(await _payments.GetAllAsync());
         }
 
         // GET: api/Payments/5
@@ -34,7 +32,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Payment>> GetPayment(int id)
         {
-            var payment = await _context.Payments.FindAsync(id);
+            var payment = await _payments.GetByIdAsync(id);
 
             if (payment == null)
             {
@@ -55,22 +53,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(payment).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _payments.UpdateAsync(payment);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PaymentExists(id))
+                if (!await _payments.ExistsAsync(e => e.PaymentId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -82,8 +76,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
-            _context.Payments.Add(payment);
-            await _context.SaveChangesAsync();
+            await _payments.AddAsync(payment);
 
             return CreatedAtAction("GetPayment", new { id = payment.PaymentId }, payment);
         }
@@ -93,21 +86,15 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeletePayment(int id)
         {
-            var payment = await _context.Payments.FindAsync(id);
+            var payment = await _payments.GetByIdAsync(id);
             if (payment == null)
             {
                 return NotFound();
             }
 
-            _context.Payments.Remove(payment);
-            await _context.SaveChangesAsync();
+            await _payments.DeleteAsync(payment);
 
             return NoContent();
-        }
-
-        private bool PaymentExists(int id)
-        {
-            return _context.Payments.Any(e => e.PaymentId == id);
         }
     }
 }

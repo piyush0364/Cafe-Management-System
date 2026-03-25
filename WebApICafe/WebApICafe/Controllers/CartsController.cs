@@ -1,12 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +12,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class CartsController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly ICartRepository _carts;
 
-        public CartsController(CafeMgm2Context context)
+        public CartsController(ICartRepository carts)
         {
-            _context = context;
+            _carts = carts;
         }
 
         // GET: api/Carts
@@ -26,7 +24,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCarts()
         {
-            return await _context.Carts.ToListAsync();
+            return Ok(await _carts.GetAllAsync());
         }
 
         // GET: api/Carts/5
@@ -34,7 +32,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<Cart>> GetCart(int id)
         {
-            var cart = await _context.Carts.FindAsync(id);
+            var cart = await _carts.GetByIdAsync(id);
 
             if (cart == null)
             {
@@ -55,22 +53,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(cart).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _carts.UpdateAsync(cart);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CartExists(id))
+                if (!await _carts.ExistsAsync(e => e.CartId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -82,8 +76,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<Cart>> PostCart(Cart cart)
         {
-            _context.Carts.Add(cart);
-            await _context.SaveChangesAsync();
+            await _carts.AddAsync(cart);
 
             return CreatedAtAction("GetCart", new { id = cart.CartId }, cart);
         }
@@ -93,21 +86,15 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteCart(int id)
         {
-            var cart = await _context.Carts.FindAsync(id);
+            var cart = await _carts.GetByIdAsync(id);
             if (cart == null)
             {
                 return NotFound();
             }
 
-            _context.Carts.Remove(cart);
-            await _context.SaveChangesAsync();
+            await _carts.DeleteAsync(cart);
 
             return NoContent();
-        }
-
-        private bool CartExists(int id)
-        {
-            return _context.Carts.Any(e => e.CartId == id);
         }
     }
 }

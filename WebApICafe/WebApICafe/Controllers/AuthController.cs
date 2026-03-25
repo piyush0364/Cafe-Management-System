@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using NuGet.Common;
-using NuGet.Protocol;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WebApICafe.Helpers;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebAPI_cafe.Controllers
 {
@@ -18,11 +13,13 @@ namespace WebAPI_cafe.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly CafeMgm2Context _authcontext;
-        public AuthController(CafeMgm2Context cafeMgmContext)
+        private readonly IUserRepository _users;
+
+        public AuthController(IUserRepository users)
         {
-            _authcontext = cafeMgmContext;
+            _users = users;
         }
+
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] Authenticate userObj)
         {
@@ -31,7 +28,7 @@ namespace WebAPI_cafe.Controllers
                 return BadRequest(new { Message = "Request body is null" });
             }
 
-            var user = await _authcontext.Users.FirstOrDefaultAsync(x => x.Username == userObj.Username);
+            var user = await _users.GetByUsernameAsync(userObj.Username);
 
             if (user == null)
             {
@@ -54,44 +51,34 @@ namespace WebAPI_cafe.Controllers
                 id = user.UserId,
                 Message = "Login Success!"
             });
-
         }
+
         [HttpPost("register")]
 
         public async Task<IActionResult> RegisterUser([FromBody] User userObj)
         {
             if (userObj == null)
                 return BadRequest();
-            //Check username
-            if (await CheckUserNameExistAsync(userObj.Username))
+
+            if (await _users.UsernameExistsAsync(userObj.Username))
             {
                 return BadRequest(new { Message = "Username Already Exist" });
             }
-            //check Email
-            if (await CheckEmailExistAsync(userObj.Email))
+
+            if (await _users.EmailExistsAsync(userObj.Email))
             {
                 return BadRequest(new { Message = "Email Already Exist" });
             }
 
-
-
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
 
-
-            await _authcontext.Users.AddAsync(userObj);
-            await _authcontext.SaveChangesAsync();
+            await _users.AddAsync(userObj);
 
             return Ok(new
             {
                 Message = "User Registered!"
             });
         }
-
-        private Task<bool> CheckUserNameExistAsync(string userName) =>
-            _authcontext.Users.AnyAsync(x => x.Username == userName);
-
-        private Task<bool> CheckEmailExistAsync(string email) =>
-      _authcontext.Users.AnyAsync(x => x.Email == email);
 
         private string CreateJwt(User user)
         {

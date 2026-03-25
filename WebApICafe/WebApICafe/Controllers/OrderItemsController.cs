@@ -1,12 +1,11 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +13,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class OrderItemsController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IRepository<OrderItem> _orderItems;
 
-        public OrderItemsController(CafeMgm2Context context)
+        public OrderItemsController(IRepository<OrderItem> orderItems)
         {
-            _context = context;
+            _orderItems = orderItems;
         }
 
         // GET: api/OrderItems
@@ -26,7 +25,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
         {
-            return await _context.OrderItems.ToListAsync();
+            return Ok(await _orderItems.GetAllAsync());
         }
 
         // GET: api/OrderItems/5
@@ -34,7 +33,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
         {
-            var orderItem = await _context.OrderItems.FindAsync(id);
+            var orderItem = await _orderItems.GetByIdAsync(id);
 
             if (orderItem == null)
             {
@@ -55,22 +54,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(orderItem).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _orderItems.UpdateAsync(orderItem);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderItemExists(id))
+                if (!await _orderItems.ExistsAsync(e => e.OrderItemId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -82,8 +77,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
         {
-            _context.OrderItems.Add(orderItem);
-            await _context.SaveChangesAsync();
+            await _orderItems.AddAsync(orderItem);
 
             return CreatedAtAction("GetOrderItem", new { id = orderItem.OrderItemId }, orderItem);
         }
@@ -93,33 +87,24 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<IActionResult> DeleteOrderItem(int id)
         {
-            var orderItem = await _context.OrderItems.FindAsync(id);
+            var orderItem = await _orderItems.GetByIdAsync(id);
             if (orderItem == null)
             {
                 return NotFound();
             }
 
-            _context.OrderItems.Remove(orderItem);
-            await _context.SaveChangesAsync();
+            await _orderItems.DeleteAsync(orderItem);
 
             return NoContent();
-        }
-
-        private bool OrderItemExists(int id)
-        {
-            return _context.OrderItems.Any(e => e.OrderItemId == id);
         }
 
         [HttpGet("orderdetail/{orderId}")]
         [Authorize]
         public async Task<IActionResult> GetOrderHistory(int orderId)
         {
-            
-            var orderDetails = await _context.OrderItems
-                .Where(o => o.OrderId == orderId)
-                .ToListAsync();
+            var orderDetails = await _orderItems.GetWhereAsync(o => o.OrderId == orderId);
 
-            if (orderDetails == null || !orderDetails.Any())
+            if (!orderDetails.Any())
             {
                 return NotFound("No order Items found for the specified Order No..");
             }

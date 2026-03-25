@@ -1,12 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Repositories;
 
 namespace WebApICafe.Controllers
 {
@@ -14,11 +12,11 @@ namespace WebApICafe.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly CafeMgm2Context _context;
+        private readonly IUserRepository _users;
 
-        public UsersController(CafeMgm2Context context)
+        public UsersController(IUserRepository users)
         {
-            _context = context;
+            _users = users;
         }
 
         // GET: api/Users
@@ -26,7 +24,7 @@ namespace WebApICafe.Controllers
         [Authorize(Roles = "Admin1256")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return Ok(await _users.GetAllAsync());
         }
 
         // GET: api/Users/5
@@ -34,7 +32,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _users.GetByIdAsync(id);
 
             if (user == null)
             {
@@ -56,22 +54,18 @@ namespace WebApICafe.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _users.UpdateAsync(user);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!await _users.ExistsAsync(e => e.UserId == id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
@@ -83,8 +77,7 @@ namespace WebApICafe.Controllers
         [Authorize]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _users.AddAsync(user);
 
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
@@ -93,21 +86,15 @@ namespace WebApICafe.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _users.GetByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _users.DeleteAsync(user);
 
             return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }
