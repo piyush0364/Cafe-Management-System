@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApICafe.AI_ChatBotService;
 using WebApICafe.Models;
 using WebApICafe.Repositories;
 
@@ -13,10 +14,11 @@ namespace WebApICafe.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IRepository<Product> _products;
-
-        public ProductsController(IRepository<Product> products)
+        private readonly ChatbotService _chatbotService;
+        public ProductsController(IRepository<Product> products, ChatbotService chatbotService)
         {
             _products = products;
+            _chatbotService = chatbotService;
         }
 
         // GET: api/Products
@@ -96,5 +98,25 @@ namespace WebApICafe.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("generate-embeddings")]
+        public async Task<IActionResult> Generate()
+        {
+            await _chatbotService.GenerateAllEmbeddings();
+            return Ok("Embeddings Generated");
+        }
+
+        [HttpPost("ask")]
+        public async Task<IActionResult> Ask(ChatRequest req)
+        {
+            var result = await _chatbotService.Ask(req.Message);
+            return Ok(result);
+        }
+
+        public class ChatRequest
+        {
+            public string Message { get; set; }
+        }
     }
 }
+

@@ -1297,3 +1297,16 @@ C:/Users/user/Desktop/Capstone/Cafe-Management-System/WebApICafe/WebApICafe/obj/
 /Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/obj/Debug/net8.0/WebApICafe.pdb
 /Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/obj/Debug/net8.0/WebApICafe.genruntimeconfig.cache
 /Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/obj/Debug/net8.0/ref/WebApICafe.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/OpenAI.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.ClientModel.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.IO.Pipelines.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.Net.ServerSentEvents.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.Text.Encodings.Web.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/System.Text.Json.dll
+/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll

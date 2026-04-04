@@ -31,6 +31,8 @@ public partial class CafeMgm2Context : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public DbSet<ProductEmbedding> ProductEmbeddings { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=localhost,1433;Database=CafeMgm;User Id=sa;Password=YourStrong@Password1;TrustServerCertificate=True");
 
@@ -162,10 +164,38 @@ public partial class CafeMgm2Context : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.Price).HasColumnType("decimal(7, 2)");
 
+            entity.Property(e => e.IsVeg)
+                .HasDefaultValue(true);
+
+            entity.Property(e => e.SpiceLevel)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+
+            entity.Property(e => e.IsAvailable)
+                .HasDefaultValue(true);
+
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Products__Catego__4316F928");
+        });
+
+        modelBuilder.Entity<ProductEmbedding>(entity =>
+        {
+            entity.HasKey(e => e.Id)
+                .HasName("PK_ProductEmbeddings");
+
+            entity.Property(e => e.Embedding)
+                .IsUnicode(false);   // nvarchar(max)
+
+            entity.Property(e => e.TextData)
+                .IsUnicode(false);
+
+            entity.HasOne(e => e.Product)
+                .WithMany(p => p.ProductEmbeddings)
+                .HasForeignKey(e => e.ProductId)
+                .OnDelete(DeleteBehavior.Cascade)
+            .HasConstraintName("FK_ProductEmbeddings_Product");
         });
 
         modelBuilder.Entity<User>(entity =>

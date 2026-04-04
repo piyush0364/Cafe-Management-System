@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using WebApICafe.AI_ChatBotService;
 using WebApICafe.Models;
 using WebApICafe.Repositories;
 
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<CafeMgm2Context>(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IAIService, AIService>();
+builder.Services.AddScoped<ChatbotService>();
 
 // Controllers + JSON settings
 builder.Services.AddControllers().AddJsonOptions(options =>

@@ -17,9 +17,17 @@ public partial class Product
 
     public int? CategoryId { get; set; }
 
+    public bool IsVeg { get; set; }
+
+    public string? SpiceLevel { get; set; }
+
+    public bool IsAvailable { get; set; }
+
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+    public ICollection<ProductEmbedding> ProductEmbeddings { get; set; }
 }
