@@ -1,11 +1,12 @@
-﻿namespace WebApICafe.Models
+﻿using System.Text.Json.Serialization;
+
+namespace WebApICafe.Models;
+
+public class Authenticate
 {
-    public class Authenticate
-    {
+    [JsonPropertyName("username")]
+    public string Username { get; set; } = null!;
 
-        public string Username { get; set; } = null!;
-
-        public string Password { get; set; } = null!;
-
-    }
+    [JsonPropertyName("password")]
+    public string Password { get; set; } = null!;
 }

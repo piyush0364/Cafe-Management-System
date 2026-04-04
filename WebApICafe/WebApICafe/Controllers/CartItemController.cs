@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApICafe.Dto;
 using WebApICafe.Repositories;
 
-namespace WebAPI_cafe.Controllers
+namespace WebApICafe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

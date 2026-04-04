@@ -7881,11 +7881,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/WebApICafe.csproj",
+      "projectUniqueName": "/Users/piyushtripathi/Cafe-Management-System/WebApICafe/WebApICafe/WebApICafe.csproj",
       "projectName": "WebApICafe",
-      "projectPath": "/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/WebApICafe.csproj",
+      "projectPath": "/Users/piyushtripathi/Cafe-Management-System/WebApICafe/WebApICafe/WebApICafe.csproj",
       "packagesPath": "/Users/piyushtripathi/.nuget/packages/",
-      "outputPath": "/Users/piyushtripathi/Desktop/Cafe-Management-System/WebApICafe/WebApICafe/obj/",
+      "outputPath": "/Users/piyushtripathi/Cafe-Management-System/WebApICafe/WebApICafe/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/piyushtripathi/.nuget/NuGet/NuGet.Config"

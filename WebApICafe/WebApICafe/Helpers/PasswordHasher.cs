@@ -1,48 +1,54 @@
 ﻿using System.Security.Cryptography;
-namespace WebApICafe.Helpers
+
+namespace WebApICafe.Helpers;
+
+public static class PasswordHasher
 {
-    public class PasswordHasher
+    private static readonly int SaltSize = 16;
+    private static readonly int HashSize = 20;
+    private static readonly int Iterations = 10000;
+
+    public static string HashPassword(string password)
     {
-        private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-        private static readonly int SaltSize = 16;
-        private static readonly int HashSize = 20;
-        private static readonly int Iterations = 10000;
+        var salt = new byte[SaltSize];
+        RandomNumberGenerator.Fill(salt);
+        var key = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256);
+        var hash = key.GetBytes(HashSize);
 
-        public static string HashPassword(string password)
+        var hashByte = new byte[SaltSize + HashSize];
+        Array.Copy(salt, 0, hashByte, 0, SaltSize);
+        Array.Copy(hash, 0, hashByte, SaltSize, HashSize);
+
+        return Convert.ToBase64String(hashByte);
+    }
+
+    public static bool VerifyPassword(string password, string base64Hash)
+    {
+        if (string.IsNullOrEmpty(base64Hash))
+            return false;
+
+        byte[] hashBytes;
+        try
         {
-            byte[] salt;
-            rng.GetBytes(salt = new byte[SaltSize]);
-            var key = new Rfc2898DeriveBytes(password, salt, Iterations);
-            var hash = key.GetBytes(HashSize);
-
-            var hashByte = new byte[SaltSize + HashSize];
-            Array.Copy(salt, 0, hashByte, 0, SaltSize);
-            Array.Copy(hash, 0, hashByte, SaltSize, HashSize);
-
-            var base64Hash = Convert.ToBase64String(hashByte);
-
-            return base64Hash;
-
+            hashBytes = Convert.FromBase64String(base64Hash);
         }
-        public static bool VerifyPassword(string password, string base64Hash)
+        catch (FormatException)
         {
-            var hashBytes = Convert.FromBase64String(base64Hash);
+            return false;
+        }
 
-            var salt = new byte[SaltSize];
-            Array.Copy(hashBytes, 0, salt, 0, SaltSize);
+        if (hashBytes.Length != SaltSize + HashSize)
+            return false;
 
-            var key = new Rfc2898DeriveBytes(password, salt, Iterations);
-            byte[] hash = key.GetBytes(HashSize);
+        var salt = new byte[SaltSize];
+        Array.Copy(hashBytes, 0, salt, 0, SaltSize);
+        var stored = hashBytes.AsSpan(SaltSize, HashSize);
 
-            for (var i = 0; i < HashSize; i++)
-            {
-                if (hashBytes[i + SaltSize] != hash[i])
-                    return false;
-
-
-            }
+        var derived = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256).GetBytes(HashSize);
+        if (CryptographicOperations.FixedTimeEquals(stored, derived))
             return true;
 
-        }
+        derived = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA1).GetBytes(HashSize);
+        return CryptographicOperations.FixedTimeEquals(stored, derived);
     }
 }
