@@ -6,4 +6,6 @@
 *.user 
 *.userosscache 
 *.sln.docstates 
- 
+ **/bin/
+ *.vs
+  **/node_modules/
