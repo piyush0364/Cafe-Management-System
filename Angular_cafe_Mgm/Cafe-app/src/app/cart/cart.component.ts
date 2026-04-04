@@ -1,15 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CartService } from '../Service/cart.service';
-
-export interface CartItem {
-  ProductId : number,
-  CartId : number,
-  ProductName: string;
-  Price: number;
-  ImageUrl: string;
-  Quantity: number;
-}
+import { Component, OnInit, Input } from '@angular/core';
+import { CartService, CartItem } from '../Service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,15 +9,16 @@ export interface CartItem {
 export class CartComponent implements OnInit {
 
   cartItems: CartItem[] = [];
-  id : number; 
+  id: number = 0;
 
   @Input() items: any[] = [];
  
 
-  constructor(private http: HttpClient, public crt : CartService) {}
+  constructor(public crt: CartService) {}
 
   ngOnInit(): void {
-    this.id = JSON.parse(localStorage.getItem('id'));
+    const rawId = localStorage.getItem('id');
+    this.id = rawId ? Number(rawId) : 0;
     this.loadCartItems();
   }
 
@@ -36,10 +27,9 @@ export class CartComponent implements OnInit {
     this.crt.getCartItems(this.id).subscribe(
       (items) => {
         this.cartItems = items;
-        console.log(this.cartItems);
       },
       (error) => {
-        console.error('Error loading cart items', error);
+        // Optionally show a toast/message here
       }
     );
   }
@@ -60,15 +50,13 @@ export class CartComponent implements OnInit {
 
   removeItem(item: CartItem): void {
     if(item.Quantity == 1){
-      console.log("1");
       this.crt.deleteCart(item.CartId).subscribe(
         (response) => {
-          console.log('Cart removed successfully', response);
           this.loadCartItems();
   
         },
         (error) => {
-          console.error('Error updating cart', error);
+          // Optionally show a toast/message here
         }
       );
 
@@ -76,12 +64,11 @@ export class CartComponent implements OnInit {
     else{
     this.crt.updateCart(item.CartId,item.Quantity-1,item.ProductId).subscribe(
       (response) => {
-        console.log('Cart updated successfully', response);
         this.loadCartItems();
 
       },
       (error) => {
-        console.error('Error updating cart', error);
+        // Optionally show a toast/message here
       }
     );
   }
@@ -91,12 +78,11 @@ export class CartComponent implements OnInit {
   addItem(item: CartItem): void {
      this.crt.updateCart(item.CartId,item.Quantity+1,item.ProductId).subscribe(
       (response) => {
-        console.log('Cart updated successfully', response);
         this.loadCartItems();
 
       },
       (error) => {
-        console.error('Error updating cart', error);
+        // Optionally show a toast/message here
       }
     );
   }

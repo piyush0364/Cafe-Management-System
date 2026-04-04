@@ -1,130 +1,109 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApICafe.Models;
+using WebApICafe.Services.Interfaces;
 
-namespace WebApICafe.Controllers
+namespace WebApICafe.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class OrderItemsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrderItemsController : ControllerBase
+    private readonly IOrderItemService _orderItemService;
+
+    public OrderItemsController(IOrderItemService orderItemService)
     {
-        private readonly CafeMgm2Context _context;
+        _orderItemService = orderItemService;
+    }
 
-        public OrderItemsController(CafeMgm2Context context)
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
+    {
+        return await _orderItemService.GetAllAsync();
+    }
+
+    [HttpGet("{id}")]
+    [Authorize(Roles = "Admin1256")]
+    public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
+    {
+        var orderItem = await _orderItemService.GetByIdAsync(id);
+        if (orderItem == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        // GET: api/OrderItems
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
+        return orderItem;
+    }
+
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin1256")]
+    public async Task<IActionResult> PutOrderItem(int id, OrderItem orderItem)
+    {
+        if (id != orderItem.OrderItemId)
         {
-            return await _context.OrderItems.ToListAsync();
+            return BadRequest();
         }
 
-        // GET: api/OrderItems/5
-        [HttpGet("{id}")]
-        [Authorize(Roles = "Admin1256")]
-        public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
+        try
         {
-            var orderItem = await _context.OrderItems.FindAsync(id);
-
-            if (orderItem == null)
+            var isUpdated = await _orderItemService.UpdateAsync(id, orderItem);
+            if (!isUpdated)
+            {
+                return NotFound();
+            }
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await OrderItemExists(id))
             {
                 return NotFound();
             }
 
-            return orderItem;
+            throw;
         }
 
-        // PUT: api/OrderItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        [Authorize(Roles = "Admin1256")]
-        public async Task<IActionResult> PutOrderItem(int id, OrderItem orderItem)
+        return NoContent();
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
+    {
+        await _orderItemService.CreateAsync(orderItem);
+        return CreatedAtAction(nameof(GetOrderItem), new { id = orderItem.OrderItemId }, orderItem);
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin1256")]
+    public async Task<IActionResult> DeleteOrderItem(int id)
+    {
+        var isDeleted = await _orderItemService.DeleteAsync(id);
+        if (!isDeleted)
         {
-            if (id != orderItem.OrderItemId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(orderItem).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
 
-        // POST: api/OrderItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
+        return NoContent();
+    }
+
+    [HttpGet("orderdetail/{orderId}")]
+    [Authorize]
+    public async Task<IActionResult> GetOrderHistory(int orderId)
+    {
+        var orderDetails = await _orderItemService.GetByOrderIdAsync(orderId);
+        if (orderDetails.Count == 0)
         {
-            _context.OrderItems.Add(orderItem);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOrderItem", new { id = orderItem.OrderItemId }, orderItem);
+            return NotFound("No order Items found for the specified Order No..");
         }
 
-        // DELETE: api/OrderItems/5
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin1256")]
-        public async Task<IActionResult> DeleteOrderItem(int id)
-        {
-            var orderItem = await _context.OrderItems.FindAsync(id);
-            if (orderItem == null)
-            {
-                return NotFound();
-            }
+        return Ok(orderDetails);
+    }
 
-            _context.OrderItems.Remove(orderItem);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool OrderItemExists(int id)
-        {
-            return _context.OrderItems.Any(e => e.OrderItemId == id);
-        }
-
-        [HttpGet("orderdetail/{orderId}")]
-        [Authorize]
-        public async Task<IActionResult> GetOrderHistory(int orderId)
-        {
-            
-            var orderDetails = await _context.OrderItems
-                .Where(o => o.OrderId == orderId)
-                .ToListAsync();
-
-            if (orderDetails == null || !orderDetails.Any())
-            {
-                return NotFound("No order Items found for the specified Order No..");
-            }
-
-            return Ok(orderDetails);
-        }
+    private async Task<bool> OrderItemExists(int id)
+    {
+        var orderItem = await _orderItemService.GetByIdAsync(id);
+        return orderItem is not null;
     }
 }

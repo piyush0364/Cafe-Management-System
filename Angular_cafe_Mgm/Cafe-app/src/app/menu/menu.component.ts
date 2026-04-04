@@ -23,16 +23,22 @@ export class MenuComponent {
   fItems: Product[] = [];
 
   constructor(public psrv:ProductService, public csrv:CategoryService, public crt:CartService,private toastr:ToastrService)
-  {       this.id = JSON.parse(localStorage.getItem('id'));
+  {
+    const rawId = localStorage.getItem('id');
+    this.id = rawId ? Number(rawId) : 0;
 
     this.activeItem= 'all';
   }
 
    ngOnInit(): void {
     const id = localStorage.getItem('id');
-   console.log(id)
+    this.id = id ? Number(id) : this.id;
 
-    this.csrv.getCategoryList();
+    this.csrv.getCategoryList().subscribe({
+      error: () => {
+        // Optionally show a toast/message here
+      }
+    });
 
     this.psrv.getProducts().subscribe((data: Product[]) => {
       this.items = data;
@@ -59,7 +65,6 @@ export class MenuComponent {
 
 
   addItemToCart(productId: number) {
-    console.log(this.id);
     this.crt.getCartItems(this.id).pipe(
       switchMap((cartItems) => {
         const existingItem = cartItems.find(item => item.ProductId === productId);
@@ -78,9 +83,6 @@ export class MenuComponent {
       next: (response) => {
         // alert("Product added to Cart")
         this.toastr.success('Success','Products Added To Cart')
-
-        console.log('Cart updated:', response);
-        
       },
       error: (err) => {
         console.error('Error updating cart:', err);

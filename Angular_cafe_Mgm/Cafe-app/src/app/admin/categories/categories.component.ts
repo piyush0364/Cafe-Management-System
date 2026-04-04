@@ -21,7 +21,18 @@ export class CategoriesComponent implements OnInit{
 
   ngOnInit(): void {
     this.resetForm();
-    this.objs.getCategoryList();
+    this.loadCategories();
+  }
+
+  private loadCategories(): void {
+    this.objs.getCategoryList().subscribe({
+      next: () => {
+        // `cList` is updated inside the service
+      },
+      error: () => {
+        this.toastr.error('Error', 'Failed to load categories');
+      }
+    });
   }
 
   resetForm(form?: NgForm) {
@@ -40,7 +51,7 @@ export class CategoriesComponent implements OnInit{
       () => {
        
         this.toastr.success('Success','New Category Creation Success')
-        this.objs.getCategoryList(); // Refresh the list
+        this.loadCategories(); // Refresh the list
       },
       (err) => {
         this.toastr.error('Error',err);
@@ -55,7 +66,7 @@ export class CategoriesComponent implements OnInit{
         this.resetForm(form);
       
         this.toastr.success('Success','Categories Updation Success')
-        this.objs.getCategoryList();
+        this.loadCategories();
       },
       (err) => {
         
@@ -104,7 +115,7 @@ export class CategoriesComponent implements OnInit{
         this.objs.deleteCategory(ProductId).subscribe({
           next: () => {
             this.toastr.success('Record Deleted Successfully!', 'Success');
-            this.objs.getCategoryList(); // Update the product list
+            this.loadCategories(); // Update the product list
           },
           error: (err) => {
             this.toastr.error('An error occurred while deleting the record.', 'Error');

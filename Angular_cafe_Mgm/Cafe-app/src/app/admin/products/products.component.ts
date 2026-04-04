@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Service/product.service';
 import { AuthService } from '../../Service/auth.service';
-import { CategoriesService } from '../../Service/categories.service';
 import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../Service/category.service';
 import { ToastrService } from 'ngx-toastr';
@@ -30,8 +29,19 @@ export class ProductsComponent {
   ngOnInit(): void {
     this.resetForm();
     this.fetchCategories();
-    this.objs.getProductList();
+    this.loadProducts();
  }
+
+  private loadProducts(): void {
+    this.objs.getProductList().subscribe({
+      next: () => {
+        // `pList` is updated inside the service
+      },
+      error: () => {
+        this.toastr.error('Error', 'Failed to load products');
+      }
+    });
+  }
 
  resetForm(form?: NgForm) {
   this.objs.pData.ProductId = 0;
@@ -61,7 +71,7 @@ export class ProductsComponent {
       //  this.resetForm(form);
       
        this.toastr.success('Success','New Product Creation Success')
-       this.objs.getProductList(); // Refresh the list
+       this.loadProducts(); // Refresh the list
      },
      err => {
        this.toastr.error('Error','Error: '+err)
@@ -76,7 +86,7 @@ export class ProductsComponent {
       this.resetForm(form);
      
       this.toastr.success('Success','Product Updation Success')
-      this.objs.getProductList();
+      this.loadProducts();
     },
     err => {
       this.toastr.error('Error','Error !!! '+err)
@@ -119,7 +129,7 @@ export class ProductsComponent {
         this.objs.deleteProduct(ProductId).subscribe({
           next: () => {
             this.toastr.success('Record Deleted Successfully!', 'Success');
-            this.objs.getProductList(); // Update the product list
+            this.loadProducts(); // Update the product list
           },
           error: (err) => {
             this.toastr.error('An error occurred while deleting the record.', 'Error');
@@ -145,7 +155,6 @@ export class ProductsComponent {
 
     reader.onload = () => {
       this.profileImageUrl = reader.result; // This is the Base64 string
-      console.log(  this.profileImageUrl);
     };
 
     if (file) {

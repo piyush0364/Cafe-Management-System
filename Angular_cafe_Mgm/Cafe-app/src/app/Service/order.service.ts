@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Orders } from '../Models/orders.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = "https://localhost:44331/api/Orders";
+  private readonly apiUrl = `${environment.apiBaseUrl}/Orders`;
   constructor(private http:HttpClient) { }
   getOrders(): Observable<Orders[]> {
     return this.http.get<Orders[]>(this.apiUrl);
@@ -22,12 +23,9 @@ export class OrderService {
   getOrderHistory(): Observable<any> {
     // Retrieve UserId from localStorage
     const UserId = localStorage.getItem('id');
-    
     if (!UserId) {
-      throw new Error('UserId not found in local storage');
+      return throwError(() => new Error('UserId not found in local storage'));
     }
-
-    // Send request with the UserId
     return this.http.get(`${this.apiUrl}/history/${UserId}`);
   }
   deleteOrder(id: number): Observable<void> {

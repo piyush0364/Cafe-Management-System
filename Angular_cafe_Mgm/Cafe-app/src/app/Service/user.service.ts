@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,17 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   uData: User = new User();
-  readonly ApiUrl='https://localhost:44331/api/Users';
+  readonly ApiUrl = `${environment.apiBaseUrl}/Users`;
 
   uList:User[];
 
   constructor(private http : HttpClient) { }
-  getUserList()
-  {
-    this.http.get(this.ApiUrl).toPromise()
-    .then(res=>this.uList=res as User[]);
+  getUserList(): Observable<User[]> {
+    return this.http.get<User[]>(this.ApiUrl).pipe(
+      tap((res) => {
+        this.uList = res;
+      })
+    );
   }
 
   deleteUser(id)

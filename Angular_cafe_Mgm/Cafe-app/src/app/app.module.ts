@@ -5,15 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { CategoriesComponent } from './admin/categories/categories.component';
-import { OrdersComponent } from './admin/orders/orders.component';
-import { ContactComponent } from './admin/contact/contact.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { CustomersComponent } from './admin/customers/customers.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { FeedbackComponent } from './feedback/feedback.component';
@@ -23,26 +18,19 @@ import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './user/user.component';
-import { AdminnavComponent } from './adminnav/adminnav.component';
 import { PurchaseComponent } from './purchase/purchase.component';
-import { ProductsComponent } from './admin/products/products.component';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { OrderitemComponent } from './orderitem/orderitem.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { OrderitemComponent } from './orderitem/orderitem.component';
 
-
+import { CoreModule } from './core/core.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    DashboardComponent,
-    CategoriesComponent,
-    OrdersComponent,
-    CustomersComponent,
-    ContactComponent,
     LoginComponent,
     SignupComponent,
     HomeComponent,
@@ -54,29 +42,28 @@ import { OrderitemComponent } from './orderitem/orderitem.component';
     PaymentComponent,
     FooterComponent,
     UserComponent,
-    AdminnavComponent,
     PurchaseComponent,
-    ProductsComponent,
-    OrderitemComponent,
-
+    OrderitemComponent
   ],
-  
+
   imports: [
     BrowserModule,
+    CoreModule,
+    AdminModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, // Required animations module
-    ToastrModule.forRoot( { timeOut: 1500,
-      progressBar: true,      // Duration in milliseconds
-      positionClass: 'toast-top-right', // Positioning
-      preventDuplicates: true,           // Prevent duplicate toasts
-      closeButton: true }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true
+    })
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,
-    useClass:TokenInterceptor,
-    multi:true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

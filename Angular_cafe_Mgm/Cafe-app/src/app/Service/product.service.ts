@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product.model';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   pData: Product = new  Product();
-  readonly ppApiUrl='https://localhost:44331/api/Products';
+  readonly ppApiUrl = `${environment.apiBaseUrl}/Products`;
 
   pList:Product[];
 
@@ -22,10 +23,12 @@ export class ProductService {
       return this.objHttp.get<Product[]>(this.ppApiUrl);
     }
 
-  getProductList()
-  {
-    this.objHttp.get(this.ppApiUrl).toPromise()
-    .then(res=>this.pList=res as Product[]);
+  getProductList(): Observable<Product[]> {
+    return this.objHttp.get<Product[]>(this.ppApiUrl).pipe(
+      tap((res) => {
+        this.pList = res;
+      })
+    );
   }
   createProduct(p:any)
   {

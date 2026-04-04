@@ -12,8 +12,18 @@ export class CustomersComponent {
   constructor(public objs : UserService,private toastr: ToastrService){}
 
   ngOnInit(): void {
-    this.objs.getUserList();
- 
+    this.loadCustomers();
+  }
+
+  private loadCustomers(): void {
+    this.objs.getUserList().subscribe({
+      next: () => {
+        // `uList` is updated inside the service
+      },
+      error: () => {
+        this.toastr.error('Error', 'Failed to load customers');
+      }
+    });
   }
 
   onDelete(Id) {
@@ -29,7 +39,7 @@ export class CustomersComponent {
         this.objs.deleteUser(Id).subscribe({
           next: () => {
             this.toastr.success('Record Deleted Successfully!', 'Success');
-            this.objs.getUserList();
+            this.loadCustomers();
           },
           error: (err) => {
             this.toastr.error('An error occurred while deleting the record.', 'Error');

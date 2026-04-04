@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable,catchError } from 'rxjs';
-import { Cart } from '../model/cart.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable,catchError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CartItem {
   ProductId : number,
@@ -17,18 +17,19 @@ export interface CartItem {
 })
 export class CartService {
 
-  private apiUrl = 'https://localhost:44331/api/Carts';  // Replace with your actual API URL
-  id:number;
+  private readonly apiUrl = `${environment.apiBaseUrl}/Carts`;
+  id: number;
 
   constructor(private http: HttpClient) {
-    this.id = JSON.parse(localStorage.getItem('id'));
+    const raw = localStorage.getItem('id');
+    this.id = raw ? Number(raw) : 0;
   }
 
 
   
 
   getCartItems(userId: number): Observable<CartItem[]> {
-    const apiUrl = `https://localhost:44331/api/cartitem/${userId}`;
+    const apiUrl = `${environment.apiBaseUrl}/cartitem/${userId}`;
     return this.http.get<CartItem[]>(apiUrl).pipe(
       catchError(this.handleError<CartItem[]>('getCartItems', []))
     );
@@ -47,38 +48,22 @@ export class CartService {
 
   
 
-  addToCart(cartData: { ProductId: number; Quantity: number; UserId: number }): Observable<any> {
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-
+  addToCart(cartData: { ProductId: number; Quantity: number; UserId: number }): Observable<unknown> {
     return this.http.post(this.apiUrl, cartData);
   }
 
-  // Update an existing cart
-  updateCart(cartId: number, quantity: number,productId : number): Observable<any> {
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
+  updateCart(cartId: number, quantity: number, productId: number): Observable<unknown> {
     const payload = {
       CartId: cartId,
       ProductId: productId,
       UserId: this.id,
       Quantity: quantity
-  };
-    return this.http.put(`${this.apiUrl}/${cartId}`, payload, { headers });
+    };
+    return this.http.put(`${this.apiUrl}/${cartId}`, payload);
   }
 
-
-  // Delete a cart
-  deleteCart(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    console.log("2");
-    return this.http.delete(url);
+  deleteCart(id: number): Observable<unknown> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
 

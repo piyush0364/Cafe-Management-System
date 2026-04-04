@@ -3,34 +3,43 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+/** Backend auth endpoints return variable fields; callers narrow as needed. */
+export interface AuthApiResponse {
+  Message?: string;
+  Token?: string;
+  id?: string | number;
+  [key: string]: unknown;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl:string = "https://localhost:44331/api/Auth/";
-  private userPayload:any;
+  private readonly baseUrl = `${environment.apiBaseUrl}/Auth/`;
 
-  constructor(public http : HttpClient, private router : Router) { 
-    this.userPayload = this.decodedToken();
+  constructor(public http : HttpClient, private router : Router) { }
+
+  signUp(userObj: Record<string, unknown>) {
+    return this.http.post<AuthApiResponse>(`${this.baseUrl}register`, userObj);
   }
 
-  signUp(userObj:any){
-    return this.http.post<any>(`${this.baseUrl}register`,userObj);
-  }
-
-  login(loginObj: any): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj);
+  login(loginObj: Record<string, unknown>): Observable<AuthApiResponse> {
+    return this.http.post<AuthApiResponse>(`${this.baseUrl}authenticate`, loginObj);
   }
   signOut(){
     localStorage.clear();
     this.router.navigate(['login'])
   }
 
-  storeToken(tvalue){
-    localStorage.setItem('token',tvalue.Token);
-    localStorage.setItem('id',tvalue.id);
+  storeToken(tvalue: AuthApiResponse) {
+    if (tvalue.Token == null || tvalue.id == null) {
+      return;
+    }
+    localStorage.setItem('token', tvalue.Token);
+    localStorage.setItem('id', String(tvalue.id));
   }
 
   getToken(){
@@ -41,20 +50,21 @@ export class AuthService {
     return !!localStorage.getItem('token')
   }
 
-  //for role based auth
-  decodedToken(){
+  decodedToken(): Record<string, unknown> | null {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
     const jwtHelper = new JwtHelperService();
-    const token = this.getToken()!;
-    console.log(jwtHelper.decodeToken(token))
-    return jwtHelper.decodeToken(token)
+    return jwtHelper.decodeToken(token) as Record<string, unknown>;
   }
 
-  isAdmin(): boolean{
-    const userpayload = this.decodedToken()
-      if (userpayload.role.includes('Admin1256')) {
-        return true; 
-      }
-      return false;
+  isAdmin(): boolean {
+    const userpayload = this.decodedToken();
+    const role = userpayload?.['role'];
+    return Array.isArray(role)
+      ? role.includes('Admin1256')
+      : typeof role === 'string' && role.includes('Admin1256');
   }
 
 }

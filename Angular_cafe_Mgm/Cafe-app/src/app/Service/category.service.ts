@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../model/category.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,19 @@ import { Observable } from 'rxjs';
 export class CategoryService {
 
   cData:Category = new Category()
-  readonly ApiUrl='https://localhost:44331/api/Categories';
+  readonly ApiUrl = `${environment.apiBaseUrl}/Categories`;
 
   cList:Category[];
 
   constructor(private objHttp : HttpClient) { }
 
-  getCategoryList(){
-    this.objHttp.get(this.ApiUrl).toPromise().then(res=>{this.cList=res as Category[];console.log(this.cList);});
-    }
+  getCategoryList(): Observable<Category[]> {
+    return this.objHttp.get<Category[]>(this.ApiUrl).pipe(
+      tap((res) => {
+        this.cList = res;
+      })
+    );
+  }
   
     createCategory(c:any,f : any)
     {

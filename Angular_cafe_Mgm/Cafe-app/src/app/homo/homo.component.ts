@@ -47,8 +47,11 @@ export class HomoComponent {
   }
 
    ngOnInit(): void {
-
-    this.csrv.getCategoryList();
+    this.csrv.getCategoryList().subscribe({
+      error: () => {
+        // Optionally show a toast/message here
+      }
+    });
 
   }
 

@@ -1,21 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from '../Service/payment.service';
-import { CartService } from '../Service/cart.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 import { ProductService } from '../Service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../Service/user.service';
-import { Orders } from '../Models/orders.model';
-
-export interface CartItem {
-  ProductId : number,
-  CartId : number,
-  ProductName: string;
-  Price: number;
-  ImageUrl: string;
-  Quantity: number;
-}
+import { CartService, CartItem } from '../Service/cart.service';
+import { CheckoutService } from '../Service/checkout.service';
 
 
 @Component({
@@ -29,53 +19,53 @@ export interface CartItem {
 export class PaymentComponent implements OnInit {
   // private apiUrl = 'https://localhost:44331/api/OrderItems';  
     cartItems: CartItem[] = [];
-    id : number; 
-    orderData : any;
-    orderiData : any;
-    p:any;
-    savedAddress : string;
+  id: number = 0;
+  priceByProductId: Record<number, number> = {};
+  savedAddress: string = '';
 
 
     submissionMessage: string | null = null; // To display submission messages
     errorMessage: string | null = null; // To display error messages
 
-    constructor(private paymentService: PaymentService, private crt : CartService,private router : Router,private http : HttpClient,private psrv : ProductService,
-      private toastr : ToastrService, private u : UserService
-    ) {}
+  constructor(
+    private checkout: CheckoutService,
+    private crt: CartService,
+    private router: Router,
+    private psrv: ProductService,
+    private toastr: ToastrService,
+    private u: UserService
+  ) {}
 
     ngOnInit(): void {
-      this.id = JSON.parse(localStorage.getItem('id'));
-      this.loadItems();
+    const rawId = localStorage.getItem('id');
+    this.id = rawId ? Number(rawId) : 0;
+
+    if (!this.id) {
+      this.errorMessage = 'User id not found. Please login again.';
+      return;
+    }
+
+    this.loadItems();
     }
  
 
-    loadItems():void{
-
-      this.crt.getCartItems(this.id).subscribe(
-        (items) => {
-          this.cartItems = items;
-        },
-        (error) => {
-          console.error('Error loading cart items', error);
-        }
-      );
-
-      this.psrv.getProducts().subscribe((res)=>{
-
-        const productMap = res.reduce((acc, product) => {
+  loadItems(): void {
+    forkJoin({
+      cartItems: this.crt.getCartItems(this.id),
+      products: this.psrv.getProducts()
+    }).subscribe({
+      next: ({ cartItems, products }) => {
+        this.cartItems = cartItems;
+        this.priceByProductId = products.reduce((acc, product) => {
           acc[product.ProductId] = product.Price;
           return acc;
-        }, {} as { [key: number]: number });
-  
-        this.p = productMap;
-  
-        console.log(this.p);
-  
-      },(err)=>{
-        console.log(err);
-      });
-
-    }
+        }, {} as Record<number, number>);
+      },
+      error: () => {
+        this.errorMessage = 'Failed to load cart items.';
+      }
+    });
+  }
 
     get subtotal(): number {
       return this.cartItems.reduce((total, item) => total + item.Price * item.Quantity, 0);
@@ -86,91 +76,41 @@ export class PaymentComponent implements OnInit {
     }
 
 
-    onSubmit(form: any) {
-        if (form.valid) {
-          console.log(form.value);
-          this.paymentService.processPayment(form.value).subscribe(
-            (response) => {
-              
-              console.log("Order about to be created", response);
-              this.createOrder(response.PaymentId);
-             this.toastr.success('Success','Order Placed Successfully')
-              this.router.navigate(['homo'])
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-        } else {
-console.log("failed");
+  onSubmit(form: any) {
+    this.submissionMessage = null;
+    this.errorMessage = null;
+
+    if (!form?.valid) {
+      this.errorMessage = 'Invalid form. Please check the inputs.';
+      return;
+    }
+
+    this.checkout
+      .placeOrder(this.id, form.value, this.cartItems, this.priceByProductId)
+      .subscribe({
+        next: () => {
+          this.submissionMessage = 'Order Placed Successfully';
+          this.toastr.success('Success', 'Order Placed Successfully');
+          this.router.navigate(['homo']);
+        },
+        error: () => {
+          this.errorMessage = 'Payment/order failed. Please try again.';
+          this.toastr.error('Error', 'Could not place order');
         }
-      }
-
-
-
-      createOrder(id : number) :void{
-
-      
-
-      this.orderData = {
-         UserId : this.id,
-         TotalAmount : this.subtotal,
-          Status : "pending",
-         PaymentId : id,
-         OrderDate : new Date()
-         }
-
-              this.paymentService.createOrder(this.orderData).subscribe(
-                (response) => {
-                     console.log('Order created successfully:', response);
-                     for(let t of this.cartItems){
-
-                          this.orderiData = {
-                            Quantity : t.Quantity,
-                            OrderId : response.OrderId,
-                            ProductId : t.ProductId,
-                            Price : this.p[t.ProductId]
-
-                          }
-                          console.log(this.orderiData);
-
-                          this.paymentService.createOrderItems(this.orderiData).subscribe(res => {
-                            console.log(res);
-                          },
-                        (err)=>{console.log(err);}
-                      )
-                      
-                          this.crt.deleteCart(t.CartId).subscribe((res)=>{
-                            console.log(res);
-                          },
-                        (err)=>{
-                          console.log(err);
-                        })
-
-                         
-                     }
-                      // Handle successful response (e.g., display a success message)
-                    },
-               (error) => {
-                     console.error('Error creating order:', error);
-                      // Handle error response (e.g., display an error message)
-                    }
-                     );
-
-
-
-      }
+      });
+  }
 
 
 
       useSavedAddress() {
-        this.u.getUserListById().subscribe((res)=>{
-              this.savedAddress = res.Address;
-              console.log(this.savedAddress)
-        },
-      (err)=>{
-        console.log(err);
-      })
-    }
+    this.u.getUserListById().subscribe({
+      next: (res) => {
+        this.savedAddress = res?.Address ?? '';
+      },
+      error: () => {
+        this.errorMessage = 'Failed to load registered address.';
+      }
+    });
+  }
 
 }

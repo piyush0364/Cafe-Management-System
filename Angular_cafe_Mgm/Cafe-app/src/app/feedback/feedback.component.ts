@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { FeedbackService } from '../Service/feedback.service';
 
 @Component({
   selector: 'app-feedback',
@@ -8,27 +9,25 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './feedback.component.css'
 })
 export class FeedbackComponent {
-  readonly ppApiUrl='https://localhost:44331/api/Contacts';
 
-  constructor(private http: HttpClient,private toastr: ToastrService) {}
+  constructor(
+    private feedback: FeedbackService,
+    private toastr: ToastrService
+  ) {}
 
-  onSubmit(form: any) {
+  onSubmit(form: NgForm) {
     const requestBody = {
-      ...form.value, 
-      CreatedDate: new Date().toISOString() 
+      ...(form.value as Record<string, unknown>),
+      CreatedDate: new Date().toISOString()
     };
-   console.log(form.value);
-    this.http.post(this.ppApiUrl, requestBody)
-      .subscribe({
-        next: response => {
-          console.log('Success!', response);
-          this.toastr.success('Success','Form Submitted Successfully');
-
-          form.reset(); 
-        },
-        error: error => {
-          console.error('Error occurred:', error);
-        }
-      });
+    this.feedback.sendFeedback(requestBody).subscribe({
+      next: () => {
+        this.toastr.success('Success', 'Form Submitted Successfully');
+        form.reset();
+      },
+      error: () => {
+        this.toastr.error('Error', 'Could not submit feedback');
+      }
+    });
   }
 }
